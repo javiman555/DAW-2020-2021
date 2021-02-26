@@ -3585,7 +3585,7 @@ input[type="button"].btn-block {
 .nav-pills .nav-link.active,
 .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #007bff; }
+  background-color: transparent; }
 
 .nav-fill .nav-item {
   -webkit-box-flex: 1;
@@ -9998,3 +9998,21 @@ textarea.form-control {
   100% {
     stroke-dasharray: 89, 200;
     stroke-dashoffset: -136px; } }
+
+
+  /* INFO PERFIL */
+.nav-link:perfil{
+  border-radius: 0rem !important;
+}
+.nav-link:active{
+    background-color: transparent !important;
+    border-color: transparent !important;
+    color: var(--red) !important;
+}
+.nav-link:hover{
+    border-color: transparent !important;
+    color: var(--white) !important;
+}
+.nav{
+    border: transparent !important;
+}

@@ -211,7 +211,7 @@
 
 
 	// navigation
-	var OnePageNav = function() {
+	/*var OnePageNav = function() {
 		$(".smoothscroll[href^='#'], #ftco-nav ul li a[href^='#']").on('click', function(e) {
 		 	e.preventDefault();
 
@@ -232,7 +232,7 @@
 		  console.log('nice');
 		})
 	};
-	OnePageNav();
+	OnePageNav();*/
 
 
 	// magnific popup
@@ -273,8 +273,11 @@
 	});
 	$('.book_time').timepicker();
 
-
-
+	
+	$('#infoPerfil a').click(function (e) {
+		e.preventDefault()
+		$(this).tab('show')
+	})
 
 })(jQuery);
 
