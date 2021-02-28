@@ -54,6 +54,8 @@ The app will recomend especific dishes to the user based on previous orders that
 ![Aquí la descripción de la imagen por si no carga]
 (https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/diagrama/carta.PNG)
 
-(https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/diagrama/carro.PNG)
+![Aquí la descripción de la imagen por si no carga] (https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/carro.PNG)
+![Aquí la descripción de la imagen por si no carga] (https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/raw/main/diagrama/carro.PNG)
+![Aquí la descripción de la imagen por si no carga] (https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/blob/main/diagrama/carro.PNG)
 
 (https://raw.githubusercontent.com/CodeURJC-DAW-2020-21/webapp10/main/diagrama/carro.PNG)
