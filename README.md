@@ -51,10 +51,32 @@ The app will recomend especific dishes to the user based on previous orders that
 
 ##Sceenshots
 
-![Aquí la descripción de la imagen por si no carga]
-(https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/diagrama/carta.PNG)
+##Sceenshots
 
-![Aquí la descripción de la imagen por si no carga](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/carro.PNG)
+#### Index
+![Page Index](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/index.PNG)
+Is the main page of our web, in here we welcome the new user 
 
+#### Team
+![Page Team](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/equipo.PNG)
 
-(https://raw.githubusercontent.com/CodeURJC-DAW-2020-21/webapp10/main/diagrama/carro.PNG)
+#### Menu
+![Page Menu](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/carta.PNG)
+
+#### Add Food
+![Page Add Food](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/add_food.PNG)
+
+#### Contact
+![Page Contact](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/contacto.PNG)
+
+#### Profile
+![Page Profile](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/perfil1.PNG)
+
+#### Log in and Sign in
+![Page Log in and Sign in](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/registro.PNG)
+
+#### Cart
+![Page Cart](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/carro.PNG)
+
+#### Payment
+![Page Payment](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/pago.PNG)
