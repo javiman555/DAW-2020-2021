@@ -52,4 +52,4 @@ The app will recomend especific dishes to the user based on previous orders that
 ##Sceenshots
 
 ![Aquí la descripción de la imagen por si no carga]
-(https://raw.githubusercontent.com/CodeURJC-DAW-2020-21/webapp10/blob/main/diagrama/Carta.PNG)
+(https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/diagrama/carta.PNG)
