@@ -2,7 +2,7 @@
 
 ## MEMBERS OF THE TEAM
 
-- Azahara Andúajar Muñoz-Quirós, a.andujar.2017@alumnos.urjc.es, Github: azzzahara.
+- Azahara Andújar Muñoz-Quirós, a.andujar.2017@alumnos.urjc.es, Github: azzzahara.
 - Javier Méndez García-Brioles, j.mendezg.2017@alumnos.urjc.es, Github: javiman555.
 - David Herrera García, d.herrera.2016@alumnos.urjc.es, Github: davhg.
 - David Mestanza Rubia, d.mestanza.2017@alumnos.urjc.es, Github: dmestanza369.
@@ -49,40 +49,51 @@ The app will include an external API that will add additional information (from 
 
 The app will recomend especific dishes to the user based on previous orders that he made in the past.
 
-##Sceenshots
+## Phase 1
 
-##Sceenshots
+###Sceenshots
 
 #### Index
 ![Page Index](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/index.PNG)
-Is the main page of our web, in here we welcome the new user 
+This is the main page of our web, in this page we welcome the new users with some information of the restauran and then we give them the option of acces all the public pages of our web. This page is accessible for all users.
 
 #### Team
 ![Page Team](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Equipo.PNG)
+In this page, all users will be able to see the team information (photos and descriptions of every member of the team).
 
 #### Menu
 ![Page Menu](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Carta.PNG)
+In this page all users will be able to see the variety of the restaurant's menu separated in the type of meal (breakfast, lunch, dinner...). Only the registered users will be able to order the dishes that they want. The admin user will be able to press the "Añadir plato" button in order to add new dishes.
 
 #### Add Food
 ![Page Add Food](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/add_food.PNG)
+This page is only accesible for an admin user. Here, they will be able to add new dishes to the menu of the restaurant.
 
 #### Contact
 ![Page Contact](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/contacto.PNG)
+In this page all the users will be able to see the restaurant's contact information (location, phone number and email). Also, there is a map of the location inserted in this page.
 
 #### Profile
 ![Page Profile](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/perfil1.PNG)
+In this page a registered user can change their information, see our recommendations and see a record of all their previous bills. If the user is and admin they can still change their information but instead of the recommendations they see a graph of purchases. This page is not accessible fot the anonymous user.
 
 #### Log in and Sign in
 ![Page Log in and Sign in](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/registro.PNG)
+In this page we can create a new account or sign in with our account.This is the only way to change a user from anonymous to registered or admin. It is accessible only to anonymous users.
 
 #### Cart
 ![Page Cart](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/carro.PNG)
+This page is a summary of our order and its cost. It is only accessible to registered users.
 
 #### Payment
 ![Page Payment](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/pago.PNG)
+In this page, we put our personal data, ship data and card data to finish our order. This page is only accessible from the cart to registered users.
 
 #### Header and Footer
 ![Header](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/header.PNG)
+This is the header of the web page. It will appear in all pages. The buttons of profile and shopping cart don't appear to unregistered users. The button of "Regístrate o inicia sesión" disappears when the user signs in.
 ![Footer](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/footer.PNG)
+This is the footer of the web page. It will appear in all pages. It contains a short slogan of the restaurant and the oppening hours.
 ####Diagram
 ![Diagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/diagrama.PNG)
+In this diagram we can see the interactios betwen each page. The blue arrows represents the conexions of the front of the web, the green arrows connect functions of the registered user and the red arrow represents the options that only the admin can do.
