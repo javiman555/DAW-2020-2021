@@ -49,3 +49,7 @@ The app will include an external API that will add additional information (from 
 
 The app will recomend especific dishes to the user based on previous orders that he made in the past.
 
+##Sceenshots
+
+![Aquí la descripción de la imagen por si no carga]
+(https://raw.githubusercontent.com/CodeURJC-DAW-2020-21/webapp10/blob/main/diagrama/Carta.PNG)
