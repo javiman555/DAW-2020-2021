@@ -9,7 +9,7 @@
 
 ## TRELLO BOARD
 
-Link to the board: https://trello.com/b/D4n8vsCX 
+Link to the board: https://trello.com/b/D4n8vsCX. 
 The board is public.
 
 ## PRINCIPAL CHARACTERISTICS OF THE WEB
@@ -51,7 +51,7 @@ The app will recomend especific dishes to the user based on previous orders that
 
 ## Phase 1
 
-###Sceenshots
+### Sceenshots
 
 #### Index
 ![Page Index](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/index.PNG)
@@ -79,7 +79,7 @@ In this page a registered user can change their information, see our recommendat
 
 #### Log in and Sign in
 ![Page Log in and Sign in](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/registro.PNG)
-In this page we can create a new account or sign in with our account.This is the only way to change a user from anonymous to registered or admin. It is accessible only to anonymous users.
+In this page we can create a new account or sign in with our account. This is the only way to change a user from anonymous to registered or admin. It is accessible only to anonymous users.
 
 #### Cart
 ![Page Cart](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/carro.PNG)
@@ -94,6 +94,7 @@ In this page, we put our personal data, ship data and card data to finish our or
 This is the header of the web page. It will appear in all pages. The buttons of profile and shopping cart don't appear to unregistered users. The button of "Regístrate o inicia sesión" disappears when the user signs in.
 ![Footer](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/footer.PNG)
 This is the footer of the web page. It will appear in all pages. It contains a short slogan of the restaurant and the oppening hours.
-####Diagram
+
+#### Diagram
 ![Diagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/diagrama.PNG)
-In this diagram we can see the interactios betwen each page. The blue arrows represents the conexions of the front of the web, the green arrows connect functions of the registered user and the red arrow represents the options that only the admin can do.
+In this diagram we can see the interactions between each page. The blue arrows represents the conexions of the front of the web, the green arrows connect functions of the registered user and the red arrow represents the options that only the admin can do.
