@@ -58,10 +58,10 @@ The app will recomend especific dishes to the user based on previous orders that
 Is the main page of our web, in here we welcome the new user 
 
 #### Team
-![Page Team](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/equipo.PNG)
+![Page Team](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Equipo.PNG)
 
 #### Menu
-![Page Menu](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/carta.PNG)
+![Page Menu](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Carta.PNG)
 
 #### Add Food
 ![Page Add Food](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/add_food.PNG)
@@ -80,3 +80,9 @@ Is the main page of our web, in here we welcome the new user
 
 #### Payment
 ![Page Payment](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/pago.PNG)
+
+#### Header and Footer
+![Header](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/header.PNG)
+![Footer](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/footer.PNG)
+####Diagram
+![Diagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/diagrama.PNG)
