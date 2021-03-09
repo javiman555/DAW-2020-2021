@@ -1,7 +1,7 @@
-package TREC_services;
+/*package com.trec.services;
 
-import TREC_Repositories.UserRepository;
-import TREC_models.User;
+import com.trec.models.User;
+import com.trec.repositories.UserRepository;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,4 +35,4 @@ public class RepositoryUserDetailsService implements UserDetailsService {
 				user.getEncodedPassword(), roles);
 
 	}
-}
+}*/

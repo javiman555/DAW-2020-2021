@@ -1,11 +1,11 @@
-package TREC_models;
+package com.trec.models;
 
 import java.util.List;
 
 import javax.persistence.*;
 
 @Entity
-public class Order {
+public class Purchase {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -23,7 +23,7 @@ public class Order {
 	@ManyToMany
 	private List<Dish> dishes;
 	
-	public Order() {
+	public Purchase() {
 	}
 
 

@@ -1,4 +1,4 @@
-package TREC_models;
+package com.trec.models;
 
 import java.sql.Blob;
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -29,7 +29,7 @@ public class User {
 	private List<String> roles;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	 private List<Order> orders; 
+	 private List<Purchase> orders; 
 
 	public User() {
 	}

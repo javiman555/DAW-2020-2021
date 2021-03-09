@@ -1,4 +1,4 @@
-package TREC_models;
+package com.trec.models;
 
 import java.util.List;
 
@@ -12,16 +12,22 @@ public class Ingredient {
 	private Long id;
 
 	private String name;
-	private String nameAllergen;
 	private boolean isAllergen;
+	private String nameAllergen;
 	
 	@ManyToMany(mappedBy="ingredients")
 	private List<Dish> dishes;
 
-
-	public Ingredient() {
+	public Ingredient(String name, String nameAllergen) {
+		this.name = name;
+		if (nameAllergen.isEmpty()) {
+			this.isAllergen = false;
+			this.nameAllergen = null;
+		} else {
+			this.isAllergen = true;
+			this.nameAllergen = nameAllergen;
+		}
 	}
-
 
 	public String getName() {
 		return name;

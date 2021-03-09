@@ -1,4 +1,4 @@
-package TREC_models;
+package com.trec.models;
 
 import java.sql.Blob;
 import java.util.List;
@@ -23,13 +23,26 @@ public class Dish {
 	private Blob dishImage;
 	
 	 @ManyToMany(mappedBy="dishes")
-	 private List<Order> orders;
+	 private List<Purchase> orders;
 
 	 @ManyToMany
 	 private List<Ingredient> ingredients;
-	 
-	public Dish() {
+
+	public Dish(String name, String category, float dishPrice) {
+		this.name = name;
+		this.category = category;
+		this.dishPrice = dishPrice;
 	}
+	
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
 
 
 	public String getName() {

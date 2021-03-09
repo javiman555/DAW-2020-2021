@@ -1,11 +1,11 @@
-package com.example.demo;
+package com.trec.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import TREC_Repositories.UserRepository;
+import com.trec.repositories.UserRepository;
 
 @Controller
 public class MainController {

@@ -1,75 +1,104 @@
 {{>header}}
 	<!-- END nav -->
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate text-center mb-5">
-					<h1 class="mb-2 bread">Est�s a�adiendo un nuevo plato</h1>
+					<h1 class="mb-2 bread">Añade platos o ingredientes</h1>
 				</div>
 			</div>
 		</div>
 	</section>
 
+	<section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
 
-    <section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://portral.pt/pt/wp-content/uploads/2018/03/slider5.jpg');background-repeat: no-repeat;-webkit-background-size: cover;">
-		<div class="container">
-            <div class="container" style="padding-top: 60px;">
-                <h1 class="page-header" style="color:white" >Rellena el formulario</h1>
-                <div class="row">
-                  <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-                    <form class="form-horizontal" role="form">
-                      <div class="form-group">
-                        <label class="col-md control-label">Plato:</label>
-                        <div class="col-md-8">
-                          <input class="form-control" value="Pan" type="text">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md control-label">Ingredientes:</label>
-                        <div class="col-md-8">
-                          <input class="form-control" value="Harina,Huevos" type="text">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md control-label">Al�rgenos:</label>
-                        <div class="col-md-8">
-                          <input class="form-control" value="Gluten" type="text">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md control-label">Categoria:</label>
-                        <div class="col-md-8">
-                          <input class="form-control" value="Desayuno" type="text">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md control-label">Precio:</label>
-                        <div class="col-md-8">
-                          <input class="form-control" value="40" type="text">
-                        </div>
-                      </div>
-                      <div class="form-group">
-                        <label class="col-md-3 control-label"></label>
-                        <div class="col-md-8">
-                          <a href="carta" class="btn btn-primary btn-sm">Subir Plato</a>
-                          <span></span>
-                          <a href="carta" class="btn btn-primary btn-sm">Cancelar</a>
-                        </div>
-                      </div>
-                    </form>
-                  </div>
-				  <div class="col-md-4 col-sm-6 col-xs-12">
-                    <div class="text-center">
-                      <img src="https://static1.diariovasco.com/www/multimedia/202004/16/media/cortadas/pan-casero-como-hacer-pan-kdDE-U100925325432XOG-1248x770@Diario%20Vasco.jpg" class="plato img-circle img-thumbnail" alt="plato">
-                      <h6>Upload a different photo...</h6>
-                      <input type="file" class="text-center center-block well well-sm">
-                    </div>
-                  </div>
-                </div>
-              </div>
-        </div>
+	</br><div class="navbar-default" id="ftco-nav">
+			<ul id="infoPerfil" class="nav ml-auto nav-pills nav-fill">
+				<li role="presentation" class="nav-item"><a class="nav-link active" href="#add-dish">Añadir plato</a></li>
+				<li role="presentation" class="nav-item"><a class="nav-link" href="#add-ingredient">Añadir ingrediente</a></li>
+			</ul>
+		</div>
+
+		<div class="tab-content panel panel-info">
+			<div role="tabpanel" class="tab-pane fade in active show" id="add-dish" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Añadir plato</h1>
+					<div class="row">
+					<!-- left column -->
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							<div class="text-center">
+								<img src="https://www.optimaley.com/wp-content/uploads/2014/09/foto-perfil-generica.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+								<h6>Sube una foto...</h6>
+								<input type="file" class="text-center center-block well well-sm">
+							</div>
+						</div>
+					<!-- edit form column -->
+						<div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+							<form class="form-horizontal" role="form" action="add-dish">
+								<div class="form-group">
+									<label class="col-md control-label">Nombre del plato:</label>
+									<div class="col-md-8">
+										<input class="form-control" value="" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md control-label">Precio:</label>
+									<div class="col-md-8">
+										<input class="form-control" value="" type="text">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md control-label">Ingredientes:</label>
+									<div class="col-md-8">
+										<input class="form-control" value="" type="textarea">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md-3 control-label"></label>
+									<div class="col-md-8">
+										<input class="btn btn-primary" value="Añadir plato" type="button">
+										<input class="btn btn-secondary" value="Cancelar" type="reset">
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<br>
+			</div>
+
+			<div role="tabpanel" class="tab-pane fade" id="add-ingredient" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Añadir ingrediente</h1>
+					<div class="col-md-8 col-sm-6 col-xs-12 personal-info align-left">
+						<form class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-md control-label">Nombre del ingrediente:</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md control-label">Nombre del alérgeno (dejar vacío si no es alérgeno):</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text">
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-8">
+									<input class="btn btn-primary" value="Añadir ingrediente" type="button">
+									<input class="btn btn-secondary" value="Cancelar" type="reset">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<br>
+			</div>
+		</div>
     </section>
 
 {{>footer}}
