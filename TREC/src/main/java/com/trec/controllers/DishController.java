@@ -28,7 +28,7 @@ public class DishController {
 	private DishService dishService;
 	
 
-	@GetMapping("/")
+	@GetMapping("/carta")
 	public String showDishes(Model model, HttpSession session) {
 
 		model.addAttribute("dishes", dishService.findAll());

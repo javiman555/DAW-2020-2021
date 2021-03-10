@@ -25,12 +25,6 @@ public class MainController {
 		return "equipo";
 	}
 	
-	@GetMapping("/carta")
-	public String carta(Model model) {
-
-		return "carta";
-	}
-	
 	@GetMapping("/contacto")
 	public String contacto(Model model) {
 
