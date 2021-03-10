@@ -24,7 +24,7 @@
 		<div class="tab-content panel panel-info">
 			<div role="tabpanel" class="tab-pane fade in active show" id="add-dish" aria-labelledby="tabInfo">
 				<div class="container" style="padding-top: 60px;">
-					<h1 class="page-header">AÃ±adir plato</h1>
+					<h1 class="page-header">Añadir plato</h1>
 					<div class="row">
 					<!-- left column -->
 						<div class="col-md-4 col-sm-6 col-xs-12">
@@ -36,6 +36,22 @@
 						</div>
 					<!-- edit form column -->
 						<div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+						
+						
+									<form action="/dish/new" method="post">
+										<p>Nombre del plato: </p>
+										<input type='text' name='name'/>
+										<p>Precio:</p>
+										<input step="any" type="number" name='dishPrice'/>
+										<p>Tipo:</p>
+										<input type='text' name='category'/>
+										<p>Ingredientes:</p>
+										<textarea name='ingredient' rows=5 cols=40></textarea>
+
+										<input type='submit' value='Save'/>
+										</form>
+										
+										
 							<form class="form-horizontal" role="form" action="add-dish">
 								<div class="form-group">
 									<label class="col-md control-label">Nombre del plato:</label>

@@ -16,12 +16,12 @@ public class DishService {
 	private AtomicLong nextId = new AtomicLong();
 
 	public DishService() {
-		save(new Dish("Cereales con leche", "Desayuno", 5.00f));
-		save(new Dish("Tortilla de patatas", "Comida", 3.50f));
-		save(new Dish("Pollo a la plancha", "Cena", 5.50f));
-		save(new Dish("Canelones", "Comida", 8.00f));
+		save(new Dish("Cereales con leche", 5.00f, "Desayuno","Cena"));
+		save(new Dish("Tortilla de patatas", 5.00f, "Comida", "Cena"));
+		save(new Dish("Pollo a la plancha", 5.00f, "Cena","Cena"));
+		save(new Dish("Canelones", 5.00f, "Comida","Cena"));
 	}
-
+	
 	public Collection<Dish> findAll() {
 		return dishes.values();
 	}
