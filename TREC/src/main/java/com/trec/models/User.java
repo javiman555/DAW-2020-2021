@@ -21,24 +21,28 @@ public class User {
 	private String email;	
 	private int phoneNumber;
 
+	/*
 	@Lob
 	@JsonIgnore
 	private Blob imageFile;
 	
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	
+	*/
+	/*
 	@OneToMany(cascade = CascadeType.ALL)
 	 private List<Purchase> orders; 
-
+	 */
 	public User() {
 	}
-
+/*
 	public User(String name, String encodedPassword, String... roles) {
 		this.name = name;
 		this.encodedPassword = encodedPassword;
 		this.roles = List.of(roles);
 	}
+	*/
 
 	public String getName() {
 		return name;
@@ -55,7 +59,7 @@ public class User {
 	public void setEncodedPassword(String encodedPassword) {
 		this.encodedPassword = encodedPassword;
 	}
-
+/*
 	public List<String> getRoles() {
 		return roles;
 	}
@@ -63,7 +67,7 @@ public class User {
 	public void setRoles(List<String> roles) {
 		this.roles = roles;
 	}
-
+*/
 }
 
 

@@ -14,10 +14,10 @@ public class Ingredient {
 	private String name;
 	private boolean isAllergen;
 	private String nameAllergen;
-	
+	/*
 	@ManyToMany(mappedBy="ingredients")
 	private List<Dish> dishes;
-
+*/
 	public Ingredient(String name, String nameAllergen) {
 		this.name = name;
 		if (nameAllergen.isEmpty()) {

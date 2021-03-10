@@ -3,6 +3,7 @@ package com.trec.controllers;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpSession;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -52,7 +53,19 @@ public class DishController {
 
 		return "saved_dish";
 	}
+	@GetMapping("/dish/{id}")
+	public String showDish(Model model, @PathVariable long id) {
 
+		Optional<Dish> dish = dishService.findById(id);
+		if (dish.isPresent()) {
+			model.addAttribute("dish", dish.get());
+			return "show_dish";
+		} else {
+			return "/carta";
+		}
+
+	}
+	/*
 	@GetMapping("/dish/{id}")
 	public String showDish(Model model, @PathVariable long id) {
 
@@ -62,11 +75,12 @@ public class DishController {
 
 		return "show_dish";
 	}
+	*/
 	
 	@GetMapping("/dish/{id}/delete")
 	public String deleteDish(Model model, @PathVariable long id) {
 
-		dishService.deleteById(id);
+		dishService.delete(id);
 
 		return "deleted_dish";
 	}

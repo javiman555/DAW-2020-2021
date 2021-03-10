@@ -19,10 +19,10 @@ public class Purchase {
 	private String country;
 	private int phoneNumber;
 	private float price;
-	
+	/*
 	@ManyToMany
 	private List<Dish> dishes;
-	
+	*/
 	public Purchase() {
 	}
 

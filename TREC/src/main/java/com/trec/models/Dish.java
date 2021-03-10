@@ -3,23 +3,32 @@ package com.trec.models;
 import java.sql.Blob;
 import java.util.List;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
+@DynamicUpdate
 public class Dish {
+	
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
 	private String name;
 	private float dishPrice;
 	private String category;
 	private String ingredient;
+	/*
+	@Lob
+	private Blob imageFile;
+	private boolean image;
 	
 	 @ManyToMany
 	 private List<Ingredient> ingredients;
-	 
+	 */
 	public Dish() {
 
 	}
@@ -73,7 +82,23 @@ public class Dish {
 	public void setIngredient(String ingredient) {
 		this.ingredient = ingredient;
 	}
+	/*
+	public Blob getImageFile() {
+		return imageFile;
+	}
 
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+
+	public boolean hasImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
+	}
+	*/
 	@Override
 	public String toString() {
 		return "Post [id="+id+", user=" + name + ", title=" + dishPrice + ", text=" + ingredient + "]";
