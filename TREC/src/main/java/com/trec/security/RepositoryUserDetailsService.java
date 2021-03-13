@@ -1,7 +1,4 @@
-/*package com.trec.services;
-
-import com.trec.models.User;
-import com.trec.repositories.UserRepository;
+package com.trec.security;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +10,9 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+
+import com.trec.model.User;
+import com.trec.repository.UserRepository;
 
 @Service
 public class RepositoryUserDetailsService implements UserDetailsService {
@@ -35,4 +35,4 @@ public class RepositoryUserDetailsService implements UserDetailsService {
 				user.getEncodedPassword(), roles);
 
 	}
-}*/
+}

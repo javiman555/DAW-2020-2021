@@ -64,24 +64,14 @@
 					<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center">
 					</div>
 					<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center bg-primary">
-						<form action="#" class="appointment-form">
+						<form action="/login" method="post" class="appointment-form">
 							<h3 class="mb-3">Iniciar sesión</h3>
 							<div class="row">
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Correo electrï¿½nico">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Contraseï¿½a">
-									</div>
-								</div>
-								<div class="col-md-12">
-									<div class="form-group">
-										<input type="submit" value="Iniciar sesiï¿½n" class="btn btn-white py-3 px-4">
-									</div>
-								</div>
+							<label>User Name:</label><input type="text" name="username" /><br />
+							<label>Password:</label><input type="password" name="password" /><br />
+							<input type="submit" value="Sign In" /><br />				
+							<input type="hidden" name="_csrf" value="{{token}}"/>
+							
 							</div>
 						</form>
 					</div>

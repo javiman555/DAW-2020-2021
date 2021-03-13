@@ -1,4 +1,4 @@
-package com.trec.models;
+package com.trec.model;
 
 import java.util.List;
 

@@ -1,0 +1,29 @@
+{{>header}}
+
+<div>
+  <h2>Dish "{{dish.name}}"</h2>
+  {{#dish.image}}
+  <img src="/dishes/{{dish.id}}/image">
+  {{/dish.image}}
+
+  {{^dish.image}}
+  <img src="/images/no_image.png">
+  {{/dish.image}}
+  <div>
+    <p>{{dish.ingredient}}</p>
+  </div>
+  <p>
+    {{#logged}}
+
+    {{#admin}}
+    <button onclick="location.href='/removedish/{{dish.id}}'">Remove</button>
+    {{/admin}}
+
+    <button onclick="location.href='/editdish/{{dish.id}}'">Edit</button>
+    {{/logged}}
+    <br>
+    <button onclick="location.href='/'">Back to all books</button>
+  </p>
+</div>
+
+{{>footer}}

@@ -1,11 +1,11 @@
-package com.trec.controllers;
+package com.trec.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.trec.repositories.UserRepository;
+import com.trec.repository.UserRepository;
 
 @Controller
 public class MainController {
@@ -31,10 +31,10 @@ public class MainController {
 		return "contacto";
 	}
 	
-	@GetMapping("/registro")
-	public String registro(Model model) {
+	@GetMapping("/login")
+	public String login(Model model) {
 
-		return "registro";
+		return "login";
 	}
 	
 	@GetMapping("/carro")

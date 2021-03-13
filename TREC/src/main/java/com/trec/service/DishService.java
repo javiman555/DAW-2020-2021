@@ -1,5 +1,4 @@
-package com.trec.services;
-
+package com.trec.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -7,8 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.trec.models.Dish;
-import com.trec.repositories.DishRepository;
+import com.trec.model.Dish;
+import com.trec.repository.DishRepository;
 
 @Service
 public class DishService {
@@ -28,13 +27,11 @@ public class DishService {
 		return dishRepository.findAll();
 	}
 
-	public void save(Dish dish) {
-		dishRepository.save(dish);
+	public void save(Dish book) {
+		dishRepository.save(book);
 	}
 
 	public void delete(long id) {
 		dishRepository.deleteById(id);
 	}
-
-
 }

@@ -33,19 +33,26 @@
 						</div>
 					    {{#dishes}}
 					    <div class="menus d-flex ftco-animate">
+							{{#image}}
+ 							<div class="menu-img img" style="background-image: url(/dishes/{{id}}/image);"></div>
+ 							{{/image}}			    
+					    	{{^image}}
 							<div class="menu-img img" style="background-image: url(images/drink-6.jpg);"></div>
+							{{/image}}
+							
 							<div class="text">
 								<div class="d-flex">
 									<div class="one-half">
-										<h3><a href="dish/{{id}}">{{name}}</a></h3>
+										<h3><a href="dishes/{{id}}">{{name}}</a></h3>
 									</div>
 									<div class="one-forth">
-										<span class="price"><a href="dish/{{id}}">{{dishPrice}}</a></span>
+										<span class="price"><a href="dishes/{{id}}">{{dishPrice}}</a></span>
 									</div>
 								</div>
-								<p><a href="dish/{{id}}">{{ingredient}}</a></p>
+								<p><a href="dishes/{{id}}">{{ingredient}}</a></p>
 							</div>
 						</div>
+  
 						{{/dishes}}
 					</div>
 				</div>
