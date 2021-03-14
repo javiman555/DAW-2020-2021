@@ -77,23 +77,26 @@
 				<div class="container" style="padding-top: 60px;">
 					<h1 class="page-header">Añadir ingrediente</h1>
 					<div class="col-md-8 col-sm-6 col-xs-12 personal-info align-left">
-						<form class="form-horizontal" role="form">
+						<form action="/newingredient" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
 							<div class="form-group">
 								<label class="col-md control-label">Nombre del ingrediente:</label>
 								<div class="col-md-8">
-									<input class="form-control" value="" type="text">
+									<input class="form-control" value="" type="text" name='name'>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md control-label">Nombre del alérgeno (dejar vacío si no es alérgeno):</label>
 								<div class="col-md-8">
-									<input class="form-control" value="" type="text">
+									<input class="form-control" value="" type="text" name=nameAllergen>
 								</div>
 							</div>
 							<div class="form-group">
 								<label class="col-md-3 control-label"></label>
 								<div class="col-md-8">
-									<input class="btn btn-primary" value="Añadir ingrediente" type="button">
+								  	<div class="form-group">
+								    	<input class="btn btn-primary" type="submit" value="Añadir plato"/>
+								 	</div>
+								 	<input type="hidden" name="_csrf" value="{{token}}"/>
 									<input class="btn btn-secondary" value="Cancelar" type="reset">
 								</div>
 							</div>

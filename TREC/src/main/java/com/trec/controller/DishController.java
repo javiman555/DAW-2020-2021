@@ -113,7 +113,7 @@ public class DishController {
 
 		model.addAttribute("dishId", dish.getId());
 
-		return "redirect:/dishes/"+dish.getId();
+		return "redirect:/dishes-"+dish.getId();
 	}
 
 	@GetMapping("/editdish-{id}")
