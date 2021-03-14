@@ -10,7 +10,7 @@
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate text-center mb-5">
 					<h1 class="mb-2 bread">Carta</h1>
-					<p class="breadcrumbs"><span class="mr-2"><a href="index">Principal <i class="fa fa-chevron-right"></i></a></span> <span>Carta <i class="fa fa-chevron-right"></i></span></p>
+					<p class="breadcrumbs"><span class="mr-2"><a href="/index">Principal <i class="fa fa-chevron-right"></i></a></span> <span>Carta <i class="fa fa-chevron-right"></i></span></p>
 				</div>
 			</div>
 		</div>
@@ -22,7 +22,7 @@
 				<div class="col-md-7 text-center heading-section ftco-animate">
 					<span class="subheading">Especialidades</span>
 					<h2 class="mb-4">Nuestra Carta</h2>
-					<a href="add_food" class="btn btn-primary btn-sm">Añadir Plato</a>
+					<a href="/add_food" class="btn btn-primary btn-sm">Añadir Plato</a>
 				</div>
 			</div>
 			<div class="row">
@@ -34,7 +34,7 @@
 					    {{#dishes}}
 					    <div class="menus d-flex ftco-animate">
 							{{#image}}
- 							<div class="menu-img img" style="background-image: url(/dishes/{{id}}/image);"></div>
+ 							<div class="menu-img img" style="background-image: url(/dishes-{{id}}/image);"></div>
  							{{/image}}			    
 					    	{{^image}}
 							<div class="menu-img img" style="background-image: url(images/drink-6.jpg);"></div>
@@ -43,13 +43,13 @@
 							<div class="text">
 								<div class="d-flex">
 									<div class="one-half">
-										<h3><a href="dishes/{{id}}">{{name}}</a></h3>
+										<h3><a href="dishes-{{id}}">{{name}}</a></h3>
 									</div>
 									<div class="one-forth">
-										<span class="price"><a href="dishes/{{id}}">{{dishPrice}}</a></span>
+										<span class="price"><a href="dishes-{{id}}">{{dishPrice}}</a></span>
 									</div>
 								</div>
-								<p><a href="dishes/{{id}}">{{ingredient}}</a></p>
+								<p><a href="dishes-{{id}}">{{ingredient}}</a></p>
 							</div>
 						</div>
   

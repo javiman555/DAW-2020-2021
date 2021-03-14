@@ -19,7 +19,7 @@
 		<div class="container">
 			<div class="col" style="background-image:url(images/chef-4.jpg);">
 				<div class="row">
-					<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-md-end bg-primary">
+					<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-md-end bg-primary">
 						<form action="#" class="appointment-form">
 							<h3 class="mb-3">Regístrate</h3>
 							<div class="row">
@@ -35,43 +35,54 @@
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Correo electrï¿½nico">
+										<input type="email" class="form-control" placeholder="Correo electróico">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Telï¿½fono">
+										<input type="text" class="form-control" placeholder="Teléfono">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Contraseï¿½a">
+										<input type="password" class="form-control" placeholder="Contraseña">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Confirmar contraseï¿½a">
+										<input type="password" class="form-control" placeholder="Confirmar contraseña">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="submit" value="Regï¿½strate" class="btn btn-white py-3 px-4">
+										<input type="submit" value="Regístrate" class="btn btn-white py-3 px-4">
 									</div>
 								</div>
 							</div>
 						</form>
 					</div>
-					<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center">
+					<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-center">
 					</div>
-					<div class="col-sm-4 p-4 p-md-5 d-flex align-items-center justify-content-center bg-primary">
+					<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-center bg-primary">
 						<form action="/login" method="post" class="appointment-form">
 							<h3 class="mb-3">Iniciar sesión</h3>
 							<div class="row">
-							<label>User Name:</label><input type="text" name="username" /><br />
-							<label>Password:</label><input type="password" name="password" /><br />
-							<input type="submit" value="Sign In" /><br />				
-							<input type="hidden" name="_csrf" value="{{token}}"/>
-							
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="text" class="form-control" name="username" placeholder="Nombre de usuario"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="password" class="form-control" name="password" placeholder="Contraseña"/>
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+										<input type="submit" value="Iniciar sesión" class="btn btn-white py-3 px-4"/>
+									</div>			
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+								</div>
 							</div>
 						</form>
 					</div>

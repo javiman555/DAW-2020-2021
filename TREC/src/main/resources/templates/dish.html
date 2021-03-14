@@ -1,13 +1,26 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+
 {{>header}}
 
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate text-center mb-5">
+					<h1 class="mb-2 bread">Plato "{{dish.name}}"</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
 <div>
-  <h2>Dish "{{dish.name}}"</h2>
   {{#dish.image}}
-  <img src="/dishes/{{dish.id}}/image">
+  	<img src="/dishes-{{dish.id}}/image">
   {{/dish.image}}
 
   {{^dish.image}}
-  <img src="/images/no_image.png">
+  	<img src="/images/no_image.png">
   {{/dish.image}}
   <div>
     <p>{{dish.ingredient}}</p>
@@ -15,11 +28,11 @@
   <p>
     {{#logged}}
 
-    {{#admin}}
-    <button onclick="location.href='/removedish/{{dish.id}}'">Remove</button>
-    {{/admin}}
+	    {{#admin}}
+	    	<button onclick="location.href='/removedish-{{dish.id}}'">Remove</button>
+	    {{/admin}}
 
-    <button onclick="location.href='/editdish/{{dish.id}}'">Edit</button>
+    	<button onclick="location.href='/editdish-{{dish.id}}'">Edit</button>
     {{/logged}}
     <br>
     <button onclick="location.href='/'">Back to all books</button>

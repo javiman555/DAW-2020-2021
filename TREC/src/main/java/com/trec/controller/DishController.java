@@ -47,15 +47,15 @@ public class DishController {
 			model.addAttribute("logged", false);
 		}
 	}
-	@GetMapping("/carta")
+	@GetMapping("/menu")
 	public String showDishes(Model model) {
 
 		model.addAttribute("dishes", dishService.findAll());
 
-		return "carta";
+		return "menu";
 	}
 	
-	@GetMapping("/dishes/{id}")
+	@GetMapping("/dishes-{id}")
 	public String showDish(Model model, @PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -63,12 +63,12 @@ public class DishController {
 			model.addAttribute("dish", dish.get());
 			return "dish";
 		} else {
-			return "/carta";
+			return "/menu";
 		}
 
 	}
 
-	@GetMapping("/dishes/{id}/image")
+	@GetMapping("/dishes-{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -84,7 +84,7 @@ public class DishController {
 		}
 	}
 
-	@GetMapping("/removedish/{id}")
+	@GetMapping("/removedish-{id}")
 	public String removeDish(Model model, @PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -116,7 +116,7 @@ public class DishController {
 		return "redirect:/dishes/"+dish.getId();
 	}
 
-	@GetMapping("/editdish/{id}")
+	@GetMapping("/editdish-{id}")
 	public String editDish(Model model, @PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -124,7 +124,7 @@ public class DishController {
 			model.addAttribute("book", dish.get());
 			return "editdish";
 		} else {
-			return "/carta";
+			return "/menu";
 		}
 	}
 
@@ -138,7 +138,7 @@ public class DishController {
 
 		model.addAttribute("dishId", dish.getId());
 
-		return "redirect:/dishes/"+dish.getId();
+		return "redirect:/dishes-"+dish.getId();
 	}
 
 	private void updateImage(Dish dish, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {

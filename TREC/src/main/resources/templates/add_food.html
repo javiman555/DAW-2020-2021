@@ -26,76 +26,52 @@
 
 		<div class="tab-content panel panel-info">
 			<div role="tabpanel" class="tab-pane fade in active show" id="add-dish" aria-labelledby="tabInfo">
-				<div class="container" style="padding-top: 60px;">
+			<form action="/newdish" method="post" enctype="multipart/form-data">
+				<div class="container">
 					<h1 class="page-header">Añadir plato</h1>
 					<div class="row">
-					<!-- left column -->
-						<div class="col-md-4 col-sm-6 col-xs-12">
-							<div class="text-center">
-								<img src="https://www.optimaley.com/wp-content/uploads/2014/09/foto-perfil-generica.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
-								<h6>Sube una foto...</h6>
-								<input type="file" class="text-center center-block well well-sm">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+
+				 			<div class="form-group">
+								<label class="col-md control-label">Nombre del plato:</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text" name='name'/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md control-label">Precio:</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text" name='dishPrice'/>
+								</div>
+							</div>
+						<div class="form-group">
+							<label class="col-md control-label">Tipo:</label>
+							<div class="col-md-8">
+								<input class="form-control" value="" type="text" name='category'/>
 							</div>
 						</div>
-					<!-- edit form column -->
-						<div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-	<form action="/newdish" method="post" enctype="multipart/form-data">
- 
-					<p>Nombre del plato: </p>
-		<input type='text' name='name'/>
-		<p>Precio:</p>
-		<input step="any" type="number" name='dishPrice'/>
-		<p>Tipo:</p>
-		<input type='text' name='category'/>
-		<p>Ingredientes:</p>
-		<textarea name='ingredient' rows=5 cols=40></textarea>
- 
-
-
-  <p>Image: </p>
-  <input type='file' name='imageField' accept=".jpg, .jpeg" />
-
-  <input type="hidden" name="_csrf" value="{{token}}"/>
-  <p>
-    <button onclick="location.href='/'; return false;">Cancel</button>
-    <input type="submit" value="Save"/>
-  </p>
-  </form>
-						
-									
-										
-							<form class="form-horizontal" role="form" action="add-dish">
-								<div class="form-group">
-									<label class="col-md control-label">Nombre del plato:</label>
-									<div class="col-md-8">
-										<input class="form-control" value="" type="text">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md control-label">Precio:</label>
-									<div class="col-md-8">
-										<input class="form-control" value="" type="text">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md control-label">Ingredientes:</label>
-									<div class="col-md-8">
-										<input class="form-control" value="" type="textarea">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md-3 control-label"></label>
-									<div class="col-md-8">
-										<input class="btn btn-primary" value="AÃ±adir plato" type="button">
-										<input class="btn btn-secondary" value="Cancelar" type="reset">
-									</div>
-								</div>
-							</form>
+						<div class="form-group">
+							<label class="col-md control-label">Ingredientes:</label>
+							<div class="col-md-8">
+								<textarea class="form-control" value="" type="textarea" name='ingredient' rows=5 cols=40></textarea>
+							</div>
 						</div>
+						<div class="form-group">
+							<label class="col-md control-label">Imagen del plato:</label>
+							<div class="col-md-8">
+								<input type='file' name='imageField' accept=".jpg, .jpeg" class="text-center center-block well well-sm"/>
+							</div>
+						</div>
+					  	<div class="form-group">
+					    	<input class="btn btn-primary" type="submit" value="Añadir plato"/>
+					 	</div>
+					 	<input type="hidden" name="_csrf" value="{{token}}"/>
 					</div>
 				</div>
-				<br>
 			</div>
+		</form>	
+		<br>
+	</div>
 
 			<div role="tabpanel" class="tab-pane fade" id="add-ingredient" aria-labelledby="tabInfo">
 				<div class="container" style="padding-top: 60px;">
@@ -117,7 +93,7 @@
 							<div class="form-group">
 								<label class="col-md-3 control-label"></label>
 								<div class="col-md-8">
-									<input class="btn btn-primary" value="AÃ±adir ingrediente" type="button">
+									<input class="btn btn-primary" value="Añadir ingrediente" type="button">
 									<input class="btn btn-secondary" value="Cancelar" type="reset">
 								</div>
 							</div>

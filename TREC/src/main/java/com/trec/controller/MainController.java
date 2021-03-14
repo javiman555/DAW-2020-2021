@@ -19,28 +19,28 @@ public class MainController {
 		return "index";
 	}
 	
-	@GetMapping("/equipo")
+	@GetMapping("/team")
 	public String equipo(Model model) {
 
-		return "equipo";
+		return "team";
 	}
 	
-	@GetMapping("/contacto")
+	@GetMapping("/contact")
 	public String contacto(Model model) {
 
-		return "contacto";
+		return "contact";
 	}
 	
-	@GetMapping("/login")
+	@GetMapping("/register")
 	public String login(Model model) {
 
-		return "login";
+		return "register";
 	}
 	
-	@GetMapping("/carro")
+	@GetMapping("/cart")
 	public String carro(Model model) {
 
-		return "carro";
+		return "cart";
 	}
 	
 	@GetMapping("/pagar")
@@ -49,10 +49,10 @@ public class MainController {
 		return "pagar";
 	}
 	
-	@GetMapping("/perfil")
+	@GetMapping("/profile")
 	public String perfil(Model model) {
 
-		return "perfil";
+		return "profile";
 	}
 	
 	@GetMapping("/add_food")
