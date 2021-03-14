@@ -90,7 +90,7 @@ public class DishController {
 		Optional<Dish> dish = dishService.findById(id);
 		if (dish.isPresent()) {
 			dishService.delete(id);
-			model.addAttribute("book", dish.get());
+			model.addAttribute("dish", dish.get());
 		}
 		return "removeddish";
 	}
@@ -121,7 +121,7 @@ public class DishController {
 
 		Optional<Dish> dish = dishService.findById(id);
 		if (dish.isPresent()) {
-			model.addAttribute("book", dish.get());
+			model.addAttribute("dish", dish.get());
 			return "editdish";
 		} else {
 			return "/menu";

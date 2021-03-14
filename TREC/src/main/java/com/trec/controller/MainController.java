@@ -31,8 +31,16 @@ public class MainController {
 		return "contact";
 	}
 	
-	@GetMapping("/register")
+/*	@GetMapping("/register")
 	public String login(Model model) {
+
+		return "register";
+	}
+	*/
+	@GetMapping("/register")
+	public String showDishes(Model model) {
+
+		model.addAttribute("loginerror", false);
 
 		return "register";
 	}

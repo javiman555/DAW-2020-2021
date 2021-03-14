@@ -1,37 +1,59 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+
 {{>header}}
 
-<form action="/editdish" method="post" enctype="multipart/form-data">
-  <h2>Dish "{{dish.name}}"</h2>
-  <input type="hidden" name="id" value="{{dish.id}}" />
-  <div>
-    <label>Title: </label>
-    <input name="name" value="{{dish.name}}" placeholder="name" />
-  </div>
-  <div>
-    <label>Abstract: </label>
-    <textarea name="ingredient" placeholder="ingredient">{{dish.ingredient}}</textarea>
-  </div>
-  <p>Image: </p>
-  
-  {{#dish.image}}
-  <img src="/dishes/{{dish.id}}/image"><br>
-  <input type='checkbox' name='removeImage'> <label>Remove image</label><br>
-  <label>Update image: </label><br>
-  {{/dish.image}}
+<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate text-center mb-5">
+					<h1 class="mb-2 bread">Editar plato "{{dish.name}}"</h1>
+				</div>
+			</div>
+		</div>
+</section>
 
-  {{^dish.image}}
-  <img src="/images/no_image.png"><br>
-  <label>Upload image: </label><br>
-  {{/dish.image}}
-    
-  <input type='file' name='imageField' accept=".jpg, .jpeg" />
-  <input type="hidden" name="_csrf" value="{{token}}" />
-  <br>
-  <br>
-  <p>
-    <button onclick="location.href='/dishes-{{dish.id}}'; return false;">Cancel</button>
-    <input type="submit" value="Save" />
-  </p>
-</form>
-
+<section style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+<br>
+	<div class="container">
+		<div class="text-center">
+		<form action="/editdish" method="post" enctype="multipart/form-data" class="appointment-form">
+		  <h2 class="page-header">{{dish.name}}</h2>
+		  <br>
+		  <input type="hidden" name="id" value="{{dish.id}}" />
+		  <div>
+		    <label >Nombre del plato: </label>
+		    <input name="name" value="{{dish.name}}" placeholder="Nombre del plato" />
+		  </div>
+		  <div>
+		    <label>Ingredientes: </label>
+		    <textarea name="ingredient" placeholder="Añade aquí los ingredientes" rows="1" cols="30">{{dish.ingredient}}</textarea>
+		  </div>
+		  <p>Imagen del plato: </p>
+		  
+		  {{#dish.image}}
+		  <img src="/dishes/{{dish.id}}/image"><br>
+		  <input type='checkbox' name='removeImage'> <label>Borrar imagen</label><br>
+		  <label>Actualizar imagen: </label><br>
+		  {{/dish.image}}
+		
+		  {{^dish.image}}
+		  <img src="/images/no_image.png"><br>
+		  <label>Subir imagen: </label><br>
+		  {{/dish.image}}
+		    
+		  <input type='file' name='imageField' accept=".jpg, .jpeg" />
+		  <input type="hidden" name="_csrf" value="{{token}}" />
+		  <br>
+		  <br>
+		  <p>
+		    <button class="btn btn-primary" onclick="location.href='/dishes-{{dish.id}}'; return false;">Cancelar</button>
+		    <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+		  </p>
+		</form>
+		</div>
+	</div>
+<br>
+</section>
 {{>footer}}
