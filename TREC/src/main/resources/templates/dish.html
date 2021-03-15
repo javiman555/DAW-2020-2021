@@ -27,7 +27,9 @@
 			  	<img src="/images/no_image.png">
 			  {{/dish.image}}
 			  <div>
-			    <p>{{dish.ingredient}}</p>
+			  {{#dish.ingredients}}
+			  	<p>{{name}}</p>
+			  {{/dish.ingredients}}
 			  </div>
 			</div>
 			<div class="col-md-4">

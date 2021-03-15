@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.List;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.trec.model.Dish;
 import com.trec.model.Ingredient;
 import com.trec.service.DishService;
+import com.trec.service.IngredientService;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.InputStreamResource;
@@ -34,6 +36,8 @@ public class DishController {
 
 	@Autowired
 	private DishService dishService;
+	@Autowired
+	private IngredientService ingredientService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -105,22 +109,32 @@ public class DishController {
 	}
 
 	@PostMapping("/newdish")
-	public String newDishProcess(Model model, Dish dish,@RequestParam List<Ingredient> lista, MultipartFile imageField) throws IOException {
+	public String newDishProcess(Model model, Dish dish,@RequestParam List<String> lista, MultipartFile imageField) throws IOException {
 
 		if (!imageField.isEmpty()) {
 			dish.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
 			dish.setImage(true);
 		}
 
+		List<Ingredient> ingredients =new ArrayList<Ingredient>();
+		for(int i = 0; i < lista.size(); i++) {
+		int idi = Integer.parseInt(lista.get(i));
+		System.out.print(idi);
+		Ingredient ingredient=ingredientService.findById(idi).get();
+		ingredients.add(ingredient);
+		}
+		
+		dish.setIngredients(ingredients);
+		
 		dishService.save(dish);
 		System.out.print(lista);
 
 		model.addAttribute("dishId", dish.getId());
 
-		return "redirect:/dishes-"+dish.getId();
+		return "redirect:/dishes/"+dish.getId();
 	}
 
-	@GetMapping("/editdish-{id}")
+	@GetMapping("/editdish/{id}")
 	public String editDish(Model model, @PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);

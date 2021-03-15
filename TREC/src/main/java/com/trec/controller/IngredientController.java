@@ -66,7 +66,7 @@ public class IngredientController {
 
 	@GetMapping("/newingredient")
 	public String newIngredient(Model model) {
-
+		model.addAttribute("ingredients", ingredientService.findAll());
 		return "/add_food";
 	}
 
@@ -74,7 +74,7 @@ public class IngredientController {
 	public String newIngredientProcess(Model model, Ingredient ingredient, MultipartFile imageField) throws IOException {
 
 		ingredientService.save(ingredient);
-
+		model.addAttribute("ingredients", ingredientService.findAll());
 
 		return "/add_food";
 	}

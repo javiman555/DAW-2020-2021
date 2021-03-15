@@ -6,6 +6,8 @@ import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 
@@ -45,28 +47,28 @@ public class DatabaseInitializer {
 	public void init() throws IOException, URISyntaxException {
 
 		// Sample books
+		Ingredient pomelo =new Ingredient("Pomelo","gluten");
+		ingredientRepository.save(pomelo);
+		Ingredient banana =new Ingredient("Banana","");
+		ingredientRepository.save(banana);
+		Ingredient pan =new Ingredient("Pan","gluten");
+		ingredientRepository.save(pan);
 		
-		Dish dish1 = new Dish("Cereales con leche", 5.00f, "Desayuno","Cena");
+		List<Ingredient> ingredient1= new ArrayList<Ingredient>();
+		ingredient1.add(pomelo);
+		Dish dish1 = new Dish("Pomelo y nada mas", 5.00f, "Desayuno",ingredient1);
 
-		setDishImage(dish1, "/sample_images/tus_zonas_erroneas.jpg");
+		setDishImage(dish1, "/sample_images/pomelo.jpg");
 		dishRepository.save(dish1);
 
-		Dish dish2 = new Dish("Cereales con leche", 5.00f, "Desayuno","Cena");
+		List<Ingredient> ingredient2= new ArrayList<Ingredient>();
+		ingredient2.add(banana);
+		ingredient2.add(pan);
+		Dish dish2 = new Dish("Banana con Pan", 15.00f, "Cena",ingredient2);
 
-		setDishImage(dish2, "/sample_images/la_vida_secreta_de_la_mente.jpg");
+		setDishImage(dish2, "/sample_images/pan_platano.jpg");
 		dishRepository.save(dish2);
 
-		dishRepository.save(new Dish("Cereales con leche", 5.00f, "Desayuno","Cena"));
-
-		dishRepository.save(new Dish("Cereales con leche", 5.00f, "Desayuno","Cena"));
-
-		dishRepository.save(new Dish("Cereales con leche", 5.00f, "Desayuno","Cena"));
-		
-		ingredientRepository.save(new Ingredient("Pomelo","gluten"));
-
-		ingredientRepository.save(new Ingredient("pan","lactosa"));
-
-		ingredientRepository.save(new Ingredient("leche","lactosa"));
 
 		// Sample users
 

@@ -49,7 +49,9 @@
 										<span class="price"><a href="dishes/{{id}}">{{dishPrice}}</a></span>
 									</div>
 								</div>
-								<p><a href="dishes/{{id}}">{{ingredient}}</a></p>
+								<p>{{#ingredients}}
+								{{name}}
+								{{/ingredients}}</p>
 								{{#logged}}
 									{{^admin}}
 										<p><a href="/team" class="btn btn-primary">Pedir</a></p>

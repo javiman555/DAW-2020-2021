@@ -24,14 +24,9 @@ public class Dish {
 	private String name;
 	private float dishPrice;
 	private String category;
-	private String ingredient;
-	
-	@Column(columnDefinition = "TEXT")
-	private String description;
 
 	@Lob
 	private Blob imageFile;
-
 	private boolean image;
 
 	@ManyToMany
@@ -39,12 +34,12 @@ public class Dish {
 
 	public Dish() {}
 
-	public Dish(String name, float dishPrice, String ingredient, String category) {
+	public Dish(String name, float dishPrice,String category, List<Ingredient> ingredients) {
 		super();
 		this.name = name;
 		this.dishPrice = dishPrice;
-		this.ingredient = ingredient;
 		this.category = category;
+		this.ingredients = ingredients;
 	}
 	public Long getId() {
 		return id;
@@ -79,14 +74,6 @@ public class Dish {
 	public void setCategory(String category) {
 		this.category = category;
 	}
-
-	public String getIngredient() {
-		return ingredient;
-	}
-
-	public void setIngredient(String ingredient) {
-		this.ingredient = ingredient;
-	}
 	
 	public Blob getImageFile() {
 		return imageFile;
@@ -109,15 +96,19 @@ public class Dish {
 
 	@Override
 	public String toString() {
-		return "Post [id="+id+", user=" + name + ", title=" + dishPrice + ", text=" + ingredient + "]";
+		return "Post [id="+id+", user=" + name + ", title=" + dishPrice + ", text=" + "]";
 	}
 
-	public String getDescription() {
-		return description;
+	public List<Ingredient> getIngredients() {
+		return ingredients;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 
