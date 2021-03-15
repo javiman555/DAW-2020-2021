@@ -3,6 +3,7 @@ package com.trec.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,8 +17,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.trec.model.Dish;
+import com.trec.model.Ingredient;
 import com.trec.service.DishService;
 
 import org.hibernate.engine.jdbc.BlobProxy;
@@ -102,7 +105,7 @@ public class DishController {
 	}
 
 	@PostMapping("/newdish")
-	public String newDishProcess(Model model, Dish dish, MultipartFile imageField) throws IOException {
+	public String newDishProcess(Model model, Dish dish,@RequestParam List<Ingredient> lista, MultipartFile imageField) throws IOException {
 
 		if (!imageField.isEmpty()) {
 			dish.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
@@ -110,6 +113,7 @@ public class DishController {
 		}
 
 		dishService.save(dish);
+		System.out.print(lista);
 
 		model.addAttribute("dishId", dish.getId());
 

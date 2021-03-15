@@ -50,6 +50,13 @@
 								<input class="form-control" value="" type="text" name='category'/>
 							</div>
 						</div>
+						
+						<select name="lista" id="ingredients" multiple>
+						{{#ingredients}}
+  						<option value={{.}}>{{name}}</option>
+  						{{/ingredients}}
+						</select>
+						
 						<div class="form-group">
 							<label class="col-md control-label">Ingredientes:</label>
 							<div class="col-md-8">

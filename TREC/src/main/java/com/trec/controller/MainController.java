@@ -63,10 +63,4 @@ public class MainController {
 		return "profile";
 	}
 	
-	@GetMapping("/add_food")
-	public String add_food(Model model) {
-
-		return "add_food";
-	}
-	
 }

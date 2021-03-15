@@ -14,10 +14,14 @@ public class Ingredient {
 	private String name;
 	private boolean isAllergen;
 	private String nameAllergen;
-	/*
+	
 	@ManyToMany(mappedBy="ingredients")
 	private List<Dish> dishes;
-*/
+
+	public Ingredient() {
+		
+	}
+	
 	public Ingredient(String name, String nameAllergen) {
 		this.name = name;
 		if (nameAllergen.isEmpty()) {
@@ -35,6 +39,14 @@ public class Ingredient {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 }
