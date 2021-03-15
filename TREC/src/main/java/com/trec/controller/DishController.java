@@ -57,7 +57,9 @@ public class DishController {
 	@GetMapping("/menu")
 	public String showDishes(Model model) {
 
-		model.addAttribute("dishes", dishService.findAll());
+		model.addAttribute("dishes1", dishService.getByCategory("Desayuno"));
+		model.addAttribute("dishes2", dishService.getByCategory("Comida"));
+		model.addAttribute("dishes3", dishService.getByCategory("Cena"));
 
 		return "menu";
 	}

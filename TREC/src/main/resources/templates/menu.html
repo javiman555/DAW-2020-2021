@@ -31,7 +31,7 @@
 						<div class="heading-menu text-center ftco-animate">
 							<h3>Desayuno</h3>
 						</div>
-					    {{#dishes}}
+					    {{#dishes1}}
 					    <div class="menus d-flex ftco-animate">
 							{{#image}}
  							<div class="menu-img img" style="background-image: url(/dishes/{{id}}/image);"></div>
@@ -54,13 +54,20 @@
 								{{/ingredients}}</p>
 								{{#logged}}
 									{{^admin}}
-										<p><a href="/team" class="btn btn-primary">Pedir</a></p>
+									
+									<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+									 	 <input type="hidden" name="id" value="{{id}}" />
+									  <p>
+									    <input class="btn btn-primary" type="submit" value="Pedir" />
+									  </p>
+									</form>	
+																	
 									{{/admin}}
 								{{/logged}}
 							</div>
 						</div>
   
-						{{/dishes}}
+						{{/dishes1}}
 					</div>
 				</div>
 
@@ -70,6 +77,43 @@
 							<h3>Comida</h3>
 
 						</div>
+						{{#dishes2}}
+					    <div class="menus d-flex ftco-animate">
+							{{#image}}
+ 							<div class="menu-img img" style="background-image: url(/dishes/{{id}}/image);"></div>
+ 							{{/image}}			    
+					    	{{^image}}
+							<div class="menu-img img" style="background-image: url(images/drink-6.jpg);"></div>
+							{{/image}}
+							
+							<div class="text">
+								<div class="d-flex">
+									<div class="one-half">
+										<h3><a href="dishes/{{id}}">{{name}}</a></h3>
+									</div>
+									<div class="one-forth">
+										<span class="price"><a href="dishes/{{id}}">{{dishPrice}}</a></span>
+									</div>
+								</div>
+								<p>{{#ingredients}}
+								{{name}}
+								{{/ingredients}}</p>
+								{{#logged}}
+									{{^admin}}
+									
+									<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+									 	 <input type="hidden" name="id" value="{{id}}" />
+									  <p>
+									    <input class="btn btn-primary" type="submit" value="Pedir" />
+									  </p>
+									</form>	
+																	
+									{{/admin}}
+								{{/logged}}
+							</div>
+						</div>
+  
+						{{/dishes2}}
 					</div>
 				</div>
 
@@ -78,6 +122,43 @@
 						<div class="heading-menu text-center ftco-animate">
 							<h3>Cena</h3>
 						</div>
+						{{#dishes3}}
+					    <div class="menus d-flex ftco-animate">
+							{{#image}}
+ 							<div class="menu-img img" style="background-image: url(/dishes/{{id}}/image);"></div>
+ 							{{/image}}			    
+					    	{{^image}}
+							<div class="menu-img img" style="background-image: url(images/drink-6.jpg);"></div>
+							{{/image}}
+							
+							<div class="text">
+								<div class="d-flex">
+									<div class="one-half">
+										<h3><a href="dishes/{{id}}">{{name}}</a></h3>
+									</div>
+									<div class="one-forth">
+										<span class="price"><a href="dishes/{{id}}">{{dishPrice}}</a></span>
+									</div>
+								</div>
+								<p>{{#ingredients}}
+								{{name}}
+								{{/ingredients}}</p>
+								{{#logged}}
+									{{^admin}}
+									
+									<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+									 	 <input type="hidden" name="id" value="{{id}}" />
+									  <p>
+									    <input class="btn btn-primary" type="submit" value="Pedir" />
+									  </p>
+									</form>	
+																	
+									{{/admin}}
+								{{/logged}}
+							</div>
+						</div>
+  
+						{{/dishes3}}
 					</div>
 				</div>
 			</div>

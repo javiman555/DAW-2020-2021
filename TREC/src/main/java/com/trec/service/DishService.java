@@ -34,4 +34,7 @@ public class DishService {
 	public void delete(long id) {
 		dishRepository.deleteById(id);
 	}
+	public List<Dish> getByCategory(String category){
+		return dishRepository.getByCategory(category);
+	}
 }

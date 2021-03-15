@@ -17,8 +17,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.trec.model.Dish;
+import com.trec.model.User;
 import com.trec.model.Purchase;
 import com.trec.service.PurchaseService;
+import com.trec.service.DishService;
+import com.trec.service.UserService;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.InputStreamResource;
@@ -31,6 +35,10 @@ public class PurchaseController {
 
 	@Autowired
 	private PurchaseService purchaseService;
+	@Autowired
+	private DishService dishService;
+	@Autowired
+	private UserService userService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -47,5 +55,20 @@ public class PurchaseController {
 			model.addAttribute("logged", false);
 		}
 	}
-
+	/*
+	@PostMapping("/adddish")
+	public String addDish(Model model,HttpServletRequest request, Long id) {
+		
+		System.out.println(id);
+		Dish dish = dishService.findById(id).get();
+		Principal principal = request.getUserPrincipal();
+		String name = principal.getName();
+		User user = userService.findByName(name).get();
+		user.getNewPurchase().getDishes().add(dish);
+		userService.deleteById(user.getId());
+		userService.save(user);
+		return "/menu";
+	}
+*/
+	
 }
