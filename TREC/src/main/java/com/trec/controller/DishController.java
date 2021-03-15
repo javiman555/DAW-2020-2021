@@ -55,7 +55,7 @@ public class DishController {
 		return "menu";
 	}
 	
-	@GetMapping("/dishes-{id}")
+	@GetMapping("/dishes/{id}")
 	public String showDish(Model model, @PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -68,7 +68,7 @@ public class DishController {
 
 	}
 
-	@GetMapping("/dishes-{id}/image")
+	@GetMapping("/dishes/{id}/image")
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -84,7 +84,7 @@ public class DishController {
 		}
 	}
 
-	@GetMapping("/removedish-{id}")
+	@GetMapping("/removedish/{id}")
 	public String removeDish(Model model, @PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
