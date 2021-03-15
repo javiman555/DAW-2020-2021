@@ -19,4 +19,13 @@ public class LoginWebController {
 		
 		return "register";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout(Model model) {
+		
+		model.addAttribute("loginerror", true);
+		
+		return "register";
+	}
+	
 }
