@@ -36,6 +36,11 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/login").permitAll();
         http.authorizeRequests().antMatchers("/register").permitAll();
         http.authorizeRequests().antMatchers("/logout").permitAll();
+        http.authorizeRequests().antMatchers("/menu").permitAll();
+        http.authorizeRequests().antMatchers("/dishes/{id}").permitAll();
+        http.authorizeRequests().antMatchers("/dishes/{id}/image").permitAll();
+        http.authorizeRequests().antMatchers("/newuser").permitAll();
+        
 
         // Private pages
         http.authorizeRequests().antMatchers("/newdish").hasAnyRole("ADMIN");
@@ -51,6 +56,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Logout
         http.logout().logoutUrl("/logout");
-        http.logout().logoutSuccessUrl("/");
+        http.logout().logoutSuccessUrl("/logout");
     }
 }

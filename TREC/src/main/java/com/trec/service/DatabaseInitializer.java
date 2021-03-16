@@ -46,7 +46,7 @@ public class DatabaseInitializer {
 	@PostConstruct
 	public void init() throws IOException, URISyntaxException {
 
-		// Sample books
+		// Sample dishes
 		Ingredient pomelo =new Ingredient("Pomelo","gluten");
 		ingredientRepository.save(pomelo);
 		Ingredient banana =new Ingredient("Banana","");
@@ -72,8 +72,8 @@ public class DatabaseInitializer {
 
 		// Sample users
 
-		userRepository.save(new User("user", passwordEncoder.encode("pass"), "USER"));
-		userRepository.save(new User("admin", passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
+		userRepository.save(new User("user", "Julia","Martín","juliamartin@gmail.com",222222222, passwordEncoder.encode("pass"), "USER"));
+		userRepository.save(new User("admin","Pepe","Pérez","pepeperez@gmail.com",111111111, passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
 	}
 
 	public void setDishImage(Dish dish, String classpathResource) throws IOException {

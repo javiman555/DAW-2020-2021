@@ -20,42 +20,44 @@
 			<div class="col" style="background-image:url(images/chef-4.jpg);">
 				<div class="row">
 					<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-md-end bg-primary">
-						<form action="#" class="appointment-form">
+						<form action="/newuser" method="post" enctype="multipart/form-data" class="appointment-form">
 							<h3 class="mb-3">Regístrate</h3>
 							<div class="row">
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="name" class="form-control" placeholder="Nombre">
+										<input type="text" name="firstName" class="form-control" placeholder="Nombre">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="name" class="form-control" placeholder="Apellidos">
+										<input type="text" name="surname" class="form-control" placeholder="Apellidos">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="email" class="form-control" placeholder="Correo electróico">
+										<input type="text" name="name" class="form-control" placeholder="Alias">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Teléfono">
+										<input type="email" name="email" class="form-control" placeholder="Correo electróico">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Contraseña">
+										<input type="text" name="phoneNumber" class="form-control" placeholder="Teléfono">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
-										<input type="password" class="form-control" placeholder="Confirmar contraseña">
+										<input type="password" name="encodedPassword" class="form-control" placeholder="Contraseña">
 									</div>
 								</div>
 								<div class="col-md-12">
 									<div class="form-group">
 										<input type="submit" value="Regístrate" class="btn btn-white py-3 px-4">
+										<input type="hidden" name="_csrf" value="{{token}}"/>
+										<input type="hidden" name="roles" value="USER"/>
 									</div>
 								</div>
 							</div>

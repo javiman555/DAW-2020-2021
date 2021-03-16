@@ -1,5 +1,6 @@
 package com.trec.model;
 
+import java.sql.Blob;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -26,26 +28,34 @@ public class User {
 	private String email;	
 	private int phoneNumber;
 
+	@Lob
+	private Blob imageFile;
+	private boolean image;
+	
 	private String name;
 
 	private String encodedPassword;
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	@Autowired
 	@OneToOne
 	private Purchase newPurchase;
 	@OneToMany
 	private List<Purchase> purchases;
+	
 	public User() {
 	}
 
-	public User(String name, String encodedPassword, String... roles) {
+	public User(String name, String firstName, String surname, String email, int phoneNumber, String encodedPassword, String... roles) {
 		this.name = name;
 		this.encodedPassword = encodedPassword;
 		this.roles = List.of(roles);
+		this.firstName = firstName;
+		this.surname = surname;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
 	}
-
+	
 	public String getName() {
 		return name;
 	}
@@ -110,6 +120,25 @@ public class User {
 		this.phoneNumber = phoneNumber;
 	}
 
+	public Blob getImageFile() {
+		return imageFile;
+	}
+
+	public void setImageFile(Blob image) {
+		this.imageFile = image;
+	}
+
+	public boolean hasImage(){
+		return this.image;
+	}
+
+	public void setImage(boolean image){
+		this.image = image;
+	}
+	public boolean getImage() {
+		return image;
+	}
+	
 	public Purchase getNewPurchase() {
 		return newPurchase;
 	}
