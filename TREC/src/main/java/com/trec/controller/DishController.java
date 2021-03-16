@@ -158,7 +158,7 @@ public class DishController {
 
 		model.addAttribute("dishId", dish.getId());
 
-		return "redirect:/dishes-"+dish.getId();
+		return "redirect:/dishes/"+dish.getId();
 	}
 
 	private void updateImage(Dish dish, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {

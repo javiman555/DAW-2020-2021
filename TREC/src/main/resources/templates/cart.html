@@ -40,15 +40,25 @@
                         </div>
                         <br>
                         <div class="panel-body">
+                            {{^dishes}}
+                            Nada en el carro
+                            {{/dishes}}
+                        {{#dishes}}
                             <div class="row">
-                                <div class="col-xs-2 col-md-3"><img class="img-responsive" src="images/breakfast-3.jpg">
-                                </div>
+                            
+									{{#image}}
+ 										<img src="/dishes/{{id}}/image">
+ 									{{/image}}			    
+					    			{{^image}}
+										<img src="/images/drink-6.jpg">
+									{{/image}}
+									
                                 <div class="col-xs-4 col-md-4">
-                                    <h3 class="product-name"><strong>Bol de Frutas</strong></h3>
+                                    <h3 class="product-name"><strong>{{name}}</strong></h3>
                                 </div>
                                 <div class="col-xs-6 col-md-5">
                                     <div class="col-xs-6 text-right">
-                                        <h4><strong>25.00€ <span class="text-muted">x</span></strong></h4>
+                                        <h4><strong>{{dishPrice}}€<span class="text-muted">x</span></strong></h4>
                                     </div>
                                     <div class="col-xs-4">
                                         <input type="text" class="form-control input-sm" value="1">
@@ -61,26 +71,8 @@
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-xs-2 col-md-3"><img class="img-responsive" src="images/lunch-7.jpg">
-                                </div>
-                                <div class="col-xs-4 col-md-4">
-                                    <h3 class="product-name"><strong>Pollo asado</strong></h3>
-                                </div>
-                                <div class="col-xs-6 col-md-5">
-                                    <div class="col-xs-6 text-right">
-                                        <h4><strong>25.00€ <span class="text-muted">x</span></strong></h4>
-                                    </div>
-                                    <div class="col-xs-4">
-                                        <input type="text" class="form-control input-sm" value="1">
-                                    </div>
-                                    <div class="col-xs-2">
-                                        <button type="button" class="btn btn-link btn-lg">
-                                            <span class="glyphicon glyphicon-trash"> </span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
+                            {{/dishes}}
+                            
                         </div>
                         <div class="panel-footer">
                             <div class="row text-center">

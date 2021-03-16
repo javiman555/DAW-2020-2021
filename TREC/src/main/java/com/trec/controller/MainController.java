@@ -45,11 +45,6 @@ public class MainController {
 		return "register";
 	}
 	
-	@GetMapping("/cart")
-	public String carro(Model model) {
-
-		return "cart";
-	}
 	
 	@GetMapping("/pagar")
 	public String pagar(Model model) {
@@ -57,10 +52,5 @@ public class MainController {
 		return "pagar";
 	}
 	
-	@GetMapping("/profile")
-	public String perfil(Model model) {
-
-		return "profile";
-	}
 	
 }

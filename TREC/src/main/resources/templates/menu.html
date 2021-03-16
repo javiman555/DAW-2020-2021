@@ -22,7 +22,9 @@
 				<div class="col-md-7 text-center heading-section ftco-animate">
 					<span class="subheading">Especialidades</span>
 					<h2 class="mb-4">Nuestra Carta</h2>
+					{{#admin}}
 					<a href="/add_food" class="btn btn-primary btn-sm">Añadir Plato</a>
+					{{/admin}}
 				</div>
 			</div>
 			<div class="row">
@@ -57,6 +59,8 @@
 									
 									<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
 									 	 <input type="hidden" name="id" value="{{id}}" />
+									 	 <input type="hidden" name="userName" value="{{userName}}" />
+									 	 <input type="hidden" name="_csrf" value="{{token}}"/>
 									  <p>
 									    <input class="btn btn-primary" type="submit" value="Pedir" />
 									  </p>
@@ -103,6 +107,8 @@
 									
 									<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
 									 	 <input type="hidden" name="id" value="{{id}}" />
+									 	 <input type="hidden" name="userName" value="{{userName}}" />
+									 	 <input type="hidden" name="_csrf" value="{{token}}"/>
 									  <p>
 									    <input class="btn btn-primary" type="submit" value="Pedir" />
 									  </p>
@@ -122,6 +128,7 @@
 						<div class="heading-menu text-center ftco-animate">
 							<h3>Cena</h3>
 						</div>
+					
 						{{#dishes3}}
 					    <div class="menus d-flex ftco-animate">
 							{{#image}}
@@ -148,6 +155,8 @@
 									
 									<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
 									 	 <input type="hidden" name="id" value="{{id}}" />
+									 	 <input type="hidden" name="userName" value="{{userName}}" />
+									 	 <input type="hidden" name="_csrf" value="{{token}}"/>
 									  <p>
 									    <input class="btn btn-primary" type="submit" value="Pedir" />
 									  </p>

@@ -3,6 +3,7 @@ package com.trec.model;
 import java.sql.Blob;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -38,14 +39,18 @@ public class User {
 
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> roles;
-	@OneToOne
+	@OneToOne(cascade = {CascadeType.ALL})
 	private Purchase newPurchase;
 	@OneToMany
 	private List<Purchase> purchases;
 	
 	public User() {
 	}
-
+	public User(String name, String encodedPassword, String... roles) {
+		this.name = name;
+		this.encodedPassword = encodedPassword;
+		this.roles = List.of(roles);
+	}
 	public User(String name, String firstName, String surname, String email, int phoneNumber, String encodedPassword, String... roles) {
 		this.name = name;
 		this.encodedPassword = encodedPassword;

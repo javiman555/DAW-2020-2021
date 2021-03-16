@@ -40,7 +40,7 @@ public class IngredientController {
 		if (principal != null) {
 
 			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
+			model.addAttribute("userNamexx", principal.getName());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 
 		} else {

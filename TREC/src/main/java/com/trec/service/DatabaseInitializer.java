@@ -71,7 +71,7 @@ public class DatabaseInitializer {
 
 
 		// Sample users
-
+		userRepository.save(new User("user1", passwordEncoder.encode("pass"), "USER"));
 		userRepository.save(new User("user", "Julia","Martín","juliamartin@gmail.com",222222222, passwordEncoder.encode("pass"), "USER"));
 		userRepository.save(new User("admin","Pepe","Pérez","pepeperez@gmail.com",111111111, passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
 	}

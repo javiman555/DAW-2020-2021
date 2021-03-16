@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.trec.model.Dish;
 import com.trec.model.Purchase;
 import com.trec.repository.PurchaseRepository;
 

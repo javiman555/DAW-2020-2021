@@ -3,6 +3,7 @@ package com.trec.controller;
 import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,27 +49,60 @@ public class PurchaseController {
 		if (principal != null) {
 
 			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
+			model.addAttribute("userNamexx", principal.getName());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
 
 		} else {
 			model.addAttribute("logged", false);
 		}
 	}
-	/*
+	
 	@PostMapping("/adddish")
-	public String addDish(Model model,HttpServletRequest request, Long id) {
+	public String addDish(Model model, Long id, HttpServletRequest request) {
+		
+		
+		Principal principal = request.getUserPrincipal();
+		String userNamexx = principal.getName();
 		
 		System.out.println(id);
+		System.out.println(userNamexx);
 		Dish dish = dishService.findById(id).get();
-		Principal principal = request.getUserPrincipal();
-		String name = principal.getName();
-		User user = userService.findByName(name).get();
+		User user = userService.findByName(userNamexx).get();
+		System.out.println(id);
+		if(user.getNewPurchase()==null){
+			user.setNewPurchase(new Purchase());
+			user.getNewPurchase().setDishes(new ArrayList<Dish>() );
+		}
+		System.out.println(id);
 		user.getNewPurchase().getDishes().add(dish);
-		userService.deleteById(user.getId());
+		System.out.println(userService.findByName(userNamexx).get());
+		System.out.println(userService.findByName(userNamexx).get().getNewPurchase());
+		System.out.println(userService.findByName(userNamexx).get().getNewPurchase().getDishes().get(0));
+		System.out.println(userService.findByName(userNamexx).get());
+		System.out.println(id);
 		userService.save(user);
 		return "/menu";
 	}
-*/
+	@GetMapping("/profile")
+	public String showPurchases(Model model,String userNamexx) {
+
+		model.addAttribute("purchases", userService.findByName(userNamexx).get().getPurchases());
+
+
+		return "profile";
+	}
 	
+	@GetMapping("/cart")
+	public String showPurchase(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		String userNamexx = principal.getName();
+		Purchase newPurchase = new Purchase();
+		if(userService.findByName(userNamexx).get().getNewPurchase()!=null) {
+			newPurchase =userService.findByName(userNamexx).get().getNewPurchase();
+		}
+		
+			model.addAttribute("dishes", newPurchase.getDishes());
+			
+		return "cart";
+	}
 }
