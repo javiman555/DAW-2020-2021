@@ -20,6 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 @Entity
 public class User {
 
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", firstName=" + firstName + ", surname=" + surname + ", email=" + email
+				+ ", phoneNumber=" + phoneNumber + ", imageFile=" + imageFile + ", image=" + image + ", name=" + name
+				+ ", encodedPassword=" + encodedPassword + ", roles=" + roles + ", newPurchase=" + newPurchase
+				+ ", purchases=" + purchases + "]";
+	}
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
@@ -160,5 +168,7 @@ public class User {
 	public void setPurchases(List<Purchase> purchases) {
 		this.purchases = purchases;
 	}
+	
+	
 
 }

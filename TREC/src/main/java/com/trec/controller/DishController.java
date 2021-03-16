@@ -22,8 +22,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.trec.model.Dish;
 import com.trec.model.Ingredient;
+import com.trec.model.User;
 import com.trec.service.DishService;
 import com.trec.service.IngredientService;
+import com.trec.service.UserService;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.InputStreamResource;
@@ -37,6 +39,8 @@ public class DishController {
 	@Autowired
 	private DishService dishService;
 	@Autowired
+	private UserService userService;
+	@Autowired
 	private IngredientService ingredientService;
 
 	@ModelAttribute
@@ -47,8 +51,11 @@ public class DishController {
 		if (principal != null) {
 
 			model.addAttribute("logged", true);
-			model.addAttribute("userName", principal.getName());
+			model.addAttribute("userNamexx", principal.getName());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			
+			User user = userService.findByName(principal.getName()).get();
+			model.addAttribute("userId", user.getId());
 
 		} else {
 			model.addAttribute("logged", false);
@@ -171,7 +178,7 @@ public class DishController {
 				dish.setImageFile(null);
 				dish.setImage(false);
 			} else {
-				// Maintain the same image loading it before updating the book
+				// Maintain the same image loading it before updating the dish
 				Dish dbDish = dishService.findById(dish.getId()).orElseThrow();
 				if (dbDish.hasImage()) {
 					dish.setImageFile(BlobProxy.generateProxy(dbDish.getImageFile().getBinaryStream(),

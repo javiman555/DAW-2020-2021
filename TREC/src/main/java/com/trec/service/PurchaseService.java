@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.trec.model.Dish;
 import com.trec.model.Purchase;
+import com.trec.model.User;
 import com.trec.repository.PurchaseRepository;
 
 @Service
@@ -34,5 +35,9 @@ public class PurchaseService {
 
 	public void delete(long id) {
 		purchaseRepository.deleteById(id);
+	}
+	
+	public List<Purchase> getByUser(User user){
+		return purchaseRepository.getByUser(user);
 	}
 }

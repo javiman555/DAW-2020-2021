@@ -16,8 +16,8 @@
 	</section>
 
 	<section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
-
-	</br><div class="navbar-default" id="ftco-nav">
+		<br>
+		<div class="navbar-default" id="ftco-nav">
 			<ul id="infoPerfil" class="nav ml-auto nav-pills nav-fill">
 				<li role="presentation" class="nav-item"><a class="nav-link active" href="#add-dish">Añadir plato</a></li>
 				<li role="presentation" class="nav-item"><a class="nav-link" href="#add-ingredient">Añadir ingrediente</a></li>
@@ -44,37 +44,39 @@
 									<input class="form-control" value="" type="text" name='dishPrice'/>
 								</div>
 							</div>
-						<div class="form-group">
-							<label class="col-md control-label">Tipo:</label>
-							<div class="col-md-8">
-								<input class="form-control" value="" type="text" name='category'/>
+							<div class="form-group">
+								<label class="col-md control-label">Categoría:</label>
+								<select name="category" id="category">
+	  							<option value="Desayuno">Desayuno</option>
+	  							<option value="Comida">Comida</option>
+	  							<option value="Cena">Cena</option>
+								</select>
 							</div>
-						</div>
 						
-						<div class="form-group">
-							<label class="col-md control-label">Ingredientes:</label>
-							<select name="lista" id="ingredients" multiple>
-							{{#ingredients}}
-  							<option value={{id}}>{{name}}</option>
-  							{{/ingredients}}
-							</select>
-						</div>
-						<div class="form-group">
-							<label class="col-md control-label">Imagen del plato:</label>
-							<div class="col-md-8">
-								<input type='file' name='imageField' accept=".jpg, .jpeg" class="text-center center-block well well-sm"/>
+							<div class="form-group">
+								<label class="col-md control-label">Ingredientes:</label>
+								<select name="lista" id="ingredients" multiple>
+								{{#ingredients}}
+	  							<option value={{id}}>{{name}}</option>
+	  							{{/ingredients}}
+								</select>
 							</div>
+							<div class="form-group">
+								<label class="col-md control-label">Imagen del plato:</label>
+								<div class="col-md-8">
+									<input type='file' name='imageField' accept=".jpg, .jpeg" class="text-center center-block well well-sm"/>
+								</div>
+							</div>
+						  	<div class="form-group">
+						    	<input class="btn btn-primary" type="submit" value="Añadir plato"/>
+						    	<input type="hidden" name="_csrf" value="{{token}}"/>
+						 	</div>
 						</div>
-					  	<div class="form-group">
-					    	<input class="btn btn-primary" type="submit" value="Añadir plato"/>
-					    	<input type="hidden" name="_csrf" value="{{token}}"/>
-					 	</div>
 					</div>
 				</div>
-			</div>
-		</form>	
-		<br>
-	</div>
+			</form>	
+			<br>
+		</div>
 
 			<div role="tabpanel" class="tab-pane fade" id="add-ingredient" aria-labelledby="tabInfo">
 				<div class="container" style="padding-top: 60px;">

@@ -51,6 +51,9 @@ public class PurchaseController {
 			model.addAttribute("logged", true);
 			model.addAttribute("userNamexx", principal.getName());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			
+			User user = userService.findByName(principal.getName()).get();
+			model.addAttribute("userId", user.getId());
 
 		} else {
 			model.addAttribute("logged", false);
@@ -104,5 +107,20 @@ public class PurchaseController {
 			model.addAttribute("dishes", newPurchase.getDishes());
 			
 		return "cart";
+	}
+		
+	@GetMapping("/profile/{id}")
+	public String showProfile(Model model, @PathVariable long id) {
+		
+		Optional<User> user = userService.findById(id);
+		
+		model.addAttribute("purchases", purchaseService.getByUser(user.get()));
+		
+		if (user.isPresent()) {
+			model.addAttribute("user", user.get());
+			return "/profile";
+		} else {
+			return "/register";
+		}
 	}
 }

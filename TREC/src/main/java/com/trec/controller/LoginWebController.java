@@ -1,13 +1,20 @@
 package com.trec.controller;
 
 import java.io.IOException;
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,6 +31,25 @@ public class LoginWebController {
 	
 	@Autowired
 	private UserService userService;
+	
+	@ModelAttribute
+	public void addAttributes(Model model, HttpServletRequest request) {
+
+		Principal principal = request.getUserPrincipal();
+
+		if (principal != null) {
+
+			model.addAttribute("logged", true);
+			model.addAttribute("userNamexx", principal.getName());
+			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			
+			User user = userService.findByName(principal.getName()).get();
+			model.addAttribute("userId", user.getId());
+
+		} else {
+			model.addAttribute("logged", false);
+		}
+	}
 	
 	@RequestMapping("/login")
 	public String login() {
@@ -60,10 +86,11 @@ public class LoginWebController {
 
 		model.addAttribute("userId", user.getId());
 		
-		System.out.print(userService.findById(user.getId()).get().getFirstName());
+		System.out.println(userService.findById(user.getId()).get().getFirstName());
+		System.out.println(user.getFirstName());
+		System.out.println(userService.findById(user.getId()).get().toString());
 
-		return "/";
-		//return "redirect:/profile/"+user.getId();
+		return "redirect:/profile/"+user.getId();
 	}
 
 }

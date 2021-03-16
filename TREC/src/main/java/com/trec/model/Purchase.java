@@ -1,5 +1,6 @@
 package com.trec.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -23,10 +24,26 @@ public class Purchase {
 	@ManyToMany
 	private List<Dish> dishes;
 	
+	@ManyToOne
+	private User user;
+	
 	public Purchase() {
 	}
 
-
+	public Purchase(String firstName, String surname, String address, int postalCode, String city, String country, int phoneNumber, float price, User user) {
+		this.firstName = firstName;
+		this.surname = surname;
+		this.address = address;
+		this.postalCode = postalCode;
+		this.city = city;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
+		this.price = price;
+		this.user = user;
+		this.dishes = new ArrayList<Dish>();
+	}
+	
+	
 	public Long getId() {
 		return id;
 	}

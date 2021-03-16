@@ -18,7 +18,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.trec.model.Ingredient;
+import com.trec.model.User;
 import com.trec.service.IngredientService;
+import com.trec.service.UserService;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.InputStreamResource;
@@ -31,6 +33,8 @@ public class IngredientController {
 
 	@Autowired
 	private IngredientService ingredientService;
+	@Autowired
+	private UserService userService;
 
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -42,6 +46,9 @@ public class IngredientController {
 			model.addAttribute("logged", true);
 			model.addAttribute("userNamexx", principal.getName());
 			model.addAttribute("admin", request.isUserInRole("ADMIN"));
+			
+			User user = userService.findByName(principal.getName()).get();
+			model.addAttribute("userId", user.getId());
 
 		} else {
 			model.addAttribute("logged", false);

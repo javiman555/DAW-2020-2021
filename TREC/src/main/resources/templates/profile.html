@@ -106,7 +106,7 @@
 							<div class="panel panel-info">
 								<div class="panel-body">
 									<div class="menus d-flex ftco-animate">
-										<div class="menu-img img" style="background-image: url(images/breakfast-3.jpg);"></div>
+										<div class="menu-img img" style="background-image: url(/images/breakfast-3.jpg);"></div>
 										<div class="text">
 											<div class="d-flex">
 												<div class="one-half">
@@ -120,7 +120,7 @@
 										</div>
 									</div>
 									<div class="menus d-flex ftco-animate">
-										<div class="menu-img img" style="background-image: url(images/lunch-7.jpg);"></div>
+										<div class="menu-img img" style="background-image: url(/images/lunch-7.jpg);"></div>
 										<div class="text">
 											<div class="d-flex">
 												<div class="one-half">
@@ -146,7 +146,13 @@
 				<div class="container" style="padding-top: 60px;">
 					<h1 class="page-header">Facturas</h1>
 					<br>
+					{{#purchases}}
+						<p>>{{id}}</p>
+					{{/purchases}}
+					
+					{{^purchases}}
 					<b>No ha realizado ningún pedido.</b>
+					{{/purchases}}
 				</div>
 				<br>
 			</div>
