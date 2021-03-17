@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,6 +32,8 @@ public class LoginWebController {
 	
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 	
 	@ModelAttribute
 	public void addAttributes(Model model, HttpServletRequest request) {
@@ -52,8 +55,8 @@ public class LoginWebController {
 	}
 	
 	@RequestMapping("/login")
-	public String login() {
-		return "register";
+	public String login(Model model) {
+		return "index";
 	}
 
 	@RequestMapping("/loginerror")
@@ -82,6 +85,7 @@ public class LoginWebController {
 */
 		user.setImage(false);
 		
+		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
 		userService.save(user);
 
 		model.addAttribute("userId", user.getId());

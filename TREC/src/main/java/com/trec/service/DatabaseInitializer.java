@@ -172,12 +172,13 @@ public class DatabaseInitializer {
 		
 		
 		// Sample purchases
-		//Purchase purchase1 = new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 20.5f, user1);
-		//Purchase purchase2 = new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 35.5f, user1);
+		Purchase purchase1 = new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 20.5f, user1);
+		Purchase purchase2 = new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 35.5f, user1);
 		
-		//purchaseRepository.save(purchase1);
-		//purchaseRepository.save(purchase2);
 		userRepository.save(user1);
+		
+		purchaseRepository.save(purchase1);
+		purchaseRepository.save(purchase2);
 		
 	}
 
