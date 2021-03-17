@@ -94,7 +94,7 @@ public class LoginWebController {
 		System.out.println(user.getFirstName());
 		System.out.println(userService.findById(user.getId()).get().toString());
 
-		return "redirect:/profile/"+user.getId();
+		return "/index";
 	}
 
 }

@@ -123,4 +123,12 @@ public class PurchaseController {
 			return "/register";
 		}
 	}
+	
+	@GetMapping("/purchase/{id}")
+	public String showPurchase(Model model, @PathVariable long id) {
+		
+		model.addAttribute("purchase", purchaseService.findById(id).get());
+		
+		return "purchase";
+	}
 }

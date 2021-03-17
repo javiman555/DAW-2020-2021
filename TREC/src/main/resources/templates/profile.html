@@ -4,7 +4,7 @@
 {{>header}}
 	<!-- END nav -->
 
-    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -54,7 +54,7 @@
 									</div>
 								</div>
 								<div class="form-group">
-									<label class="col-md control-label">Alias:</label>
+									<label class="col-md control-label">Nombre de usuario:</label>
 									<div class="col-md-8">
 										<input class="form-control" value="johndoe" type="text">
 									</div>
@@ -147,7 +147,7 @@
 					<h1 class="page-header">Facturas</h1>
 					<br>
 					{{#purchases}}
-						<p>>{{id}}</p>
+						<p><a href="/purchase/{{id}}">{{id}}</a></p>
 					{{/purchases}}
 					
 					{{^purchases}}

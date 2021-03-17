@@ -48,51 +48,41 @@ public class Purchase {
 		return id;
 	}
 
-
 	public String getFirstName() {
 		return firstName;
 	}
-
 
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
 
-
 	public String getSurname() {
 		return surname;
 	}
-
 
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
 
-
 	public String getAddress() {
 		return address;
 	}
-
 
 	public void setAddress(String address) {
 		this.address = address;
 	}
 
-
 	public int getPostalCode() {
 		return postalCode;
 	}
-
 
 	public void setPostalCode(int postalCode) {
 		this.postalCode = postalCode;
 	}
 
-
 	public String getCity() {
 		return city;
 	}
-
 
 	public void setCity(String city) {
 		this.city = city;
@@ -133,11 +123,9 @@ public class Purchase {
 		return dishes;
 	}
 
-
 	public void setDishes(List<Dish> dishes) {
 		this.dishes = dishes;
 	}
-
 
 	public void setId(Long id) {
 		this.id = id;
