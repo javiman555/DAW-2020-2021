@@ -94,7 +94,7 @@ public class DatabaseInitializer {
 		ingredient.add(huevo);
 		Dish dish2 = new Dish("Leche con galletas", 5.00f, "Desayuno",ingredient);
 		
-		setDishImage(dish2, "/sample_images/pomelo.jpg");
+		setDishImage(dish2, "/sample_images/lecheConGalletas.jpg");
 		dishRepository.save(dish2);
 		
 		ingredient= new ArrayList<Ingredient>();
@@ -111,7 +111,7 @@ public class DatabaseInitializer {
 		ingredient.add(carnePicada);
 		Dish dish4 = new Dish("Pasta boloñesa", 15.00f, "Comida",ingredient);
 		
-		setDishImage(dish4, "/sample_images/pomelo.jpg");
+		setDishImage(dish4, "/sample_images/pastaBoloñesa.jpg");
 		dishRepository.save(dish4);
 		
 		ingredient= new ArrayList<Ingredient>();
@@ -120,7 +120,7 @@ public class DatabaseInitializer {
 		ingredient.add(bacon);
 		Dish dish5 = new Dish("Pasta carbonara", 15.00f, "Comida",ingredient);
 
-		setDishImage(dish5, "/sample_images/pan_platano.jpg");
+		setDishImage(dish5, "/sample_images/pastaCarbonara.jpg");
 		dishRepository.save(dish5);
 		
 		ingredient= new ArrayList<Ingredient>();
@@ -130,7 +130,7 @@ public class DatabaseInitializer {
 		ingredient.add(oregano);
 		Dish dish6 = new Dish("Pizza margarita", 15.00f, "Comida",ingredient);
 
-		setDishImage(dish6, "/sample_images/pan_platano.jpg");
+		setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
 		dishRepository.save(dish6);
 		
 		ingredient = new ArrayList<Ingredient>();
@@ -141,7 +141,7 @@ public class DatabaseInitializer {
 		ingredient.add(jamon);
 		Dish dish7 = new Dish("Pizza jamón", 15.00f, "Cena",ingredient);
 		
-		setDishImage(dish7, "/sample_images/pomelo.jpg");
+		setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
 		dishRepository.save(dish7);
 		
 		ingredient= new ArrayList<Ingredient>();
@@ -152,7 +152,7 @@ public class DatabaseInitializer {
 		ingredient.add(bacon);
 		Dish dish8 = new Dish("Pizza bacon", 15.00f, "Cena",ingredient);
 
-		setDishImage(dish8, "/sample_images/pan_platano.jpg");
+		setDishImage(dish8, "/sample_images/pizzaBacon.jpg");
 		dishRepository.save(dish8);
 		
 		ingredient= new ArrayList<Ingredient>();
@@ -161,7 +161,7 @@ public class DatabaseInitializer {
 		ingredient.add(jamon);
 		Dish dish9 = new Dish("Sándwich mixto", 10.00f, "Cena",ingredient);
 
-		setDishImage(dish9, "/sample_images/pan_platano.jpg");
+		setDishImage(dish9, "/sample_images/sandwichMixto.jpg");
 		dishRepository.save(dish9);
 		
 		// Sample users
