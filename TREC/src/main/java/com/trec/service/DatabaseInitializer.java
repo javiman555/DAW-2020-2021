@@ -170,10 +170,13 @@ public class DatabaseInitializer {
 		userRepository.save(new User("admin","Pepe","Pérez","pepeperez@gmail.com",111111111, passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
 		
 		
-		
+		List<Dish> dishes= new ArrayList<Dish>();
+		dishes.add(dish5);
+		dishes.add(dish6);
+		dishes.add(dish7);
 		// Sample purchases
-		Purchase purchase1 = new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 20.5f, user1);
-		Purchase purchase2 = new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 35.5f, user1);
+		Purchase purchase1 = new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 20.5f, user1,dishes,24,2,2021);
+		Purchase purchase2 = new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 35.5f, user1,dishes,12,3,2021);
 		
 		userRepository.save(user1);
 		

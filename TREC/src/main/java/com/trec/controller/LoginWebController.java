@@ -89,10 +89,6 @@ public class LoginWebController {
 		userService.save(user);
 
 		model.addAttribute("userId", user.getId());
-		
-		System.out.println(userService.findById(user.getId()).get().getFirstName());
-		System.out.println(user.getFirstName());
-		System.out.println(userService.findById(user.getId()).get().toString());
 
 		return "/index";
 	}

@@ -61,7 +61,7 @@ public class IngredientController {
 
 		return "add_food";
 	}
-	@GetMapping("/removeingredient-{id}")
+	@GetMapping("/removeingredient/{id}")
 	public String removeIngredient(Model model, @PathVariable long id) {
 
 		Optional<Ingredient> ingredient = ingredientService.findById(id);

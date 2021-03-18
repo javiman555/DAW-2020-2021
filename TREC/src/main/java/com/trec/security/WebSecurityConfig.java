@@ -44,7 +44,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
         // Private pages
         http.authorizeRequests().antMatchers("/purchase/*").hasAnyRole("USER");
-        
+        http.authorizeRequests().antMatchers("/profile/*").hasAnyRole("USER");
         http.authorizeRequests().antMatchers("/newdish").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/editdish/*").hasAnyRole("ADMIN");
         http.authorizeRequests().antMatchers("/removedish/*").hasAnyRole("ADMIN");

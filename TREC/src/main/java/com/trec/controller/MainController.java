@@ -50,6 +50,12 @@ public class MainController {
 		return "team";
 	}
 	
+	@GetMapping("/paydone")
+	public String paydone(Model model) {
+
+		return "paydone";
+	}
+	
 	@GetMapping("/contact")
 	public String contacto(Model model) {
 
@@ -70,12 +76,6 @@ public class MainController {
 		return "register";
 	}
 	
-	
-	@GetMapping("/pagar")
-	public String pagar(Model model) {
-
-		return "pagar";
-	}
 	
 	
 }
