@@ -16,27 +16,7 @@ import com.trec.service.UserService;
 @Controller
 public class MainController {
 	
-	@Autowired
-	private UserService userService;
 	
-	@ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userNamexx", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			
-			User user = userService.findByName(principal.getName()).get();
-			model.addAttribute("userId", user.getId());
-
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
 
 	@GetMapping("/index")
 	public String index(Model model) {

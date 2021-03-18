@@ -168,7 +168,7 @@ public class DatabaseInitializer {
 		User user1 = new User("user1", passwordEncoder.encode("pass"), "USER");
 		userRepository.save(new User("user", "Julia","Martín","juliamartin@gmail.com",222222222, passwordEncoder.encode("pass"), "USER"));
 		userRepository.save(new User("admin","Pepe","Pérez","pepeperez@gmail.com",111111111, passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
-		
+		userRepository.save(new User("a","a","a","a@gmail.com",111111111, passwordEncoder.encode("a"), "USER"));
 		
 		List<Dish> dishes= new ArrayList<Dish>();
 		dishes.add(dish5);

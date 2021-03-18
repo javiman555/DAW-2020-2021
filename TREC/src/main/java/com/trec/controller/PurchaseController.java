@@ -46,24 +46,6 @@ public class PurchaseController {
 	@Autowired
 	private UserService userService;
 
-	@ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userNamexx", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			
-			User user = userService.findByName(principal.getName()).get();
-			model.addAttribute("userId", user.getId());
-
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
 	
 	@PostMapping("/adddish")
 	public String addDish(Model model, Long id, HttpServletRequest request) {
@@ -82,7 +64,12 @@ public class PurchaseController {
 
 		userService.save(user);
 		purchaseService.save(user.getNewPurchase());
-		return "/menu";
+		
+		model.addAttribute("dishes1", dishService.getByCategory("Desayuno"));
+		model.addAttribute("dishes2", dishService.getByCategory("Comida"));
+		model.addAttribute("dishes3", dishService.getByCategory("Cena"));
+		
+		return "menu";
 	}
 	
 	@GetMapping("/cart")
@@ -160,12 +147,14 @@ public class PurchaseController {
 	}
 	@PostMapping("/processpay")
 	public String processPay(Model model, Purchase purchase, HttpServletRequest request) {
+		
 		Principal principal = request.getUserPrincipal();
 		String userNameReal = principal.getName();
+
 		User userReal = userService.findByName(userNameReal).get();
 		Purchase newPurchase = userReal.getNewPurchase();
-		purchaseService.save(purchase);
-		if (purchase.getFirstName() == userReal.getFirstName() && purchase.getSurname() == userReal.getSurname()) {
+
+		if (purchase.getFirstName().equals(userReal.getFirstName()) && purchase.getSurname().equals(userReal.getSurname())) {
 			newPurchase.setFirstName(purchase.getFirstName());
 			newPurchase.setSurname(purchase.getSurname());
 			newPurchase.setAddress(purchase.getAddress());
@@ -173,15 +162,16 @@ public class PurchaseController {
 			newPurchase.setCity(purchase.getCity());
 			newPurchase.setCountry(purchase.getCountry());
 			newPurchase.setPhoneNumber(purchase.getPhoneNumber());
-			
 			Calendar c = Calendar.getInstance();
 			newPurchase.setDateDay(c.get(Calendar.DATE));
 			newPurchase.setDateMonth(c.get(Calendar.MONTH));
 			newPurchase.setDateYear(c.get(Calendar.YEAR));
+			newPurchase.setUser(userReal);
 			
-			
+			purchaseService.save(newPurchase);
 			userReal.setNewPurchase(null);
 			userReal.getPurchases().add(newPurchase);
+			userService.save(userReal);
 			
 		}else {
 			return "/payerror";
