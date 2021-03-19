@@ -100,6 +100,8 @@ public class PurchaseController {
 		if (userReal.get().getId() == user.get().getId()) {
 			
 			model.addAttribute("purchases", purchaseService.getByUser(user.get()));
+			model.addAttribute("user", user.get());
+			
 			return "profile";
 		}else {
 			return "404";

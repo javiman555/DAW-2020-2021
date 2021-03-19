@@ -138,11 +138,20 @@ public class DishController {
 	}
 
 	@PostMapping("/editdish")
-	public String editDishProcess(Model model, Dish dish, boolean removeImage, MultipartFile imageField)
+	public String editDishProcess(Model model, Dish dish, @RequestParam List<String> lista, boolean removeImage, MultipartFile imageField)
 			throws IOException, SQLException {
 
 		updateImage(dish, removeImage, imageField);
+		
+		List<Ingredient> ingredients = new ArrayList<Ingredient>();
+		for(int i = 0; i < lista.size(); i++) {
+		int idi = Integer.parseInt(lista.get(i));
+		Ingredient ingredient=ingredientService.findById(idi).get();
+		ingredients.add(ingredient);
+		}
 
+		dish.setIngredients(ingredients);
+		
 		dishService.save(dish);
 
 		model.addAttribute("dishId", dish.getId());
