@@ -6,9 +6,11 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Purchase")
 public class Purchase {
 
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
@@ -25,9 +27,14 @@ public class Purchase {
 	private int dateYear;
 	
 	@ManyToMany
+	 @JoinTable(
+			   name="Pur_Dish",
+			   joinColumns=@JoinColumn(name="Pur_id", referencedColumnName="id"),
+			   inverseJoinColumns=@JoinColumn(name="Dish_id", referencedColumnName="id"))
 	private List<Dish> dishes;
 	
 	@ManyToOne
+	@JoinColumn(name="User_id", nullable=true)
 	private User user;
 	
 	public Purchase() {

@@ -5,9 +5,11 @@ import java.util.List;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "Ingredient")
 public class Ingredient {
 
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
@@ -16,6 +18,7 @@ public class Ingredient {
 	private String nameAllergen;
 	
 	@ManyToMany(mappedBy="ingredients")
+	
 	private List<Dish> dishes;
 
 	public Ingredient() {
