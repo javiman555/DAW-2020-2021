@@ -35,25 +35,6 @@ public class LoginWebController {
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 	
-	@ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userNamexx", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			
-			User user = userService.findByName(principal.getName()).get();
-			model.addAttribute("userId", user.getId());
-
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
-	
 	@RequestMapping("/login")
 	public String login(Model model) {
 		return "index";
@@ -89,10 +70,6 @@ public class LoginWebController {
 		userService.save(user);
 
 		model.addAttribute("userId", user.getId());
-		
-		System.out.println(userService.findById(user.getId()).get().getFirstName());
-		System.out.println(user.getFirstName());
-		System.out.println(userService.findById(user.getId()).get().toString());
 
 		return "/index";
 	}

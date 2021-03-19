@@ -18,13 +18,15 @@
 <br>
 	<div class="container">
 		<div class="row">
-			<div class="col-md-4">
+			<div class="col-md-6">
 			  {{#dish.image}}
-			  	<img src="/dishes/{{dish.id}}/image">
+			  
+			  	<img src="/dishes/{{dish.id}}/image" style="width:400px;height:300px;">
+			  	
 			  {{/dish.image}}
 			
 			  {{^dish.image}}
-			  	<img src="/images/no_image.png">
+			  	<img class="menu-img img" src="/images/no_image.png" width=“200” height=“150”/>
 			  {{/dish.image}}
 			  <div>
 			  {{#dish.ingredients}}
@@ -32,7 +34,7 @@
 			  {{/dish.ingredients}}
 			  </div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-6">
 			  <p>
 			    {{#logged}}
 			

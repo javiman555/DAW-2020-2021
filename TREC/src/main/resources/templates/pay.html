@@ -19,19 +19,19 @@
 	<section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
 		<br>
 		<div class="container">
-			<form role="form">
+			<form action="/processpay" method="post" enctype="multipart/form-data" class="appointment-form">
 				<h2 style="color: aliceblue;"><b>Datos personales:</b></h2>
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="email">Nombre:</label>
-							<input class="form-control" id="name" placeholder="Introduce tu nombre">
+							<input type="text" name="firstName" class="form-control" id="name" placeholder="Introduce tu nombre">
 						</div>
 					</div>
 					<div class="col-lg-6">
 						<div class="form-group">
 							<label for="email">Apellidos:</label>
-							<input class="form-control" id="surname" placeholder="Introduce tus apellidos">
+							<input type="text" name="surname" class="form-control" id="surname" placeholder="Introduce tus apellidos">
 						</div>
 					</div>
 				</div>
@@ -41,7 +41,7 @@
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="email">Dirección:</label>
-							<input class="form-control" id="direction" placeholder="Introduce tu direcciï¿½n">
+							<input type="text" name="address"class="form-control" id="direction" placeholder="Introduce tu direcciï¿½n">
 						</div>
 					</div>
 				</div>
@@ -49,19 +49,19 @@
 					<div class="col-lg-2">
 						<div class="form-group">
 							<label for="email">Código Postal:</label>
-							<input class="form-control" id="cp" placeholder="CP">
+							<input type="text" name="postalCode" class="form-control" id="cp" placeholder="CP">
 						</div>
 					</div>
 					<div class="col-lg-5">
 						<div class="form-group">
 							<label for="email">Localidad:</label>
-							<input class="form-control" id="town" placeholder="Localidad">
+							<input type="text" name="city" class="form-control" id="city" placeholder="Localidad">
 						</div>
 					</div>
 					<div class="col-lg-5">
 						<div class="form-group">
 							<label for="email">País:</label>
-							<input class="form-control" id="country" placeholder="Paï¿½s">
+							<input type="text" name="country" class="form-control" id="country" placeholder="Paï¿½s">
 						</div>
 					</div>
 				</div>
@@ -70,9 +70,15 @@
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="pwd">Número de teléfono:</label>
-							<input type="tel" class="form-control" id="tel" placeholder="Introduce tu nï¿½mero de telï¿½fono">
+							<input type="text" name="phoneNumber" class="form-control" id="tel" placeholder="Introduce tu nï¿½mero de telï¿½fono">
 						</div>
 					</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Paga" class="btn btn-white py-3 px-4">
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+							</div>
+						</div>
 				</div>
 			</form>
 		</div>

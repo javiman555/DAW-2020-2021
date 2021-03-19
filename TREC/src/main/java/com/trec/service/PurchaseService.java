@@ -9,6 +9,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import com.trec.model.Dish;
 import com.trec.model.Purchase;
 import com.trec.model.User;
@@ -28,10 +31,6 @@ public class PurchaseService {
 		return purchaseRepository.existsById(id);
 	}
 
-	public List<Purchase> findAll() {
-		return purchaseRepository.findAll();
-	}
-
 	public void save(Purchase purchase) {
 		purchaseRepository.save(purchase);
 	}
@@ -42,5 +41,13 @@ public class PurchaseService {
 	
 	public Page<Purchase> getByUser(User user){
 		return purchaseRepository.getByUser(user, PageRequest.of(0, 5));
+	 public List<Purchase> getByUser(User user){
+		 	return purchaseRepository.getByUser(user);
 	}
+	 public Page<Purchase> getByUser(User user, Pageable page){
+	 	return purchaseRepository.getByUser(user,page);
+	 }
+	 public Page<Purchase> findAll(Pageable page){
+		 return purchaseRepository.findAll(page);
+	 }
 }

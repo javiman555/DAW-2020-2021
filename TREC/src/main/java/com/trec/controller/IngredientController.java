@@ -36,24 +36,6 @@ public class IngredientController {
 	@Autowired
 	private UserService userService;
 
-	@ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userNamexx", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			
-			User user = userService.findByName(principal.getName()).get();
-			model.addAttribute("userId", user.getId());
-
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
 	
 	@GetMapping("/add_food")
 	public String add_food(Model model) {
@@ -61,7 +43,7 @@ public class IngredientController {
 
 		return "add_food";
 	}
-	@GetMapping("/removeingredient-{id}")
+	@GetMapping("/removeingredient/{id}")
 	public String removeIngredient(Model model, @PathVariable long id) {
 
 		Optional<Ingredient> ingredient = ingredientService.findById(id);

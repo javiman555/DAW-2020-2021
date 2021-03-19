@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +18,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 import com.trec.model.Dish;
 import com.trec.model.User;
@@ -42,24 +47,6 @@ public class PurchaseController {
 	@Autowired
 	private UserService userService;
 
-	@ModelAttribute
-	public void addAttributes(Model model, HttpServletRequest request) {
-
-		Principal principal = request.getUserPrincipal();
-
-		if (principal != null) {
-
-			model.addAttribute("logged", true);
-			model.addAttribute("userNamexx", principal.getName());
-			model.addAttribute("admin", request.isUserInRole("ADMIN"));
-			
-			User user = userService.findByName(principal.getName()).get();
-			model.addAttribute("userId", user.getId());
-
-		} else {
-			model.addAttribute("logged", false);
-		}
-	}
 	
 	@PostMapping("/adddish")
 	public String addDish(Model model, Long id, HttpServletRequest request) {
@@ -68,32 +55,22 @@ public class PurchaseController {
 		Principal principal = request.getUserPrincipal();
 		String userNamexx = principal.getName();
 		
-		System.out.println(id);
-		System.out.println(userNamexx);
 		Dish dish = dishService.findById(id).get();
 		User user = userService.findByName(userNamexx).get();
-		System.out.println(id);
 		if(user.getNewPurchase()==null){
 			user.setNewPurchase(new Purchase());
 			user.getNewPurchase().setDishes(new ArrayList<Dish>() );
 		}
-		System.out.println(id);
 		user.getNewPurchase().getDishes().add(dish);
-		System.out.println(userService.findByName(userNamexx).get());
-		System.out.println(userService.findByName(userNamexx).get().getNewPurchase());
-		System.out.println(userService.findByName(userNamexx).get().getNewPurchase().getDishes().get(0));
-		System.out.println(userService.findByName(userNamexx).get());
-		System.out.println(id);
+
 		userService.save(user);
-		return "/menu";
-	}
-	@GetMapping("/profile")
-	public String showPurchases(Model model,String userNamexx) {
-
-		model.addAttribute("purchases", userService.findByName(userNamexx).get().getPurchases());
-
-
-		return "profile";
+		purchaseService.save(user.getNewPurchase());
+		
+		model.addAttribute("dishes1", dishService.getByCategory("Desayuno"));
+		model.addAttribute("dishes2", dishService.getByCategory("Comida"));
+		model.addAttribute("dishes3", dishService.getByCategory("Cena"));
+		
+		return "menu";
 	}
 	
 	@GetMapping("/cart")
@@ -101,35 +78,109 @@ public class PurchaseController {
 		Principal principal = request.getUserPrincipal();
 		String userNamexx = principal.getName();
 		Purchase newPurchase = new Purchase();
-		if(userService.findByName(userNamexx).get().getNewPurchase()!=null) {
+		User user = userService.findByName(userNamexx).get();
+		if(user.getNewPurchase()!=null) {
 			newPurchase =userService.findByName(userNamexx).get().getNewPurchase();
+		}else {
+		newPurchase.setUser(user);	
+		user.setNewPurchase(newPurchase);
+		userService.save(user);
 		}
-		
 			model.addAttribute("dishes", newPurchase.getDishes());
 			
 		return "cart";
 	}
-		
 	@GetMapping("/profile/{id}")
-	public String showProfile(Model model, @PathVariable long id) {
+	public String showProfile(Model model, @PathVariable long id, HttpServletRequest request) {
 		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
 		Optional<User> user = userService.findById(id);
 		
-		model.addAttribute("purchases", purchaseService.getByUser(user.get()));
+		if (userReal.get().getId() == user.get().getId()) {
+			
+			model.addAttribute("purchases", purchaseService.getByUser(user.get()));
+			return "profile";
+		}else {
+			return "404";
+		}
 		
-		if (user.isPresent()) {
-			model.addAttribute("user", user.get());
-			return "/profile";
+	}
+	@GetMapping("/purchases")
+	public Page<Purchase> getPurchases(@RequestParam(required = false) User user, Pageable page) {
+
+		if (user.getRoles().contains("ADMIN")) {
+			return purchaseService.findAll(page);
 		} else {
-			return "/register";
+			return purchaseService.getByUser(user, page);
 		}
 	}
-	
 	@GetMapping("/purchase/{id}")
+	public String showPurchase(Model model, @PathVariable long id, HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Purchase purchase =purchaseService.findById(id).get();
+		
+		if(userReal.get().getRoles().contains("ADMIN") || userReal.get().getId() == purchase.getUser().getId() ) {
+			
+			model.addAttribute("purchase",purchase);
+		
+			return "purchase";
+		}else {
+			return "404";
+		}
+	
+	}
+	@GetMapping("/pay")
+	public String pagar(Model model, HttpServletRequest request) {
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		User userReal = userService.findByName(userNameReal).get();
+		if (!userReal.getNewPurchase().getDishes().isEmpty()) {
+			return "pay";
+		}
+		
+		return "/menu";
+		
+	}
+	@PostMapping("/processpay")
+	public String processPay(Model model, Purchase purchase, HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+
+		User userReal = userService.findByName(userNameReal).get();
+		Purchase newPurchase = userReal.getNewPurchase();
+
+		if (purchase.getFirstName().equals(userReal.getFirstName()) && purchase.getSurname().equals(userReal.getSurname())) {
+			newPurchase.setFirstName(purchase.getFirstName());
+			newPurchase.setSurname(purchase.getSurname());
+			newPurchase.setAddress(purchase.getAddress());
+			newPurchase.setPostalCode(purchase.getPostalCode());
+			newPurchase.setCity(purchase.getCity());
+			newPurchase.setCountry(purchase.getCountry());
+			newPurchase.setPhoneNumber(purchase.getPhoneNumber());
+			Calendar c = Calendar.getInstance();
+			newPurchase.setDateDay(c.get(Calendar.DATE));
+			newPurchase.setDateMonth(c.get(Calendar.MONTH));
+			newPurchase.setDateYear(c.get(Calendar.YEAR));
+			newPurchase.setUser(userReal);
+			
+			purchaseService.save(newPurchase);
+			userReal.setNewPurchase(null);
+			userReal.getPurchases().add(newPurchase);
+			userService.save(userReal);
+			
+		}else {
+			return "/payerror";
+		}
 	public String showPurchase(Model model, @PathVariable long id, Pageable pageable) {
 		
 		model.addAttribute("purchase", purchaseService.findById(id, pageable).get());
 		
-		return "purchase";
+		return "/paydone";
 	}
 }

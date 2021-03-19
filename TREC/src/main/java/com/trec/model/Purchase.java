@@ -20,6 +20,9 @@ public class Purchase {
 	private String country;
 	private int phoneNumber;
 	private float price;
+	private int dateDay;
+	private int dateMonth;
+	private int dateYear;
 	
 	@ManyToMany
 	private List<Dish> dishes;
@@ -30,7 +33,7 @@ public class Purchase {
 	public Purchase() {
 	}
 
-	public Purchase(String firstName, String surname, String address, int postalCode, String city, String country, int phoneNumber, float price, User user) {
+	public Purchase(String firstName, String surname, String address, int postalCode, String city, String country, int phoneNumber, float price, User user,List<Dish> dishes,int day, int month, int year) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.address = address;
@@ -40,9 +43,21 @@ public class Purchase {
 		this.phoneNumber = phoneNumber;
 		this.price = price;
 		this.user = user;
-		this.dishes = new ArrayList<Dish>();
+		this.dishes = dishes;
+		this.dateDay = day;
+		this.dateMonth = month;
+		this.dateYear = year;
 	}
-	
+	public Purchase(String firstName, String surname, String address, int postalCode, String city, String country, int phoneNumber, float price) {
+		this.firstName = firstName;
+		this.surname = surname;
+		this.address = address;
+		this.postalCode = postalCode;
+		this.city = city;
+		this.country = country;
+		this.phoneNumber = phoneNumber;
+		this.price = price;
+	}
 	
 	public Long getId() {
 		return id;
@@ -130,5 +145,39 @@ public class Purchase {
 	public void setId(Long id) {
 		this.id = id;
 	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public int getDateDay() {
+		return dateDay;
+	}
+
+	public void setDateDay(int dateDay) {
+		this.dateDay = dateDay;
+	}
+
+	public int getDateMonth() {
+		return dateMonth;
+	}
+
+	public void setDateMonth(int dateMonth) {
+		this.dateMonth = dateMonth;
+	}
+
+	public int getDateYear() {
+		return dateYear;
+	}
+
+	public void setDateYear(int dateYear) {
+		this.dateYear = dateYear;
+	}
+
+	
 
 }
