@@ -9,7 +9,7 @@
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
 				<div class="col-md-9 ftco-animate text-center mb-5">
-					<h1 class="mb-2 bread">Bienvenide, John</h1>
+					<h1 class="mb-2 bread">Bienvenido, {{user.firstName}}</h1>
 				</div>
 			</div>
 		</div>
@@ -32,62 +32,66 @@
 					<div class="row">
 					<!-- left column -->
 						<div class="col-md-4 col-sm-6 col-xs-12">
+							{{#user.image}}
+							<img src="/user/{{user.id}}/image" style="width:200px;height:200px;">
+							{{/user.image}}
+							
+							{{^user.image}}
 							<div class="text-center">
 								<img src="https://www.optimaley.com/wp-content/uploads/2014/09/foto-perfil-generica.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
-								<h6>Sube una foto...</h6>
-								<input type="file" class="text-center center-block well well-sm">
 							</div>
+							{{/user.image}}
 						</div>
 					<!-- edit form column -->
 						<div class="col-md-8 col-sm-6 col-xs-12 personal-info">
-							<form class="form-horizontal" role="form">
+							<form action="/edituser" method="post" enctype="multipart/form-data" class="appointment-form">
 								<div class="form-group">
 									<label class="col-md control-label">Nombre:</label>
 									<div class="col-md-8">
-										<input class="form-control" value="John" type="text">
+										<input name="firstName" value="{{user.firstName}}" placeholder="{{user.firstName}}" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md control-label">Apellidos:</label>
 									<div class="col-md-8">
-										<input class="form-control" value="Doe" type="text">
-									</div>
-								</div>
-								<div class="form-group">
-									<label class="col-md control-label">Nombre de usuario:</label>
-									<div class="col-md-8">
-										<input class="form-control" value="johndoe" type="text">
+										<input name="surname" value="{{user.surname}}" placeholder="{{user.surname}}" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md control-label">Correo electrónico:</label>
 									<div class="col-md-8">
-										<input class="form-control" value="trec@turestauranteencasa.es" type="text">
+										<input name="email" value="{{user.email}}" placeholder="{{user.email}}" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md control-label">Teléfono</label>
 									<div class="col-md-8">
-										<input class="form-control" value="612 17 18 72" type="text">
+										<input name="phoneNumber" value="{{user.phoneNumber}}" placeholder="{{user.phoneNumber}}" />
 									</div>
 								</div>
 								<div class="form-group">
 									<label class="col-md control-label">Contraseña:</label>
 									<div class="col-md-8">
-										<input class="form-control" value="11111122333" type="password">
+										<input name="encodedPassword" type="password" value="{{user.encodedPassword}}" />
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-md control-label">Confirmar contraseña:</label>
-									<div class="col-md-8">
-										<input class="form-control" value="11111122333" type="password">
-									</div>
-								</div>
+								  {{#user.image}}
+								  <input type='checkbox' name='removeImage'> <label>Borrar imagen</label><br>
+								  <label>Actualizar imagen: </label><br>
+								  {{/user.image}}
+								
+								  {{^user.image}}
+								  <label>Subir imagen: </label><br>
+								  {{/user.image}}
+								    
+								  <input type='file' name='imageField' accept=".jpg, .jpeg" />
+								  <input type="hidden" name="_csrf" value="{{token}}" />
+								  <input type="hidden" name="id" value="{{user.id}}"/>
+								  <input type="hidden" name="name" value="{{user.name}}"/>
 								<div class="form-group">
 									<label class="col-md-3 control-label"></label>
 									<div class="col-md-8">
-										<input class="btn btn-primary" value="Guardar cambios" type="button">
-										<input class="btn btn-secondary" value="Cancelar" type="reset">
+										<input class="btn btn-primary" type="submit" value="Guardar cambios" />
 									</div>
 								</div>
 							</form>

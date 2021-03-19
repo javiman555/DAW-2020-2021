@@ -15,9 +15,11 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @Entity
+@DynamicUpdate
 public class User {
 
 	@Override

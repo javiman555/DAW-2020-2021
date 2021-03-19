@@ -3,7 +3,7 @@
 
 {{>header}}
 
-<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -24,22 +24,40 @@
 		  <input type="hidden" name="id" value="{{dish.id}}" />
 		  <div>
 		    <label >Nombre del plato: </label>
-		    <input name="name" value="{{dish.name}}" placeholder="Nombre del plato" />
+		    <input name="name" value="{{dish.name}}" placeholder="{{dish.name}}" />
 		  </div>
 		  <div>
 		    <label>Ingredientes: </label>
-		    <textarea name="ingredient" placeholder="Añade aquí los ingredientes" rows="1" cols="30">{{dish.ingredient}}</textarea>
+		    <select name="lista" id="ingredients" multiple>
+				{{#dish.ingredients}}
+	 			<option value={{id}}>{{name}}</option>
+	  			{{/dish.ingredients}}
+			</select>
 		  </div>
+		  <div class="form-group">
+			<label class="col-md control-label">Categoría:</label>
+			<select name="category" id="category">
+	  		<option value="Desayuno">Desayuno</option>
+	  		<option value="Comida">Comida</option>
+	  		<option value="Cena">Cena</option>
+			</select>
+		 </div>
+		 <div class="form-group">
+			<label class="col-md control-label">Precio:</label>
+			<div class="col-md-8">
+			<input class="form-control" value="{{dish.dishPrice}}" type="text" name='dishPrice' placeholder="{{dish.dishPrice}}"/>
+			</div>
+		</div>
 		  <p>Imagen del plato: </p>
 		  
 		  {{#dish.image}}
-		  <img src="/dishes/{{dish.id}}/image"><br>
+		  <img src="/dishes/{{dish.id}}/image" style="width:400px;height:300px;"><br>
 		  <input type='checkbox' name='removeImage'> <label>Borrar imagen</label><br>
 		  <label>Actualizar imagen: </label><br>
 		  {{/dish.image}}
 		
 		  {{^dish.image}}
-		  <img src="/images/no_image.png"><br>
+		  <img src="/images/no_image.png" style="width:400px;height:300px;"><br>
 		  <label>Subir imagen: </label><br>
 		  {{/dish.image}}
 		    
