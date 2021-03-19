@@ -33,6 +33,7 @@ import com.trec.service.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -178,6 +179,9 @@ public class PurchaseController {
 		}else {
 			return "/payerror";
 		}
+	public String showPurchase(Model model, @PathVariable long id, Pageable pageable) {
+		
+		model.addAttribute("purchase", purchaseService.findById(id, pageable).get());
 		
 		return "/paydone";
 	}
