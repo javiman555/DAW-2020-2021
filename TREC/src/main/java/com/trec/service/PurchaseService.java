@@ -4,6 +4,9 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.trec.model.Dish;
@@ -17,7 +20,7 @@ public class PurchaseService {
 	@Autowired
 	private PurchaseRepository purchaseRepository;
 
-	public Optional<Purchase> findById(long id) {
+	public Optional<Purchase> findById(long id, Pageable pageable) {
 		return purchaseRepository.findById(id);
 	}
 	
@@ -37,7 +40,7 @@ public class PurchaseService {
 		purchaseRepository.deleteById(id);
 	}
 	
-	public List<Purchase> getByUser(User user){
-		return purchaseRepository.getByUser(user);
+	public Page<Purchase> getByUser(User user){
+		return purchaseRepository.getByUser(user, PageRequest.of(0, 5));
 	}
 }
