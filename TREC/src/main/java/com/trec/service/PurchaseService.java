@@ -41,12 +41,8 @@ public class PurchaseService {
 	
 	public Page<Purchase> getByUser(User user){
 		return purchaseRepository.getByUser(user, PageRequest.of(0, 5));
-	 public List<Purchase> getByUser(User user){
-		 	return purchaseRepository.getByUser(user);
 	}
-	 public Page<Purchase> getByUser(User user, Pageable page){
-	 	return purchaseRepository.getByUser(user,page);
-	 }
+	
 	 public Page<Purchase> findAll(Pageable page){
 		 return purchaseRepository.findAll(page);
 	 }

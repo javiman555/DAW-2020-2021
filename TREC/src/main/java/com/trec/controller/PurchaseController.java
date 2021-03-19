@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import com.trec.model.Dish;
@@ -113,7 +114,7 @@ public class PurchaseController {
 		if (user.getRoles().contains("ADMIN")) {
 			return purchaseService.findAll(page);
 		} else {
-			return purchaseService.getByUser(user, page);
+			return purchaseService.getByUser(user);
 		}
 	}
 	@GetMapping("/purchase/{id}")
@@ -122,7 +123,7 @@ public class PurchaseController {
 		Principal principal = request.getUserPrincipal();
 		String userNameReal = principal.getName();
 		Optional<User> userReal = userService.findByName(userNameReal);
-		Purchase purchase =purchaseService.findById(id).get();
+		Purchase purchase = purchaseService.findById(id, PageRequest.of(0, 5)).get();
 		
 		if(userReal.get().getRoles().contains("ADMIN") || userReal.get().getId() == purchase.getUser().getId() ) {
 			
@@ -175,7 +176,8 @@ public class PurchaseController {
 			userService.save(userReal);
 			
 		}else {
-			return "/payerror";
+			return "/payerror";}
+		return "/paydone";
 		}
 	public String showPurchase(Model model, @PathVariable long id, Pageable pageable) {
 		
