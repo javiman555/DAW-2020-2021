@@ -2,6 +2,7 @@ package com.trec.controller;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,9 +74,58 @@ public class LoginWebController {
 		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
 		userService.save(user);
 
-		model.addAttribute("userId", user.getId());
+		//model.addAttribute("userId", user.getId());
+
+		return "/index";
+	}
+	
+	@PostMapping("/edituser")
+	public String editUserProcess(Model model, User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
+
+		System.out.println(user.toString());
+		
+		updateImage(user, removeImage, imageField);
+		
+		userService.save(user);
+		//model.addAttribute("user", user);
 
 		return "/index";
 	}
 
+	@GetMapping("/user/{id}/image")
+	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+
+		Optional<User> user = userService.findById(id);
+		if (user.isPresent() && user.get().getImageFile() != null) {
+
+			Resource file = new InputStreamResource(user.get().getImageFile().getBinaryStream());
+
+			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
+					.contentLength(user.get().getImageFile().length()).body(file);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	private void updateImage(User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
+		
+		if (!imageField.isEmpty()) {
+			user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+			user.setImage(true);
+		} else {
+			if (removeImage) {
+				user.setImageFile(null);
+				user.setImage(false);
+			} else {
+				// Maintain the same image loading it before updating the dish
+				User dbUser = userService.findById(user.getId()).orElseThrow();
+				if (dbUser.hasImage()) {
+					user.setImageFile(BlobProxy.generateProxy(dbUser.getImageFile().getBinaryStream(),
+							dbUser.getImageFile().length()));
+					user.setImage(true);
+				}
+			}
+		}
+	}
 }

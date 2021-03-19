@@ -175,6 +175,7 @@ public class DatabaseInitializer {
 		dishes.add(dish6);
 		dishes.add(dish7);
 		// Sample purchases
+<<<<<<< HEAD
 		for (Dish dish : dishes) {
 			dish.setNbuy(dish.getNbuy()+1);
 
@@ -191,11 +192,20 @@ public class DatabaseInitializer {
 		}
 		
 		Purchase purchase2 = new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 35.5f, user1,dishes,12,3,2021);
+=======
+		ArrayList<Purchase> purchases = new ArrayList<Purchase>();
+		
+		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 45.0f, user1, dishes, 3, 5, 2021));
+		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 45.0f, user1, dishes, 4, 7, 2021));
+		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 45.0f, user1, dishes, 12, 2, 2021));
+		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 45.0f, user1, dishes, 8, 8, 2021));
+		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 45.0f, user1, dishes, 24, 11, 2021));
+		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 45.0f, user1, dishes, 7, 5, 2021));
+>>>>>>> 0612eed89303f0ec8e0fcd2f5622a7d4723d31f1
 		
 		userRepository.save(user1);
 		
-		purchaseRepository.save(purchase1);
-		purchaseRepository.save(purchase2);
+		for (Purchase p:purchases) purchaseRepository.save(p);
 		
 	}
 

@@ -17,44 +17,58 @@
 <section style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
 <br>
 	<div class="container text-center" id="render">
-		<table>
-			<tr>
-				<td><b>Nombre</b></td>
-				<td>{{purchase.firstName}}</td>
-				<td><b>Apellidos</b></td>
-				<td>{{purchase.surname}}</td>
-			</tr>
-			<tr>
-				<td><b>Dirección</b></td>
-				<td>{{purchase.address}}</td>
-				<td><b>Código Postal</b></td>
-				<td>{{purchase.postalCode}}</td>
-			</tr>
-			<tr>
-				<td><b>Ciudad</b></td>
-				<td>{{purchase.city}}</td>
-				<td><b>País</b></td>
-				<td>{{purchase.country}}</td>
-			</tr>
+		<table class="table table-bordered table-dark table-sm">
+			<thead><tr>
+				<th colspan="4">Datos de facturación</th>
+			</tr></thead>
+			<tbody>
+				<tr>
+					<td><b>Nombre</b></td>
+					<td>{{purchase.firstName}}</td>
+					<td><b>Apellidos</b></td>
+					<td>{{purchase.surname}}</td>
+				</tr>
+				<tr>
+					<td><b>Dirección</b></td>
+					<td>{{purchase.address}}</td>
+					<td><b>Código Postal</b></td>
+					<td>{{purchase.postalCode}}</td>
+				</tr>
+				<tr>
+					<td><b>Ciudad</b></td>
+					<td>{{purchase.city}}</td>
+					<td><b>País</b></td>
+					<td>{{purchase.country}}</td>
+				</tr>
+			</tbody>
 		</table>
 		<br>
-		<table>
-		<tr>
-			<td>Producto</td>
-			<td>Importe</td>
-		</tr>
-		{{#purchase.dishes}}
-		<tr>
-			<td>{{name}}</td>
-			<td>{{dishPrice}}</td>
-		</tr>
-		{{/purchase.dishes}}
+		<table class="table table-striped table-dark table-sm text-center">
+		<thead><tr>
+			<th scope="col">Producto</th>
+			<th scope="col">Importe</th>
+		</tr></thead>
+			<tbody>
+			{{#purchase.dishes}}
+			<tr>
+				<td>{{name}}</td>
+				<td>{{dishPrice}}</td>
+			</tr>
+			{{/purchase.dishes}}
+			</tbody>
 		</table>
-		
-		<p><b>Precio total: </b>{{purchase.price}}</p>
+		<table class="table table-striped table-dark">
+		<tr>
+			<td><b>Precio total: </b>{{purchase.price}}</td>
+		<tr>
+		</table>
 	</div>
+	<div class="text-center align-center">
+		<button type="button" class="btn btn-primary" id="renderAction">Imprimir recibo</button>
+		<button type="button" class="btn btn-secondary" onclick="location.href='/profile/{{purchase.user.id}}'">Volver al Perfil</button>
+	</div>
+	<br>
 	
-	<input type="button" class="btn btn-primary" value="Imprimir recibo" onclick="sayhi()"/>
 </section>
 
 {{>footer}}

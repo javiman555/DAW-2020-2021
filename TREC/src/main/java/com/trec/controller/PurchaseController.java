@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
 import com.trec.model.Dish;
@@ -33,6 +34,7 @@ import com.trec.service.UserService;
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -100,7 +102,12 @@ public class PurchaseController {
 		if (userReal.get().getId() == user.get().getId()) {
 			
 			model.addAttribute("purchases", purchaseService.getByUser(user.get()));
+<<<<<<< HEAD
 			model.addAttribute("dishesRecomended", dishService.getRecomended(user.get().getId()));
+=======
+			model.addAttribute("user", user.get());
+			
+>>>>>>> 0612eed89303f0ec8e0fcd2f5622a7d4723d31f1
 			return "profile";
 		}else {
 			return "404";
@@ -113,7 +120,7 @@ public class PurchaseController {
 		if (user.getRoles().contains("ADMIN")) {
 			return purchaseService.findAll(page);
 		} else {
-			return purchaseService.getByUser(user, page);
+			return purchaseService.getByUser(user);
 		}
 	}
 	@GetMapping("/purchase/{id}")
@@ -122,7 +129,7 @@ public class PurchaseController {
 		Principal principal = request.getUserPrincipal();
 		String userNameReal = principal.getName();
 		Optional<User> userReal = userService.findByName(userNameReal);
-		Purchase purchase =purchaseService.findById(id).get();
+		Purchase purchase = purchaseService.findById(id, PageRequest.of(0, 5)).get();
 		
 		if(userReal.get().getRoles().contains("ADMIN") || userReal.get().getId() == purchase.getUser().getId() ) {
 			
@@ -180,8 +187,12 @@ public class PurchaseController {
 			userService.save(userReal);
 			
 		}else {
-			return "/payerror";
+			return "/payerror";}
+		return "/paydone";
 		}
+	public String showPurchase(Model model, @PathVariable long id, Pageable pageable) {
+		
+		model.addAttribute("purchase", purchaseService.findById(id, pageable).get());
 		
 		return "/paydone";
 	}
