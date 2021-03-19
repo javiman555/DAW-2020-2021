@@ -11,4 +11,23 @@ public interface DishRepository extends JpaRepository<Dish, Long> {
 
 	 @Query("SELECT d FROM Dish d WHERE d.category = :c")
 	 public List<Dish> getByCategory(String c);
+	 
+	 @Query(value = " SELECT *"
+	 		+ "  FROM (Dish"
+	 		+ ""
+	 		+ ""
+	 		+ ""
+	 		+ ""
+	 		+ ""
+	 		+ ")"
+	 		+ " ORDER BY nbuy DESC"
+	 		+ " LIMIT 3 "
+
+			 
+			 
+			 
+			 ,
+	 		nativeQuery = true
+			 )
+	 public List<Dish> getRecomended(long id);
 }

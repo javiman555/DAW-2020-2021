@@ -100,6 +100,7 @@ public class PurchaseController {
 		if (userReal.get().getId() == user.get().getId()) {
 			
 			model.addAttribute("purchases", purchaseService.getByUser(user.get()));
+			model.addAttribute("dishesRecomended", dishService.getRecomended(user.get().getId()));
 			return "profile";
 		}else {
 			return "404";
@@ -167,6 +168,11 @@ public class PurchaseController {
 			newPurchase.setDateMonth(c.get(Calendar.MONTH));
 			newPurchase.setDateYear(c.get(Calendar.YEAR));
 			newPurchase.setUser(userReal);
+			
+			for (Dish dish : newPurchase.getDishes()) {
+				dish.setNbuy(dish.getNbuy()+1);
+				dishService.save(dish);
+			}
 			
 			purchaseService.save(newPurchase);
 			userReal.setNewPurchase(null);

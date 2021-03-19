@@ -101,6 +101,12 @@
 				<div class="container" style="padding-top: 60px;">
 					<h1 class="page-header">Platos recomendados</h1>
 					<br>
+					{{#dishesRecomended}}
+						<p>{{id}}{{name}}</p>
+					{{/dishesRecomended}}
+					{{^dishesRecomended}}
+					<b>No hay recomendaciones.</b>
+					{{/dishesRecomended}}
 					<div class="row align-items-left justify-content-left">
 						<div class="col-xs-8 col-md-8 col-lg-8">
 							<div class="panel panel-info">

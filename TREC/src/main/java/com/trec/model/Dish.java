@@ -24,6 +24,7 @@ public class Dish {
 	private String name;
 	private float dishPrice;
 	private String category;
+	private int nbuy;
 
 	@Lob
 	private Blob imageFile;
@@ -40,6 +41,7 @@ public class Dish {
 		this.dishPrice = dishPrice;
 		this.category = category;
 		this.ingredients = ingredients;
+		this.nbuy = 0;
 	}
 	public Long getId() {
 		return id;
@@ -109,6 +111,14 @@ public class Dish {
 
 	public void setId(Long id) {
 		this.id = id;
+	}
+
+	public int getNbuy() {
+		return nbuy;
+	}
+
+	public void setNbuy(int nbuy) {
+		this.nbuy = nbuy;
 	}
 
 

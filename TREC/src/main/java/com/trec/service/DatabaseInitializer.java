@@ -23,7 +23,7 @@ import com.trec.model.Dish;
 import com.trec.model.Ingredient;
 import com.trec.model.Purchase;
 import com.trec.model.User;
-import com.trec.repository.DishRepository;
+import com.trec.service.DishService;
 import com.trec.repository.IngredientRepository;
 import com.trec.repository.PurchaseRepository;
 import com.trec.repository.UserRepository;
@@ -34,7 +34,7 @@ public class DatabaseInitializer {
 
 
 	@Autowired
-	private DishRepository dishRepository;
+	private DishService dishService;
 	
 	@Autowired
 	private IngredientRepository ingredientRepository;
@@ -86,7 +86,7 @@ public class DatabaseInitializer {
 		Dish dish1 = new Dish("Pomelo y nada mas", 2.00f, "Desayuno",ingredient);
 
 		setDishImage(dish1, "/sample_images/pomelo.jpg");
-		dishRepository.save(dish1);
+		dishService.save(dish1);
 
 		ingredient = new ArrayList<Ingredient>();
 		ingredient.add(leche);
@@ -95,7 +95,7 @@ public class DatabaseInitializer {
 		Dish dish2 = new Dish("Leche con galletas", 5.00f, "Desayuno",ingredient);
 		
 		setDishImage(dish2, "/sample_images/lecheConGalletas.jpg");
-		dishRepository.save(dish2);
+		dishService.save(dish2);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(pan);
@@ -103,7 +103,7 @@ public class DatabaseInitializer {
 		Dish dish3 = new Dish("Pan de plátano", 8.00f, "Desayuno",ingredient);
 
 		setDishImage(dish3, "/sample_images/pan_platano.jpg");
-		dishRepository.save(dish3);
+		dishService.save(dish3);
 
 		ingredient = new ArrayList<Ingredient>();
 		ingredient.add(pasta);
@@ -112,7 +112,7 @@ public class DatabaseInitializer {
 		Dish dish4 = new Dish("Pasta boloñesa", 15.00f, "Comida",ingredient);
 		
 		setDishImage(dish4, "/sample_images/pastaBoloñesa.jpg");
-		dishRepository.save(dish4);
+		dishService.save(dish4);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(pasta);
@@ -121,7 +121,7 @@ public class DatabaseInitializer {
 		Dish dish5 = new Dish("Pasta carbonara", 15.00f, "Comida",ingredient);
 
 		setDishImage(dish5, "/sample_images/pastaCarbonara.jpg");
-		dishRepository.save(dish5);
+		dishService.save(dish5);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -131,7 +131,7 @@ public class DatabaseInitializer {
 		Dish dish6 = new Dish("Pizza margarita", 15.00f, "Comida",ingredient);
 
 		setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
-		dishRepository.save(dish6);
+		dishService.save(dish6);
 		
 		ingredient = new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -142,7 +142,7 @@ public class DatabaseInitializer {
 		Dish dish7 = new Dish("Pizza jamón", 15.00f, "Cena",ingredient);
 		
 		setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
-		dishRepository.save(dish7);
+		dishService.save(dish7);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -153,7 +153,7 @@ public class DatabaseInitializer {
 		Dish dish8 = new Dish("Pizza bacon", 15.00f, "Cena",ingredient);
 
 		setDishImage(dish8, "/sample_images/pizzaBacon.jpg");
-		dishRepository.save(dish8);
+		dishService.save(dish8);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(pan);
@@ -162,7 +162,7 @@ public class DatabaseInitializer {
 		Dish dish9 = new Dish("Sándwich mixto", 10.00f, "Cena",ingredient);
 
 		setDishImage(dish9, "/sample_images/sandwichMixto.jpg");
-		dishRepository.save(dish9);
+		dishService.save(dish9);
 		
 		// Sample users
 		User user1 = new User("user1", passwordEncoder.encode("pass"), "USER");
@@ -175,7 +175,21 @@ public class DatabaseInitializer {
 		dishes.add(dish6);
 		dishes.add(dish7);
 		// Sample purchases
+		for (Dish dish : dishes) {
+			dish.setNbuy(dish.getNbuy()+1);
+
+			dish.setImageFile(null);
+			dishService.save(dish);
+			
+		}
+		
 		Purchase purchase1 = new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 20.5f, user1,dishes,24,2,2021);
+		for (Dish dish : dishes) {
+			dish.setNbuy(dish.getNbuy()+1);
+			dish.setImageFile(null);
+			dishService.save(dish);
+		}
+		
 		Purchase purchase2 = new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 35.5f, user1,dishes,12,3,2021);
 		
 		userRepository.save(user1);
