@@ -102,12 +102,9 @@ public class PurchaseController {
 		if (userReal.get().getId() == user.get().getId()) {
 			
 			model.addAttribute("purchases", purchaseService.getByUser(user.get()));
-<<<<<<< HEAD
 			model.addAttribute("dishesRecomended", dishService.getRecomended(user.get().getId()));
-=======
 			model.addAttribute("user", user.get());
 			
->>>>>>> 0612eed89303f0ec8e0fcd2f5622a7d4723d31f1
 			return "profile";
 		}else {
 			return "404";

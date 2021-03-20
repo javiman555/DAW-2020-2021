@@ -1,37 +1,31 @@
 var jsPDF = window.jspdf.jsPDF;
 
 function saveAsPDF() {
-	var doc = new jsPDF('p', 'mm', 'a4');
-    var elementHTML = $('#render').html();
-  
-	margins = {
-	        top: 20,
-	        bottom: 20,
-	        left: 20,
-			width: 20
-	};
 	
-    doc.html( elementHTML, {
-		callback: function (doc) {
-    	doc.save('Prueba.pdf');
-   		},
-        x: margins.left, // x coord
-        y: margins.top, // y coord
-        width: margins.width
-	});	
+	html2canvas(document.body,{
+		onrendered: function(canvas){
+		var imgData = canvas.toDataURL('image/png');
+                console.log('Report Image URL: '+ imgData);
+                var doc = new jsPDF('p', 'mm', 'a4');
+                
+                doc.addImage(imgData, 'PNG', 10, 10);
+                doc.save('sample.pdf');
+		}
+	 });
 
-//	var doc = new jsPDF();
+//	var doc = new jsPDF('p', 'mm', 'a4');
 //	var elementHTML = $('#render').html();
-//	doc.setTextColor('0');
 //	doc.html(elementHTML, {
+//		fontface: { family: elementHTML.getFontList,
+//			weight: 1
+//		},
 //		callback: function (doc) {
 //			doc.save('factura.pdf');
 //		},
-//		fontface: { family: elementHTML.getFontList
-//		},
 //		x: 10,
 //		y: 10
-//	})
+//	});
+
 };
 
 $(document).ready(function($){
