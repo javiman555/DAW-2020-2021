@@ -52,9 +52,9 @@ public class DatabaseInitializer {
 	public void init() throws IOException, URISyntaxException {
 
 		// Sample dishes
-		Ingredient pomelo =new Ingredient("Pomelo","gluten");
+		Ingredient pomelo =new Ingredient("Pomelo","");
 		ingredientRepository.save(pomelo);
-		Ingredient banana =new Ingredient("Banana","fructosa");
+		Ingredient banana =new Ingredient("Banana","");
 		ingredientRepository.save(banana);
 		Ingredient pan =new Ingredient("Pan","gluten");
 		ingredientRepository.save(pan);
@@ -62,7 +62,7 @@ public class DatabaseInitializer {
 		ingredientRepository.save(leche);
 		Ingredient harina =new Ingredient("Harina","gluten");
 		ingredientRepository.save(harina);
-		Ingredient huevo =new Ingredient("Huevo","huevo");
+		Ingredient huevo =new Ingredient("Huevo","");
 		ingredientRepository.save(huevo);
 		Ingredient jamon =new Ingredient("Jamón","carne");
 		ingredientRepository.save(jamon);
