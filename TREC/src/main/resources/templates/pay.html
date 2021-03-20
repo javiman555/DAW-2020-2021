@@ -41,7 +41,7 @@
 					<div class="col-lg-12">
 						<div class="form-group">
 							<label for="email">Dirección:</label>
-							<input type="text" name="address"class="form-control" id="direction" placeholder="Introduce tu direcciï¿½n">
+							<input type="text" name="address"class="form-control" id="direction" placeholder="Introduce tu dirección">
 						</div>
 					</div>
 				</div>
@@ -61,7 +61,7 @@
 					<div class="col-lg-5">
 						<div class="form-group">
 							<label for="email">País:</label>
-							<input type="text" name="country" class="form-control" id="country" placeholder="Paï¿½s">
+							<input type="text" name="country" class="form-control" id="country" placeholder="País">
 						</div>
 					</div>
 				</div>
@@ -70,12 +70,12 @@
 					<div class="col-lg-4">
 						<div class="form-group">
 							<label for="pwd">Número de teléfono:</label>
-							<input type="text" name="phoneNumber" class="form-control" id="tel" placeholder="Introduce tu nï¿½mero de telï¿½fono">
+							<input type="text" name="phoneNumber" class="form-control" id="tel" placeholder="Introduce tu número de teléfono">
 						</div>
 					</div>
 						<div class="col-md-12">
 							<div class="form-group">
-								<input type="submit" value="Paga" class="btn btn-white py-3 px-4">
+								<input type="submit" value="Pagar" class="btn btn-primary">
 								<input type="hidden" name="_csrf" value="{{token}}"/>
 							</div>
 						</div>
@@ -84,65 +84,4 @@
 		</div>
 		<br>
 	</section>
-	<br>
-    <section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">  
-        <div class="container">
-            <div class="row align-items-center justify-content-center">
-                <div class="col-xs-12 col-md-4">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <h3 class="panel-title">
-                                Detalles de pago
-                            </h3>
-                        </div>
-                        <div class="panel-body">
-                            <form role="form">
-                            <div class="form-group">
-                                <label for="cardNumber">
-                                    NÚMERO DE TARJETA</label>
-                                <div class="input-group">
-                                    <input type="text" class="form-control" id="cardNumber" placeholder="Nï¿½ de Tarjeta Vï¿½lido"
-                                        required autofocus />
-                                    <span class="input-group-addon"><span class="glyphicon glyphicon-lock"></span></span>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-xs-7 col-md-7">
-                                    <div class="form-group">
-                                        <label for="expityMonth">
-                                            CADUCIDAD</label>
-                                        <div class="col-xs-6 col-lg-6 pl-ziro">
-                                            <input type="text" class="form-control" id="expityMonth" placeholder="MM" required />
-                                        </div>
-                                        <div class="col-xs-6 col-lg-6 pl-ziro">
-                                            <input type="text" class="form-control" id="expityYear" placeholder="AA" required /></div>
-                                    </div>
-                                </div>
-                                <div class="col-xs-5 col-md-5 pull-right">
-                                    <div class="form-group">
-                                        <label for="cvCode">
-                                            CÓDIGO</label>
-                                        <input type="password" class="form-control" id="cvCode" placeholder="CV" required />
-                                    </div>
-                                </div>
-                            </div>
-                            </form>
-                        </div>
-                    </div>
-                   <!-- <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><span class="badge pull-right"><span class="glyphicon glyphicon-usd"></span>4200</span> Final Payment
-                        </li>
-                    </ul>-->
-                    <div class="col-xs-9 col-md-8">
-                        <h4 class="text-right">Total a pagar: <strong>{{price}}€</strong></h4>
-                    </div>
-                    <br>
-                    <a href="/pay" class="btn btn-primary btn-lg btn-block" role="button">Pagar</a>
-                </div>
-            </div>
-        </div>
-    </section> 
-    
-	<br>
-
 {{>footer}}

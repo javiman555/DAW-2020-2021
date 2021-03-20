@@ -152,6 +152,10 @@ public class PurchaseController {
 			return "pay";
 		}
 		
+		model.addAttribute("dishes1", dishService.getByCategory("Desayuno"));
+		model.addAttribute("dishes2", dishService.getByCategory("Comida"));
+		model.addAttribute("dishes3", dishService.getByCategory("Cena"));
+		
 		return "/menu";
 		
 	}

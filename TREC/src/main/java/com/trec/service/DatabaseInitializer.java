@@ -130,7 +130,7 @@ public class DatabaseInitializer {
 		ingredient.add(oregano);
 		Dish dish6 = new Dish("Pizza margarita", 15.00f, "Comida",ingredient);
 
-		//setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
+		setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
 		dishService.save(dish6);
 		
 		ingredient = new ArrayList<Ingredient>();
@@ -141,7 +141,7 @@ public class DatabaseInitializer {
 		ingredient.add(jamon);
 		Dish dish7 = new Dish("Pizza jamón", 15.00f, "Cena",ingredient);
 		
-		//setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
+		setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
 		dishService.save(dish7);
 		
 		ingredient= new ArrayList<Ingredient>();
@@ -177,20 +177,6 @@ public class DatabaseInitializer {
 		dishes.add(dish7);
 		// Sample purchases
 
-		for (Dish dish : dishes) {
-			dish.setNbuy(dish.getNbuy()+1);
-
-			dish.setImageFile(null);
-			dishService.save(dish);
-			
-		}
-		
-		for (Dish dish : dishes) {
-			dish.setNbuy(dish.getNbuy()+1);
-			dish.setImageFile(null);
-			dishService.save(dish);
-		}
-		
 
 		ArrayList<Purchase> purchases = new ArrayList<Purchase>();
 		
@@ -207,9 +193,15 @@ public class DatabaseInitializer {
 		for (Purchase p:purchases) {
 			for(Dish d:p.getDishes()) {
 				p.setPrice(p.getPrice()+d.getDishPrice());
+				d.setNbuy(d.getNbuy()+1);
 			}
 			purchaseRepository.save(p);
 		}
+		
+		
+//		dishService.save(dish5);
+//		dishService.save(dish6);
+//		dishService.save(dish7);
 		
 	}
 

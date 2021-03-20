@@ -69,12 +69,7 @@
 										<input name="phoneNumber" value="{{user.phoneNumber}}" placeholder="{{user.phoneNumber}}" />
 									</div>
 								</div>
-								<div class="form-group">
-									<label class="col-md control-label">Contraseña:</label>
-									<div class="col-md-8">
-										<input name="encodedPassword" type="password" value="{{user.encodedPassword}}" />
-									</div>
-								</div>
+			
 								  {{#user.image}}
 								  <input type='checkbox' name='removeImage'> <label>Borrar imagen</label><br>
 								  <label>Actualizar imagen: </label><br>
@@ -88,6 +83,8 @@
 								  <input type="hidden" name="_csrf" value="{{token}}" />
 								  <input type="hidden" name="id" value="{{user.id}}"/>
 								  <input type="hidden" name="name" value="{{user.name}}"/>
+								  <input type="hidden" name="encodedPassword" value="{{user.encodedPassword}}" />
+								  
 								<div class="form-group">
 									<label class="col-md-3 control-label"></label>
 									<div class="col-md-8">
@@ -100,54 +97,43 @@
 				</div>
 				<br>
 			</div>
-
+			
 			<div role="tabpanel" class="tab-pane fade" id="platos" aria-labelledby="tabInfo">
 				<div class="container" style="padding-top: 60px;">
 					<h1 class="page-header">Platos recomendados</h1>
 					<br>
 					{{#dishesRecomended}}
-						<p>{{id}}{{name}}</p>
+					<div class="row">
+						<div class="col-md-4">
+				  			{{#image}}
+	 						<img src="/dishes/{{id}}/image" style="width:200px;height:150px;">
+	 						{{/image}}			    
+						    {{^image}}
+							<img src="/images/no_image.png" style="width:200px;height:150px;">
+							{{/image}}
+							<div>
+								<p>{{name}}</p>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+								<input type="hidden" name="id" value="{{id}}" />
+								<input type="hidden" name="userName" value="{{userName}}" />
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+								<p>
+									<input class="btn btn-primary" type="submit" value="Pedir" />
+								</p>
+							</form>	
+							<h4 style="color: white;"><strong>{{dishPrice}}€<span class="text-muted"></span></strong></h4>
+						</div>
+						
+					</div>
+					<hr>
 					{{/dishesRecomended}}
+					
 					{{^dishesRecomended}}
 					<b>No hay recomendaciones.</b>
 					{{/dishesRecomended}}
-					<div class="row align-items-left justify-content-left">
-						<div class="col-xs-8 col-md-8 col-lg-8">
-							<div class="panel panel-info">
-								<div class="panel-body">
-									<div class="menus d-flex ftco-animate">
-										<div class="menu-img img" style="background-image: url(/images/breakfast-3.jpg);"></div>
-										<div class="text">
-											<div class="d-flex">
-												<div class="one-half">
-													<h3 class="white">Bol de frutas</h3>
-												</div>
-												<div class="one-forth">
-													<div><a href="carro.html" class="btn btn-primary btn-sm">PEDIR</a></div>
-													<span class="price">25€</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div class="menus d-flex ftco-animate">
-										<div class="menu-img img" style="background-image: url(/images/lunch-7.jpg);"></div>
-										<div class="text">
-											<div class="d-flex">
-												<div class="one-half">
-													<h3 class="white">Pollo asado</h3>
-												</div>
-												<div class="one-forth">
-													<div><a href="/cart" class="btn btn-primary btn-sm">PEDIR</a></div>
-													<span class="price">25€</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<br>
-								</div>
-							</div>
-						</div>
-					</div>
 				</div>
 				<br>
 			</div>
@@ -159,7 +145,7 @@
 					{{#logged}}
 					{{#admin}}
 					{{#adminpurchases}}
-						<p><a href="/purchase/{{id}}">{{id}}</a></p>
+						<p><a href="/purchase/{{id}}">Factura: {{id}}</a></p>
 					{{/adminpurchases}}
 					
 					{{^adminpurchases}}
@@ -169,7 +155,7 @@
 					
 					{{^admin}}
 					{{#purchases}}
-						<p><a href="/purchase/{{id}}">{{id}}</a></p>
+						<p><a href="/purchase/{{id}}">Factura: {{id}}</a></p>
 					{{/purchases}}
 					
 					{{^purchases}}

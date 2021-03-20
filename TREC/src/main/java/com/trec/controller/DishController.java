@@ -39,8 +39,6 @@ public class DishController {
 	@Autowired
 	private DishService dishService;
 	@Autowired
-	private UserService userService;
-	@Autowired
 	private IngredientService ingredientService;
 
 	@GetMapping("/menu")

@@ -33,9 +33,6 @@ public class IngredientController {
 
 	@Autowired
 	private IngredientService ingredientService;
-	@Autowired
-	private UserService userService;
-
 	
 	@GetMapping("/add_food")
 	public String add_food(Model model) {
