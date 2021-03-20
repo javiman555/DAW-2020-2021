@@ -8,16 +8,21 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
+@Table(name = "Dish")
 @DynamicUpdate
 public class Dish {
 
 	@Id
+	@Column(name="id")
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id = null;
 	
@@ -31,6 +36,10 @@ public class Dish {
 	private boolean image;
 
 	@ManyToMany
+	 @JoinTable(
+			   name="Dish_Ing",
+			   joinColumns=@JoinColumn(name="Dish_id", referencedColumnName="id"),
+			   inverseJoinColumns=@JoinColumn(name="Ing_id", referencedColumnName="id"))
 	private List<Ingredient> ingredients;
 
 	public Dish() {}

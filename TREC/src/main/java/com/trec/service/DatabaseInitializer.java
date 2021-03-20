@@ -52,9 +52,9 @@ public class DatabaseInitializer {
 	public void init() throws IOException, URISyntaxException {
 
 		// Sample dishes
-		Ingredient pomelo =new Ingredient("Pomelo","gluten");
+		Ingredient pomelo =new Ingredient("Pomelo","");
 		ingredientRepository.save(pomelo);
-		Ingredient banana =new Ingredient("Banana","fructosa");
+		Ingredient banana =new Ingredient("Banana","");
 		ingredientRepository.save(banana);
 		Ingredient pan =new Ingredient("Pan","gluten");
 		ingredientRepository.save(pan);
@@ -62,7 +62,7 @@ public class DatabaseInitializer {
 		ingredientRepository.save(leche);
 		Ingredient harina =new Ingredient("Harina","gluten");
 		ingredientRepository.save(harina);
-		Ingredient huevo =new Ingredient("Huevo","huevo");
+		Ingredient huevo =new Ingredient("Huevo","");
 		ingredientRepository.save(huevo);
 		Ingredient jamon =new Ingredient("Jamón","carne");
 		ingredientRepository.save(jamon);
@@ -175,6 +175,7 @@ public class DatabaseInitializer {
 		dishes.add(dish6);
 		dishes.add(dish7);
 		// Sample purchases
+
 		for (Dish dish : dishes) {
 			dish.setNbuy(dish.getNbuy()+1);
 
@@ -200,6 +201,7 @@ public class DatabaseInitializer {
 		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 45.0f, user1, dishes, 8, 8, 2021));
 		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, 45.0f, user1, dishes, 24, 11, 2021));
 		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, 45.0f, user1, dishes, 7, 5, 2021));
+
 		
 		userRepository.save(user1);
 		
