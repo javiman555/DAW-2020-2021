@@ -63,7 +63,7 @@ public class PurchaseController {
 			user.getNewPurchase().setDishes(new ArrayList<Dish>() );
 		}
 		user.getNewPurchase().getDishes().add(dish);
-
+		user.getNewPurchase().setPrice(user.getNewPurchase().getPrice()+dish.getDishPrice());
 		userService.save(user);
 		purchaseService.save(user.getNewPurchase());
 		
@@ -88,6 +88,7 @@ public class PurchaseController {
 		userService.save(user);
 		}
 			model.addAttribute("dishes", newPurchase.getDishes());
+			model.addAttribute("price", newPurchase.getPrice());
 			
 		return "cart";
 	}
@@ -102,6 +103,7 @@ public class PurchaseController {
 		if (userReal.get().getId() == user.get().getId()) {
 			
 			model.addAttribute("purchases", purchaseService.getByUser(user.get()));
+			model.addAttribute("adminpurchases", purchaseService.findAll(PageRequest.of(0, 5)));
 
 			model.addAttribute("dishesRecomended", dishService.getRecomended(user.get().getId()));
 
@@ -146,6 +148,7 @@ public class PurchaseController {
 		String userNameReal = principal.getName();
 		User userReal = userService.findByName(userNameReal).get();
 		if (!userReal.getNewPurchase().getDishes().isEmpty()) {
+			model.addAttribute("price", userReal.getNewPurchase().getPrice());
 			return "pay";
 		}
 		

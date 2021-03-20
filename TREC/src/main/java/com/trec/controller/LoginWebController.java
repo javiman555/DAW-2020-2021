@@ -49,6 +49,7 @@ public class LoginWebController {
 	public String loginerror(Model model) {
 		
 		model.addAttribute("loginerror", true);
+		model.addAttribute("registererror", false);
 		
 		return "register";
 	}
@@ -57,6 +58,7 @@ public class LoginWebController {
 	public String logout(Model model) {
 		
 		model.addAttribute("loginerror", false);
+		model.addAttribute("registererror", false);
 		
 		return "register";
 	}
@@ -64,19 +66,29 @@ public class LoginWebController {
 	@PostMapping("/newuser")
 	public String newUserProcess(Model model, User user) throws IOException {
 
-	/*	if (!imageField.isEmpty()) {
-			user.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			user.setImage(true);
+		model.addAttribute("loginerror", false);
+	
+		boolean existe = false;
+		List<User> users = userService.findAll();
+		for(User u : users) {
+			if(user.getName().equals(u.getName())) {
+				existe = true;
+			}
 		}
-*/
+		if(existe) {
+			
+			model.addAttribute("registererror", true);
+			return "register";
+		}
+		
 		user.setImage(false);
 		
 		user.setEncodedPassword(passwordEncoder.encode(user.getEncodedPassword()));
 		userService.save(user);
 
-		//model.addAttribute("userId", user.getId());
+		model.addAttribute("registererror", false);
 
-		return "/index";
+		return "register";
 	}
 	
 	@PostMapping("/edituser")

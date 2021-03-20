@@ -156,6 +156,18 @@
 				<div class="container" style="padding-top: 60px;">
 					<h1 class="page-header">Facturas</h1>
 					<br>
+					{{#logged}}
+					{{#admin}}
+					{{#adminpurchases}}
+						<p><a href="/purchase/{{id}}">{{id}}</a></p>
+					{{/adminpurchases}}
+					
+					{{^adminpurchases}}
+					<b>No ha realizado ningún pedido.</b>
+					{{/adminpurchases}}
+					{{/admin}}
+					
+					{{^admin}}
 					{{#purchases}}
 						<p><a href="/purchase/{{id}}">{{id}}</a></p>
 					{{/purchases}}
@@ -163,6 +175,9 @@
 					{{^purchases}}
 					<b>No ha realizado ningún pedido.</b>
 					{{/purchases}}
+					{{/admin}}
+					{{/logged}}
+					
 				</div>
 				<br>
 			</div>

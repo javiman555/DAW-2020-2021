@@ -59,6 +59,9 @@
 										<input type="hidden" name="_csrf" value="{{token}}"/>
 										<input type="hidden" name="roles" value="USER"/>
 									</div>
+							{{#registererror}}
+							<p style="color:white;">Credenciales inválidas. Elige otro nombre de usuario.</p>
+							{{/registererror}}
 								</div>
 							</div>
 						</form>

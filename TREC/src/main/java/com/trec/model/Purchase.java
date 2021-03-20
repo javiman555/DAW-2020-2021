@@ -40,7 +40,7 @@ public class Purchase {
 	public Purchase() {
 	}
 
-	public Purchase(String firstName, String surname, String address, int postalCode, String city, String country, int phoneNumber, float price, User user,List<Dish> dishes,int day, int month, int year) {
+	public Purchase(String firstName, String surname, String address, int postalCode, String city, String country, int phoneNumber, User user,List<Dish> dishes,int day, int month, int year) {
 		this.firstName = firstName;
 		this.surname = surname;
 		this.address = address;
@@ -48,12 +48,12 @@ public class Purchase {
 		this.city = city;
 		this.country = country;
 		this.phoneNumber = phoneNumber;
-		this.price = price;
 		this.user = user;
 		this.dishes = dishes;
 		this.dateDay = day;
 		this.dateMonth = month;
 		this.dateYear = year;
+		this.price = 0;
 	}
 	public Purchase(String firstName, String surname, String address, int postalCode, String city, String country, int phoneNumber, float price) {
 		this.firstName = firstName;
