@@ -120,8 +120,6 @@ public class DatabaseInitializer {
 		ingredient.add(bacon);
 		Dish dish5 = new Dish("Pasta carbonara", 15.00f, "Comida",ingredient);
 
-		setDishImage(dish5, "/sample_images/pastaCarbonara.jpg");
-		dishService.save(dish5);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -130,8 +128,6 @@ public class DatabaseInitializer {
 		ingredient.add(oregano);
 		Dish dish6 = new Dish("Pizza margarita", 15.00f, "Comida",ingredient);
 
-		setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
-		dishService.save(dish6);
 		
 		ingredient = new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -141,8 +137,7 @@ public class DatabaseInitializer {
 		ingredient.add(jamon);
 		Dish dish7 = new Dish("Pizza jamón", 15.00f, "Cena",ingredient);
 		
-		setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
-		dishService.save(dish7);
+		
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -195,13 +190,18 @@ public class DatabaseInitializer {
 				p.setPrice(p.getPrice()+d.getDishPrice());
 				d.setNbuy(d.getNbuy()+1);
 			}
-			purchaseRepository.save(p);
+			
 		}
 		
+		setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
+		setDishImage(dish5, "/sample_images/pastaCarbonara.jpg");
+		setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
 		
-//		dishService.save(dish5);
-//		dishService.save(dish6);
-//		dishService.save(dish7);
+		dishService.save(dish5);
+		dishService.save(dish6);
+		dishService.save(dish7);
+		
+		for(Purchase p : purchases)purchaseRepository.save(p);
 		
 	}
 
