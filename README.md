@@ -98,3 +98,36 @@ This is the footer of the web page. It will appear in all pages. It contains a s
 #### Diagram
 ![Diagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/diagrama.PNG)
 In this diagram we can see the interactions between each page. The blue arrows represents the conexions of the front of the web, the green arrows connect functions of the registered user and the red arrow represents the options that only the admin can do.
+
+## Phase 2
+
+### Navegation
+
+#### Guide for the Demostraton
+We have put in the databa several ingredients, dishes with those ingredients and purchases with those dishes. We also have some users and one admin. 
+
+-1 First, without register we access to the menu and we can see that there is nothing we can do.
+-2 Now we try to access a restinged page like /add_food and we get the custom error page. 
+-3 Now we try to create a new account with the same name that other user and we will get an error.
+-4 Then we register with a valid name.
+-5 We log in with this user.
+-6 Now we access the profile where we can see three parts, a list of purchases, a list of recommended dishes and the place where we can edit the user data.
+-7 We add a photo to the user.
+-8 Then we go to the menu and add something to the cart.
+-9 Now we access the cart and make the payment with the same first name and surname we have.
+-10 In profile now are new recommended dishes and the purchase.
+-11 Log out and connect as admin.
+-12 Go to profile and see all the purchases, we should see the purchase that we just made.
+-13 Now we go to the menu and we add an ingredient and a dish.
+-14 In the menu, we can also access information about the dishes, and there we can delete or edit a dish.
+-15 To end, we can try to access the profile of the other user with the url but it won't let us.
+
+### Execution Instructions
+
+### DataBase Entity Diagram
+
+### Clases and templates Diagram
+
+### Member Participation
+
+
