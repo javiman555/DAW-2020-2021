@@ -2,10 +2,6 @@ package com.trec.service;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +19,6 @@ import com.trec.model.Dish;
 import com.trec.model.Ingredient;
 import com.trec.model.Purchase;
 import com.trec.model.User;
-import com.trec.service.DishService;
 import com.trec.repository.IngredientRepository;
 import com.trec.repository.PurchaseRepository;
 import com.trec.repository.UserRepository;
