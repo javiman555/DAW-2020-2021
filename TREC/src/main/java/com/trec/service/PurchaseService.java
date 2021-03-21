@@ -46,4 +46,8 @@ public class PurchaseService {
 	 public Page<Purchase> findAll(int n){
 		 return purchaseRepository.findAll(PageRequest.of(n, 5));
 	 }
+	 
+	public List<Purchase> findAll() {
+		return purchaseRepository.findAll();
+	}
 }

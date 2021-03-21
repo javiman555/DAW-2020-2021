@@ -81,7 +81,6 @@ public class DatabaseInitializer {
 		Dish dish1 = new Dish("Pomelo y nada mas", 2.00f, "Desayuno",ingredient);
 
 		setDishImage(dish1, "/sample_images/pomelo.jpg");
-		dishService.save(dish1);
 
 		ingredient = new ArrayList<Ingredient>();
 		ingredient.add(leche);
@@ -90,7 +89,6 @@ public class DatabaseInitializer {
 		Dish dish2 = new Dish("Leche con galletas", 5.00f, "Desayuno",ingredient);
 		
 		setDishImage(dish2, "/sample_images/lecheConGalletas.jpg");
-		dishService.save(dish2);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(pan);
@@ -98,7 +96,6 @@ public class DatabaseInitializer {
 		Dish dish3 = new Dish("Pan de plátano", 8.00f, "Desayuno",ingredient);
 
 		setDishImage(dish3, "/sample_images/pan_platano.jpg");
-		dishService.save(dish3);
 
 		ingredient = new ArrayList<Ingredient>();
 		ingredient.add(pasta);
@@ -107,22 +104,23 @@ public class DatabaseInitializer {
 		Dish dish4 = new Dish("Pasta boloñesa", 15.00f, "Comida",ingredient);
 		
 		setDishImage(dish4, "/sample_images/pastaBoloñesa.jpg");
-		dishService.save(dish4);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(pasta);
 		ingredient.add(nata);
 		ingredient.add(bacon);
 		Dish dish5 = new Dish("Pasta carbonara", 15.00f, "Comida",ingredient);
-
+		
+		setDishImage(dish5, "/sample_images/pastaCarbonara.jpg");
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(harina);
 		ingredient.add(queso);
 		ingredient.add(tomate);
 		ingredient.add(oregano);
-		Dish dish6 = new Dish("Pizza margarita", 15.00f, "Comida",ingredient);
+		Dish dish6 = new Dish("Pizza margarita", 16.00f, "Comida",ingredient);
 
+		setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
 		
 		ingredient = new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -130,9 +128,9 @@ public class DatabaseInitializer {
 		ingredient.add(tomate);
 		ingredient.add(oregano);
 		ingredient.add(jamon);
-		Dish dish7 = new Dish("Pizza jamón", 15.00f, "Cena",ingredient);
-		
-		
+		Dish dish7 = new Dish("Pizza jamón", 13.00f, "Cena",ingredient);
+
+		setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(harina);
@@ -140,10 +138,9 @@ public class DatabaseInitializer {
 		ingredient.add(tomate);
 		ingredient.add(oregano);
 		ingredient.add(bacon);
-		Dish dish8 = new Dish("Pizza bacon", 15.00f, "Cena",ingredient);
+		Dish dish8 = new Dish("Pizza bacon", 12.00f, "Cena",ingredient);
 
 		setDishImage(dish8, "/sample_images/pizzaBacon.jpg");
-		dishService.save(dish8);
 		
 		ingredient= new ArrayList<Ingredient>();
 		ingredient.add(pan);
@@ -152,42 +149,64 @@ public class DatabaseInitializer {
 		Dish dish9 = new Dish("Sándwich mixto", 10.00f, "Cena",ingredient);
 
 		setDishImage(dish9, "/sample_images/sandwichMixto.jpg");
-		dishService.save(dish9);
 		
 		// Sample users
 		User user1 = new User("user1", "Julia","Martín","juliamartin@gmail.com",222222222, passwordEncoder.encode("pass"), "USER");
 		userRepository.save(user1);
-		userRepository.save(new User("user", "Julia","Martín","juliamartin@gmail.com",222222222, passwordEncoder.encode("pass"), "USER"));
+		User user = new User("user", "Julia","Martín","juliamartin@gmail.com",222222222, passwordEncoder.encode("pass"), "USER");
+		userRepository.save(user);
 		userRepository.save(new User("admin","Pepe","Pérez","pepeperez@gmail.com",111111111, passwordEncoder.encode("adminpass"), "USER", "ADMIN"));
-		userRepository.save(new User("a","a","a","a@gmail.com",111111111, passwordEncoder.encode("a"), "USER"));
+		User a = new User("a","a","a","a@gmail.com",111111111, passwordEncoder.encode("a"), "USER");
+		userRepository.save(a);
 		
-		List<Dish> dishes= new ArrayList<Dish>();
-		dishes.add(dish5);
-		dishes.add(dish6);
-		dishes.add(dish7);
+		List<Dish> dishes1= new ArrayList<Dish>();
+		dishes1.add(dish5);
+		dishes1.add(dish6);
+		dishes1.add(dish7);
+		
+		List<Dish> dishes2= new ArrayList<Dish>();
+		dishes2.add(dish2);
+		dishes2.add(dish1);
+		dishes2.add(dish4);
+		
+		List<Dish> dishes3= new ArrayList<Dish>();
+		dishes3.add(dish3);
+		dishes3.add(dish8);
+		dishes3.add(dish9);
+		
+		List<Dish> dishes4= new ArrayList<Dish>();
+		dishes4.add(dish4);
+		dishes4.add(dish2);
+		dishes4.add(dish4);
+		
+		List<Dish> dishes5= new ArrayList<Dish>();
+		dishes5.add(dish1);
+		dishes5.add(dish5);
+		dishes5.add(dish9);
+		
 		// Sample purchases
 
 
 		ArrayList<Purchase> purchases = new ArrayList<Purchase>();
 		
-		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 3, 5, 2021));
-		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 4, 7, 2021));
-		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 12, 2, 2021));
-		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 8, 8, 2021));
-		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 24, 11, 2021));
-		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 7, 5, 2021));
-		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 3, 5, 2021));
-		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 4, 7, 2021));
-		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 12, 2, 2021));
-		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 8, 8, 2021));
-		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 24, 11, 2021));
-		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 7, 5, 2021));
-		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 3, 5, 2021));
-		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 4, 7, 2021));
-		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 12, 2, 2021));
-		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 8, 8, 2021));
-		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 24, 11, 2021));
-		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 7, 5, 2021));
+		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes1, 3, 5, 2021));
+		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user, dishes2, 4, 7, 2021));
+		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes2, 12, 2, 2021));
+		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user, dishes3, 8, 8, 2021));
+		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes1, 24, 11, 2021));
+		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user, dishes5, 7, 5, 2021));
+		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, a, dishes5, 3, 5, 2021));
+		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, a, dishes4, 4, 7, 2021));
+		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, a, dishes5, 12, 2, 2021));
+		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, a, dishes3, 8, 8, 2021));
+		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user, dishes4, 24, 11, 2021));
+		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user, dishes4, 7, 5, 2021));
+		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes1, 3, 5, 2021));
+		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes3, 4, 7, 2021));
+		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user, dishes5, 12, 2, 2021));
+		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, a, dishes4, 8, 8, 2021));
+		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes5, 24, 11, 2021));
+		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, a, dishes4, 7, 5, 2021));
 
 		
 		userRepository.save(user1);
@@ -200,13 +219,17 @@ public class DatabaseInitializer {
 			
 		}
 		
-		setDishImage(dish6, "/sample_images/pizzaMargarita.jpg");
-		setDishImage(dish5, "/sample_images/pastaCarbonara.jpg");
-		setDishImage(dish7, "/sample_images/pizzaJamon.jpg");
-		
+
+		dishService.save(dish1);
+		dishService.save(dish2);
+		dishService.save(dish3);
+		dishService.save(dish4);
 		dishService.save(dish5);
 		dishService.save(dish6);
 		dishService.save(dish7);
+		dishService.save(dish8);
+		dishService.save(dish9);
+		
 		
 		for(Purchase p : purchases)purchaseRepository.save(p);
 		

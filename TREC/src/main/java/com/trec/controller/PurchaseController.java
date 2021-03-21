@@ -100,6 +100,7 @@ public class PurchaseController extends DefaultModeAttributes{
 			
 			model.addAttribute("purchases", purchaseService.getByUser(user.get(), 0));
 			model.addAttribute("adminpurchases", purchaseService.findAll(0));
+			model.addAttribute("graficpurchases", purchaseService.findAll());
 			
 			model.addAttribute("isempty", purchaseService.getByUser(user.get(), 0).isEmpty());
 			model.addAttribute("isadminempty", purchaseService.findAll(0).isEmpty());
