@@ -24,6 +24,10 @@ public interface PurchaseRepository extends JpaRepository<Purchase, Long> {
 	 @Query("SELECT p FROM Purchase p WHERE p.user = :u")
 	 public List<Purchase> getByUser(User u);
 	 
-	 public List<Purchase> findAll();
+	 @Query("SELECT p.id FROM Purchase p")
+	 public List<Long> findIdAll();
+	 
+	 @Query("SELECT p.price FROM Purchase p")
+	 public List<Float> findPriceAll();
 	 
 }
