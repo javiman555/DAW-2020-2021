@@ -143,25 +143,41 @@
 					<h1 class="page-header">Facturas</h1>
 					<br>
 					{{#logged}}
-					{{#admin}}
-					{{#adminpurchases}}
-						<p><a href="/purchase/{{id}}">Factura: {{id}}</a></p>
-					{{/adminpurchases}}
-					
-					{{^adminpurchases}}
-					<b>No ha realizado ningún pedido.</b>
-					{{/adminpurchases}}
-					{{/admin}}
-					
-					{{^admin}}
-					{{#purchases}}
-						<p><a href="/purchase/{{id}}">Factura: {{id}}</a></p>
-					{{/purchases}}
-					
-					{{^purchases}}
-					<b>No ha realizado ningún pedido.</b>
-					{{/purchases}}
-					{{/admin}}
+<!-- 					PARTE DEL ADMIN -->
+						{{#admin}}
+							<div id="userPurchases">
+								{{#adminpurchases}}
+									<p><a href="/purchase/{{id}}">Factura #{{id}}</a></p>
+								{{/adminpurchases}}
+							</div>
+							{{^isadminempty}}
+							<button type="button" class="btn btn-primary" id="moreContentButton" onclick="moreContentAdmin()">
+								<span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
+								<span id="moreContentText">Cargar más...</span></button>
+							{{/isadminempty}}
+						
+							{{^adminpurchases}}
+								<b>No ha realizado ningún pedido.</b>
+							{{/adminpurchases}}
+						{{/admin}}
+						
+<!-- 					PARTE DEL USUARIO NORMAL -->						
+						{{^admin}}
+							<div id="userPurchases">
+								{{#purchases}}
+									<p><a href="/purchase/{{id}}">Factura #{{id}}</a></p>
+								{{/purchases}}
+							</div>
+							{{^isempty}}
+								<button type="button" class="btn btn-primary" id="moreContentButton" onclick="moreContent('{{user.id}}')">
+								<span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
+								<span id="moreContentText">Cargar más...</span></button>
+							{{/isempty}}
+							
+							{{^purchases}}
+								<b>No ha realizado ningún pedido.</b>
+							{{/purchases}}
+						{{/admin}}
 					{{/logged}}
 					
 				</div>

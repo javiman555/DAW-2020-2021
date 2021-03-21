@@ -5,9 +5,11 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,8 +20,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -102,35 +106,43 @@ public class PurchaseController {
 		
 		if (userReal.get().getId() == user.get().getId()) {
 			
-			model.addAttribute("purchases", purchaseService.getByUser(user.get()));
-			model.addAttribute("adminpurchases", purchaseService.findAll(PageRequest.of(0, 5)));
+			//Hay que comprobar que el usuario es admin o no porque si no como el front-end es tonto, se lo estamos pasando todo y aunque no lo muestre, ahí está.
+			
+			model.addAttribute("purchases", purchaseService.getByUser(user.get(), 0));
+			model.addAttribute("adminpurchases", purchaseService.findAll(0));
+			
+			model.addAttribute("isempty", purchaseService.getByUser(user.get(), 0).isEmpty());
+			model.addAttribute("isadminempty", purchaseService.findAll(0).isEmpty());
+			
 
 			model.addAttribute("dishesRecomended", dishService.getRecomended(user.get().getId()));
 
 			model.addAttribute("user", user.get());
 			
+			model.addAttribute("currentPage", 0);
+			
 			return "profile";
-		}else {
+		} else {
 			return "404";
 		}
-		
 	}
-	@GetMapping("/purchases")
-	public Page<Purchase> getPurchases(@RequestParam(required = false) User user, Pageable page) {
-
-		if (user.getRoles().contains("ADMIN")) {
-			return purchaseService.findAll(page);
-		} else {
-			return purchaseService.getByUser(user);
-		}
-	}
+	
+//	@GetMapping("/purchases")
+//	public Page<Purchase> getPurchases(@RequestParam(required = false) User user, Pageable page, int numPageRequested) {
+//
+//		if (user.getRoles().contains("ADMIN")) {
+//			return purchaseService.findAll(page);
+//		} else {
+//			return purchaseService.getByUser(user, numPageRequested);
+//		}
+//	}
 	@GetMapping("/purchase/{id}")
 	public String showPurchase(Model model, @PathVariable long id, HttpServletRequest request) {
 		
 		Principal principal = request.getUserPrincipal();
 		String userNameReal = principal.getName();
 		Optional<User> userReal = userService.findByName(userNameReal);
-		Purchase purchase = purchaseService.findById(id, PageRequest.of(0, 5)).get();
+		Purchase purchase = purchaseService.findById(id).get();
 		
 		if(userReal.get().getRoles().contains("ADMIN") || userReal.get().getId() == purchase.getUser().getId() ) {
 			
@@ -196,9 +208,9 @@ public class PurchaseController {
 			return "/payerror";}
 		return "/paydone";
 		}
-	public String showPurchase(Model model, @PathVariable long id, Pageable pageable) {
+	public String showPurchase(Model model, @PathVariable long id) {
 		
-		model.addAttribute("purchase", purchaseService.findById(id, pageable).get());
+		model.addAttribute("purchase", purchaseService.findById(id).get());
 		
 		return "/paydone";
 	}

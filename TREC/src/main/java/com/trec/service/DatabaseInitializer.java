@@ -181,6 +181,18 @@ public class DatabaseInitializer {
 		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 8, 8, 2021));
 		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 24, 11, 2021));
 		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 7, 5, 2021));
+		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 3, 5, 2021));
+		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 4, 7, 2021));
+		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 12, 2, 2021));
+		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 8, 8, 2021));
+		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 24, 11, 2021));
+		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 7, 5, 2021));
+		purchases.add(new Purchase("Azahara", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 3, 5, 2021));
+		purchases.add(new Purchase("Javier", "Méndez", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 4, 7, 2021));
+		purchases.add(new Purchase("David", "Andújar", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 12, 2, 2021));
+		purchases.add(new Purchase("David", "Mestanza", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 8, 8, 2021));
+		purchases.add(new Purchase("Azahara", "Méndez", "Calle Tulipán SN",28934, "Móstoles", "España", 123456789, user1, dishes, 24, 11, 2021));
+		purchases.add(new Purchase("David", "Herrera", "Calle Rosa SN",28934, "Móstoles", "España", 987654321, user1, dishes, 7, 5, 2021));
 
 		
 		userRepository.save(user1);

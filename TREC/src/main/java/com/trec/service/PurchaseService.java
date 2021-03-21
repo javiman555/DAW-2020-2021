@@ -23,7 +23,7 @@ public class PurchaseService {
 	@Autowired
 	private PurchaseRepository purchaseRepository;
 
-	public Optional<Purchase> findById(long id, Pageable pageable) {
+	public Optional<Purchase> findById(long id) {
 		return purchaseRepository.findById(id);
 	}
 	
@@ -39,11 +39,11 @@ public class PurchaseService {
 		purchaseRepository.deleteById(id);
 	}
 	
-	public Page<Purchase> getByUser(User user){
-		return purchaseRepository.getByUser(user, PageRequest.of(0, 5));
+	public Page<Purchase> getByUser(User user, int n){
+		return purchaseRepository.getByUser(user, PageRequest.of(n, 5));
 	}
 	
-	 public Page<Purchase> findAll(Pageable page){
-		 return purchaseRepository.findAll(page);
+	 public Page<Purchase> findAll(int n){
+		 return purchaseRepository.findAll(PageRequest.of(n, 5));
 	 }
 }

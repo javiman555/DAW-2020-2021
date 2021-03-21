@@ -38,5 +38,6 @@ public class UserService {
 		return userRepository.findByName(name);
 	}
 	
+	//Falta método para comprobar si es administrador o no el usuario
 	
 }

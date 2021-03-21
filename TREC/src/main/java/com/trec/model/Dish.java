@@ -16,6 +16,8 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "Dish")
 @DynamicUpdate
@@ -31,6 +33,7 @@ public class Dish {
 	private String category;
 	private int nbuy;
 
+	@JsonIgnore
 	@Lob
 	private Blob imageFile;
 	private boolean image;
