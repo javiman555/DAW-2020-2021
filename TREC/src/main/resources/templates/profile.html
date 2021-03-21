@@ -21,7 +21,9 @@
 		<div class="navbar-default" id="ftco-nav">
 			<ul id="infoPerfil" class="nav ml-auto nav-pills nav-fill">
 				<li role="presentation" class="nav-item"><a class="nav-link active" href="#editar">Editar datos</a></li>
+				{{^admin}}
 				<li role="presentation" class="nav-item"><a class="nav-link" href="#platos">Platos recomendados</a></li>
+				{{/admin}}
 				<li role="presentation" class="nav-item"><a class="nav-link" href="#facturas">Facturas</a></li>
 				{{#admin}}
 				<li role="presentation" class="nav-item"><a class="nav-link" href="#estadisticas">Estadisticas</a></li>
@@ -102,6 +104,7 @@
 				<br>
 			</div>
 			
+			{{^admin}}
 			<div role="tabpanel" class="tab-pane fade" id="platos" aria-labelledby="tabInfo">
 				<div class="container" style="padding-top: 60px;">
 					<h1 class="page-header">Platos recomendados</h1>
@@ -141,6 +144,7 @@
 				</div>
 				<br>
 			</div>
+			{{/admin}}
 	
 			<div role="tabpanel" class="tab-pane fade" id="facturas" aria-labelledby="tabInfo">
 				<div class="container" style="padding-top: 60px;">
@@ -171,6 +175,7 @@
 				</div>
 				<br>
 			</div>
+			{{#admin}}
 			<div role="tabpanel" class="tab-pane fade" id="estadisticas" aria-labelledby="tabInfo">
 				<div class="container" style="padding-top: 60px;">
 					<h1 class="page-header">Estadisticas</h1>
@@ -237,6 +242,7 @@
 				</div>
 				<br>
 			</div>
+			{{/admin}}
 		</div>
     </section>
 		
