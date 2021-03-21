@@ -24,21 +24,21 @@
 			<tbody>
 				<tr>
 					<td colspan="2"><b>Nombre</b></td>
-					<td>{{purchase.firstName}}</td>
+					<td class="firstname">{{purchase.firstName}}</td>
 					<td colspan="2"><b>Apellidos</b></td>
-					<td>{{purchase.surname}}</td>
+					<td class="surname">{{purchase.surname}}</td>
 				</tr>
 				<tr>
 					<td colspan="2"><b>Dirección</b></td>
-					<td>{{purchase.address}}</td>
+					<td class="address">{{purchase.address}}</td>
 					<td colspan="2"><b>Código Postal</b></td>
-					<td>{{purchase.postalCode}}</td>
+					<td class="postalcode">{{purchase.postalCode}}</td>
 				</tr>
 				<tr>
 					<td colspan="2"><b>Ciudad</b></td>
-					<td>{{purchase.city}}</td>
+					<td class="city">{{purchase.city}}</td>
 					<td colspan="2"><b>País</b></td>
-					<td>{{purchase.country}}</td>
+					<td class="country">{{purchase.country}}</td>
 				</tr>
 			</tbody>
 		</table>
@@ -51,15 +51,15 @@
 			<tbody>
 			{{#purchase.dishes}}
 			<tr>
-				<td colspan="4">{{name}}</td>
-				<td>{{dishPrice}}</td>
+				<td colspan="4" class="dishname">{{name}}</td>
+				<td class="dishprice">{{dishPrice}}</td>
 			</tr>
 			{{/purchase.dishes}}
 			</tbody>
 		</table>
 		<table class="table table-striped table-dark">
 		<tr>
-			<td><b>Precio total: </b>{{purchase.price}}</td>
+			<td><b>Precio total: </b><span class="price">{{purchase.price}}</span></td>
 		<tr>
 		</table>
 	</div>
