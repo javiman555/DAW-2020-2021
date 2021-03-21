@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <meta charset="UTF-8"/>
-
+<script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
 {{>header}}
 	<!-- END nav -->
 
@@ -22,6 +23,9 @@
 				<li role="presentation" class="nav-item"><a class="nav-link active" href="#editar">Editar datos</a></li>
 				<li role="presentation" class="nav-item"><a class="nav-link" href="#platos">Platos recomendados</a></li>
 				<li role="presentation" class="nav-item"><a class="nav-link" href="#facturas">Facturas</a></li>
+				{{#admin}}
+				<li role="presentation" class="nav-item"><a class="nav-link" href="#estadisticas">Estadisticas</a></li>
+				{{/admin}}
 			</ul>
 		</div>
 
@@ -164,6 +168,72 @@
 					{{/admin}}
 					{{/logged}}
 					
+				</div>
+				<br>
+			</div>
+			<div role="tabpanel" class="tab-pane fade" id="estadisticas" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Estadisticas</h1>
+					<br>
+					<!--<div>
+					<img style="display: block;margin-left: auto; margin-right: auto;" src="https://chart.googleapis.com/chart?cht=p&chs=500x200&chd=t:{{#purchases}}{{id}}{{/purchases}},{{#purchases}}{{id}}{{/purchases}}&chl=Likes ({{#purchases}}{{id}}{{/purchases}})|Plazas libres ({{#purchases}}{{id}}{{/purchases}})&chco=FF0000,ebe1c9">
+					</div>
+					<img style="display: block;margin-left: auto; margin-right: auto;" src="https://chart.apis.google.com/chart?chs=500x200&chd=t:12.5,76.5,44.0&chds=-20,80&cht=lc&chl={{#adminpurchases}}{{id}}|{{/adminpurchases}}">
+					--><canvas id="canvas"></canvas>
+					
+					<script >
+					var config = {
+					type: 'line',
+					data: {
+						labels: [{{#adminpurchases}}{{id}},{{/adminpurchases}}],
+						datasets: [{
+							label: 'Precio por pedido',
+							backgroundColor: window.chartColors.red,
+							borderColor: window.chartColors.red,
+							data: [
+								{{#adminpurchases}}{{price}},{{/adminpurchases}}
+							],
+							fill: false,
+						}]
+					},
+					options: {
+						responsive: true,
+						title: {
+							display: true,
+							text: 'Pedidos'
+						},
+						tooltips: {
+							mode: 'index',
+							intersect: false,
+						},
+						hover: {
+							mode: 'nearest',
+							intersect: true
+						},
+						scales: {
+							xAxes: [{
+								display: true,
+								scaleLabel: {
+									display: true,
+									labelString: 'ID del pedido'
+								}
+							}],
+							yAxes: [{
+								display: true,
+								scaleLabel: {
+									display: true,
+									labelString: 'Precio'
+								}
+							}]
+						}
+					}
+				};
+		
+				window.onload = function() {
+					var ctx = document.getElementById('canvas').getContext('2d');
+					window.myLine = new Chart(ctx, config);
+				};
+					</script>
 				</div>
 				<br>
 			</div>
