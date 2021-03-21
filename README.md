@@ -92,7 +92,7 @@ This page is only accesible for an admin user. Here, they will be able to add ne
 
 #### Contact
 
-![Page Contact](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/contacto.png)
+![Page Contact](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/contacto.PNG)
 In this page all the users will be able to see the restaurant's contact information (location, phone number and email). Also, there is a map of the location inserted in this page.
 
 #### EditProfile
@@ -105,9 +105,9 @@ In this page a registered user can change their information, see our recommendat
 ![Page RecomendedDishes](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/RecomendedDishes.png)
 In this page a registered user can see our recommendations of other dishes in order the dishes he or she had ordered in the past. Only registered users can access to this page (no admin). This page is not accessible fot the anonymous user.
 
-#### EditProfile
+#### Show Purchases
 
-![Page ShowPurchases](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/EditProfile.PNG)
+![Page ShowPurchases](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Purchase.png)
 In this page a registered user can see a record of all their previous bills. The admin can also access to this page, and he will have the bills of every registered user. This page is not accessible fot the anonymous user. Also, this page is pageable.
 
 #### Log in and Sign in
@@ -153,7 +153,7 @@ In this page, the admin can access to edit a dish. Here, the admin can also dele
 
 ##Edit Dish
 
-![Page EditDish](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DishAdmin.PNG)
+![Page EditDish](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/EditDish.PNG)
 In this page, the admin can access to edit a dish. Here, the admin can also delete a dish and he or she will be redirectioned to the DeletedDish page.
 
 
@@ -208,7 +208,7 @@ This is our Data base Entity diagram:
 
 This is our Classes and Templates Diagram:
 
-![ClassesDiagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/ClassesandTemplatesDiagram.png)
+![ClassesDiagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/ClassandTemplatesDiagram.png)
 
 ### Member Participation
 
