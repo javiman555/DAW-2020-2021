@@ -68,41 +68,41 @@ In this page, all users will be able to see the team information (photos and des
 
 ##Menu for unregistered users:
 
-![Page Menu1](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuUnregisteredUser.PNG)
+![Page Menu1](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuUnregisteredUser.png)
 
 ##Menu for normal users:
 
-![Page Menu2](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuNormalUser.PNG)
+![Page Menu2](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuNormalUser.png)
 
 ##Menu for admin:
 
-![Page Menu3](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuAdmin.PNG)
+![Page Menu3](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuAdmin.png)
 
 In this page all users will be able to see the variety of the restaurant's menu separated in the type of meal (breakfast, lunch, dinner...). Only the registered users will be able to order the dishes that they want. The admin user will be able to press the "Añadir plato" button in order to add new dishes. The admin is not able to order any dish.
 
 #### Add Food
 
-![Page Add Food](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/AddDish.PNG)
+![Page Add Food](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/AddDish.png)
 This page is only accesible for an admin user. Here, they will be able to add new dishes to the menu of the restaurant.
 
 #### Add Ingredient
 
-![Page Add Ingredient](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/AddIngredient.PNG)
+![Page Add Ingredient](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/AddIngredient.png)
 This page is only accesible for an admin user. Here, they will be able to add new ingredients with its allergens.
 
 #### Contact
 
-![Page Contact](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/contacto.PNG)
+![Page Contact](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/contacto.png)
 In this page all the users will be able to see the restaurant's contact information (location, phone number and email). Also, there is a map of the location inserted in this page.
 
 #### EditProfile
 
-![Page EditProfile](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/EditProfile.PNG)
+![Page EditProfile](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/EditProfile.png)
 In this page a registered user can change their information, see our recommendations and see a record of all their previous bills. If the user is an admin they can still change their information but instead of the recommendations they see a graph of purchases. This page is not accessible fot the anonymous user.
 
 #### RecomendedDishes
 
-![Page RecomendedDishes](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/RecomendedDishes.PNG)
+![Page RecomendedDishes](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/RecomendedDishes.png)
 In this page a registered user can see our recommendations of other dishes in order the dishes he or she had ordered in the past. Only registered users can access to this page (no admin). This page is not accessible fot the anonymous user.
 
 #### EditProfile
@@ -117,17 +117,17 @@ In this page we can create a new account or sign in with our account. This is th
 
 #### Cart
 
-![Page Cart](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Cart.PNG)
+![Page Cart](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Cart.png)
 This page is a summary of the user order and its cost. It is only accessible to registered users. From here the user can add to the page pay.
 
 #### Payment
 
-![Page Payment](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Pay.PNG)
+![Page Payment](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Pay.png)
 In this page, the user puts his or her personal data to finish our order. This page is only accessible from the cart to registered users.
 
 #### Payment
 
-![Page ProcessPay](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/ProcessPay.PNG)
+![Page ProcessPay](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/ProcessPay.png)
 In this page, the registered user will see that he or she has done the payments correctly. He will be able to be redirected to the principal page.
 
 
@@ -143,12 +143,12 @@ This is the footer of the web page. It will appear in all pages. It contains a s
 
 ##Dish Normal
 
-![Page DishNormal](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DishNormal.PNG)
+![Page DishNormal](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DishNormal.png)
 In this page, the user can see the dish that he wants. Unregistered and normal users can access to this page (no admin).
 
 ##Dish Admin
 
-![Page DishAdmin](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DishAdmin.PNG)
+![Page DishAdmin](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DishAdmin.png)
 In this page, the admin can access to edit a dish. Here, the admin can also delete a dish and he or she will be redirectioned to the DeletedDish page.
 
 ##Edit Dish
@@ -159,12 +159,12 @@ In this page, the admin can access to edit a dish. Here, the admin can also dele
 
 ##Deleted Dish
 
-![Page DeletedDish](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DeletedDish.PNG)
+![Page DeletedDish](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DeletedDish.png)
 In this page, the admin can see that he has deleted a dish correctly. He will be able to be redirectioned to the menu page.
 
 #### Error
 
-![Page Error](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Error.PNG)
+![Page Error](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/Error.png)
 This is our error page. If the user access to a forbbiden page, this page will appear and he will be able to be redirected to the principal page.
 
 
@@ -202,13 +202,13 @@ We have put in the databa several ingredients, dishes with those ingredients and
 
 This is our Data base Entity diagram:
 
-![DataBaseDiagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/EntityDiagram.PNG)
+![DataBaseDiagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/EntityDiagram.jpeg)
 
 ### Clases and templates Diagram
 
 This is our Classes and Templates Diagram:
 
-![ClassesDiagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/ClassesandTemplatesDiagram.PNG)
+![ClassesDiagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/ClassesandTemplatesDiagram.png)
 
 ### Member Participation
 
