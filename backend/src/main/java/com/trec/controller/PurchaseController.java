@@ -3,12 +3,9 @@ package com.trec.controller;
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,13 +14,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 
 import com.trec.model.Dish;
 import com.trec.model.User;
@@ -116,19 +106,10 @@ public class PurchaseController extends DefaultModeAttributes{
 			
 			return "profile";
 		} else {
-			return "404";
+			return "error";
 		}
 	}
-	
-//	@GetMapping("/purchases")
-//	public Page<Purchase> getPurchases(@RequestParam(required = false) User user, Pageable page, int numPageRequested) {
-//
-//		if (user.getRoles().contains("ADMIN")) {
-//			return purchaseService.findAll(page);
-//		} else {
-//			return purchaseService.getByUser(user, numPageRequested);
-//		}
-//	}
+
 	@GetMapping("/purchase/{id}")
 	public String showPurchase(Model model, @PathVariable long id, HttpServletRequest request) {
 		
@@ -143,7 +124,7 @@ public class PurchaseController extends DefaultModeAttributes{
 		
 			return "purchase";
 		}else {
-			return "404";
+			return "error";
 		}
 	
 	}
