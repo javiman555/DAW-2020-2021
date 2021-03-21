@@ -66,15 +66,15 @@ In this page, all users will be able to see the team information (photos and des
 
 #### Menu
 
-##Menu for unregistered users:
+##### Menu for unregistered users:
 
 ![Page Menu1](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuUnregisteredUser.png)
 
-##Menu for normal users:
+##### Menu for normal users:
 
 ![Page Menu2](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuNormalUser.png)
 
-##Menu for admin:
+##### Menu for admin:
 
 ![Page Menu3](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/MenuAdmin.png)
 
@@ -141,23 +141,23 @@ This is the footer of the web page. It will appear in all pages. It contains a s
 
 #### Dishes
 
-##Dish Normal
+##### Dish Normal
 
 ![Page DishNormal](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DishNormal.png)
 In this page, the user can see the dish that he wants. Unregistered and normal users can access to this page (no admin).
 
-##Dish Admin
+##### Dish Admin
 
 ![Page DishAdmin](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DishAdmin.png)
 In this page, the admin can access to edit a dish. Here, the admin can also delete a dish and he or she will be redirectioned to the DeletedDish page.
 
-##Edit Dish
+##### Edit Dish
 
 ![Page EditDish](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/EditDish.PNG)
 In this page, the admin can access to edit a dish. Here, the admin can also delete a dish and he or she will be redirectioned to the DeletedDish page.
 
 
-##Deleted Dish
+##### Deleted Dish
 
 ![Page DeletedDish](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DeletedDish.png)
 In this page, the admin can see that he has deleted a dish correctly. He will be able to be redirectioned to the menu page.
@@ -170,7 +170,7 @@ This is our error page. If the user access to a forbbiden page, this page will a
 
 #### Diagram
 
-![Diagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/diagrama.PNG)
+![Diagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/NavigationDiagram.png)
 In this diagram we can see the interactions between each page. The blue arrows represents the conexions of the front of the web, the green arrows connect functions of the registered user and the red arrow represents the options that only the admin can do.
 
 ## Phase 2
@@ -198,6 +198,49 @@ We have put in the databa several ingredients, dishes with those ingredients and
 
 ### Execution Instructions
 
+Execution instructions:
+#### Extract the app from github:
+- Go to https://github.com/CodeURJC-DAW-2020-21/webapp10
+- Click the green button "Code"
+- Click in dowload zip and extract it wherever you want
+
+#### Instal Spring Tool Suite 4:
+- Go to https://spring.io/tools
+- Download the 4.10.0 version for your operating system
+- Start the instalation and follow the steps that the instalator shows
+- Now you have STS4
+
+#### Instal SQL Workbench:
+
+- Go to https://dev.mysql.com/downloads/installer/
+- Download the 8.8.23 version for yout operating system
+- Start the instalation and follow the default steps that the instalator shows
+- Now you have SQL Workbench
+
+#### Create the database:
+With the SQL Workbench instalated you will need to open it and create a Workbench instance in the port 3306.
+There you will need to create a new schema with the name trec.
+
+#### Dependencies:
+
+You will need:
+- java version 11
+- spring-boot-starter-mustache
+- spring-boot-starter-web
+- spring-boot-starter-test
+- spring-boot-starter-data-jpa
+- spring-boot-devtools
+- mysql-connector-java
+- spring-boot-starter-securit
+- spring-boot-maven-plugin
+All these dependeces are in the file pom.xml
+
+#### To execute:
+- Open the file you extracted from github form STS4
+- Run the aplication as Spring Boot App
+- Go to any web browser and put this URL: https://localhost:8443
+- Enjoy
+
 ### DataBase Entity Diagram
 
 This is our Data base Entity diagram:
@@ -212,4 +255,44 @@ This is our Classes and Templates Diagram:
 
 ### Member Participation
 
+#### Azahara Andújar
+- Security.
+- Data Base: images in profile and edit profile.
+- Edit dish.
+- Bug fixes.
+- Readme.
+#### David Mestanza
+- Pagination in purchases (API REST and AJAX).
+- PDF funcionality.
+- Bug fixes.
+- HTML design.
+- Create logo.
+#### Javier Brioles
+- Conect most entitis to the database
+- Implement the Image to the entity dish
+- Abilitate the interacions with the cart
+- Make all proccess of payment
+- Complex access to the database
+#### David Herrera
+- Create admin graphic chart on the profile page
+- Create 404 error page
+- Update register & profile templates
+
+#### Commits
+| Azahara                                                                                                                                                | D. Mestanza                                                                                                                                     | Javier                                                                                                                                          | D. Herrera                                                                                                               |
+|--------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------|
+| [Entities created](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/20c0a7a6a9008b5b3af5460be855389c67313108)                                   | [Pagination Completed](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/b807c89830a03ad46d5a66941ce9b28af4fe6cf0)                        | [Dishes conected to the database](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/9efe6e15004897c122243dc2cbb9e10ee7719e2e)             | [update profile chart](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/908d83539819ca8e0503bec678acd2713e941127) |
+| [Some styles of html changes and loginerror updated](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/e6e9f9b0df3aef4b4a4d19d3575c4b3966e5d027) | [PDF Funcionality finished](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/c39560c9203d13920bd75b857e98389b1d0ab1b1)                   | [Security and Images of dishes](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/9efe6e15004897c122243dc2cbb9e1)                         | [update templates](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/1867819d9a572495cc9570a9a1d721a8ae430bfc)     |
+| [Security things modified](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/95c16cf22576b490e67717a07a1aeedd649071da)                           | [Print purchase PDF](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/301bc4f862e135ad4a7e13af7b15dcf806f20f68)                          | [Cart now has the dishes that the user chose](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/67b73cfd6e2ca0627dc95d59cac9a081b6ee9df6) | [create 404.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/77e6e9f488e975c7c379e5eb6d75689caba99b92)      |
+| [Edit profile now works](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/6827e3932a22a43094480b9d61de81268ca08581)                             | [Created page to show purchases](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/53492f5b6fd6fcae38054371c0f671537e65ea2a)              | [Recomended Dishes 3.0](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/a0817c664680b7ec83ed1aff232d96fa2667c9f2)                       | ---                                                                                                                      |
+| [Security finished and fixes in editdish](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/693e4c87532bf5e9780e67218c9beccf32fb458e)            | [Many changes in Maven server and bugs fixed](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/fe98f319ec8b1763061d0d9091dedbb62133c935) | [Fixed access to the database](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/883b172c3015b807680bc2f85bd46b7d6e317d77)                | ---                                                                                                                      |
+
+#### Files
+| Azahara                                                                                                                                                 | D. Mestanza                                                                                                                                                       | Javier                                                                                                                                                      | D. Herrera                                                                                                                     |
+|---------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------|
+| [LoginWebController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/LoginWebController.java) | [PurchaseRestController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/java/com/trec/rest/controller/PurchaseRestController.java) | [DishRepository.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/repository/DishRepository.java)             | [error.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/resources/templates/error.html)       |
+| [WebSecurityConfig.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/security/WebSecurityConfig.java)     | [topdf.js](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/resources/static/js/topdf.js)                                                 | [DishControler.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/DishController.java)              | [profile.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/resources/templates/profile.html)   |
+| [profile.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/resources/templates/profile.html)                            | [purchase.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/resources/templates/purchase.html)                                       | [PurchaseController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/PurchaseController.java)     | [register.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/resources/templates/register.html) |
+| [PurchaseController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/PurchaseController.java) | [profile.js](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/resources/static/js/profile.js)                                             | [IngredientController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/IngredientController.java) | ---                                                                                                                            |
+| [README.md](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/README.md)                                                                       | [profile.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/resources/templates/profile.html)                                         | [LoginWebController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/LoginWebController.java)     | ---                                                                                                                            |
 
