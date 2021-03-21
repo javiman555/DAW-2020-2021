@@ -1,13 +1,9 @@
 package com.trec.controller;
 
 import java.io.IOException;
-import java.security.Principal;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +15,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.trec.model.Dish;
-import com.trec.model.Ingredient;
 import com.trec.model.User;
-import com.trec.service.DishService;
 import com.trec.service.UserService;
 
 @Controller
-public class LoginWebController {
+public class LoginWebController extends DefaultModeAttributes{
 	
 	@Autowired
 	private UserService userService;
@@ -56,6 +47,15 @@ public class LoginWebController {
 	
 	@RequestMapping("/logout")
 	public String logout(Model model) {
+		
+		model.addAttribute("loginerror", false);
+		model.addAttribute("registererror", false);
+		
+		return "register";
+	}
+	
+	@GetMapping("/newuser")
+	public String newUser(Model model) {
 		
 		model.addAttribute("loginerror", false);
 		model.addAttribute("registererror", false);
@@ -88,7 +88,7 @@ public class LoginWebController {
 
 		model.addAttribute("registererror", false);
 
-		return "register";
+		return "/newuser";
 	}
 	
 	@PostMapping("/edituser")
