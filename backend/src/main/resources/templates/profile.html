@@ -206,13 +206,13 @@
 					var config = {
 					type: 'line',
 					data: {
-						labels: [{{#graficpurchases}}{{id}},{{/graficpurchases}}],
+						labels: [{{#graficid}}{{.}},{{/graficid}}],
 						datasets: [{
 							label: 'Precio por pedido',
 							backgroundColor: window.chartColors.red,
 							borderColor: window.chartColors.red,
 							data: [
-								{{#graficpurchases}}{{price}},{{/graficpurchases}}
+								{{#graficprice}}{{.}},{{/graficprice}}
 							],
 							fill: false,
 						}]
