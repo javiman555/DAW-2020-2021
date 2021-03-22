@@ -88,7 +88,7 @@ public class LoginWebController extends DefaultModeAttributes{
 
 		model.addAttribute("registererror", false);
 
-		return "/newuser";
+		return "register";
 	}
 	
 	@PostMapping("/edituser")

@@ -12,19 +12,19 @@ public interface DishRepository extends JpaRepository<Dish, Long> {
 	 @Query("SELECT d FROM Dish d WHERE d.category = :c")
 	 public List<Dish> getByCategory(String c);
 	 
-	 //Top 3 de platos que tolera mas populares
+	 //Top 3 of dishes that the user tolerates and are more popular
 	 @Query(value ="SELECT * "
 	 		+ "FROM trec.dish AS d "
 	 		+ "WHERE d.id not in "
-	 		//Lista de id de platos que no sabemos si tolera
+	 		//List of dish ids that we know the user tolerates
 	 		+ "(SELECT  DISTINCT di.dish_id "
 	 		+ "FROM trec.dish_ing AS di "
 	 		+ "WHERE di.ing_id in "
-	 		//Lista de ingredientes que no sabemos si tolera
+	 		//List of ingredients that we know the user tolerates
 	 		+ "(SELECT  DISTINCT trec.ingredient.id "
 	 		+ "FROM trec.ingredient "
 	 		+ "WHERE trec.ingredient.name_allergen IS NOT NULL AND trec.ingredient.name_allergen NOT in  "
-	 		//Lista de alergenos que el usuario tolera
+	 		//List of allergens that the user tolerates
 	 		+ "(SELECT DISTINCT name_allergen "
 	 		+ "FROM (SELECT * FROM trec.user WHERE id = :iduser) AS u "
 	 		+ "JOIN trec.purchase AS p ON u.id = p.user_id "

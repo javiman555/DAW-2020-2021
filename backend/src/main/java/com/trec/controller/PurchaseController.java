@@ -86,7 +86,6 @@ public class PurchaseController extends DefaultModeAttributes{
 		
 		if (userReal.get().getId() == user.get().getId()) {
 			
-			//Hay que comprobar que el usuario es admin o no porque si no como el front-end es tonto, se lo estamos pasando todo y aunque no lo muestre, ahí está.
 			
 			model.addAttribute("purchases", purchaseService.getByUser(user.get(), 0));
 			model.addAttribute("adminpurchases", purchaseService.findAll(0));
