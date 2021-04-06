@@ -86,18 +86,16 @@ public class PurchaseController extends DefaultModeAttributes{
 		
 		if (userReal.get().getId() == user.get().getId()) {
 			
-			
-			model.addAttribute("purchases", purchaseService.getByUser(user.get(), 0));
-			model.addAttribute("adminpurchases", purchaseService.findAll(0));
-			
-			model.addAttribute("graficid", purchaseService.findIdAll());
-			model.addAttribute("graficprice", purchaseService.findPriceAll());
-			
-			model.addAttribute("isempty", purchaseService.getByUser(user.get(), 0).isEmpty());
-			model.addAttribute("isadminempty", purchaseService.findAll(0).isEmpty());
-			
-
-			model.addAttribute("dishesRecomended", dishService.getRecomended(user.get().getId()));
+			if(userReal.get().getRoles().contains("ADMIN")){
+				model.addAttribute("adminpurchases", purchaseService.findAll(0));
+				model.addAttribute("graficid", purchaseService.findIdAll());
+				model.addAttribute("graficprice", purchaseService.findPriceAll());
+				model.addAttribute("isadminempty", purchaseService.findAll(0).isEmpty());			
+			} else {
+				model.addAttribute("purchases", purchaseService.getByUser(user.get(), 0));
+				model.addAttribute("isempty", purchaseService.getByUser(user.get(), 0).isEmpty());
+				model.addAttribute("dishesRecomended", dishService.getRecomended(user.get().getId()));
+			}
 
 			model.addAttribute("user", user.get());
 			
@@ -153,34 +151,32 @@ public class PurchaseController extends DefaultModeAttributes{
 		User userReal = userService.findByName(userNameReal).get();
 		Purchase newPurchase = userReal.getNewPurchase();
 
-		if (purchase.getFirstName().equals(userReal.getFirstName()) && purchase.getSurname().equals(userReal.getSurname())) {
-			newPurchase.setFirstName(purchase.getFirstName());
-			newPurchase.setSurname(purchase.getSurname());
-			newPurchase.setAddress(purchase.getAddress());
-			newPurchase.setPostalCode(purchase.getPostalCode());
-			newPurchase.setCity(purchase.getCity());
-			newPurchase.setCountry(purchase.getCountry());
-			newPurchase.setPhoneNumber(purchase.getPhoneNumber());
-			Calendar c = Calendar.getInstance();
-			newPurchase.setDateDay(c.get(Calendar.DATE));
-			newPurchase.setDateMonth(c.get(Calendar.MONTH));
-			newPurchase.setDateYear(c.get(Calendar.YEAR));
-			newPurchase.setUser(userReal);
-			
-			for (Dish dish : newPurchase.getDishes()) {
-				dish.setNbuy(dish.getNbuy()+1);
-				dishService.save(dish);
-			}
-			
-			purchaseService.save(newPurchase);
-			userReal.setNewPurchase(null);
-			userReal.getPurchases().add(newPurchase);
-			userService.save(userReal);
-			
-		}else {
-			return "error";}
-		return "/paydone";
+		newPurchase.setFirstName(purchase.getFirstName());
+		newPurchase.setSurname(purchase.getSurname());
+		newPurchase.setAddress(purchase.getAddress());
+		newPurchase.setPostalCode(purchase.getPostalCode());
+		newPurchase.setCity(purchase.getCity());
+		newPurchase.setCountry(purchase.getCountry());
+		newPurchase.setPhoneNumber(purchase.getPhoneNumber());
+		Calendar c = Calendar.getInstance();
+		newPurchase.setDateDay(c.get(Calendar.DATE));
+		newPurchase.setDateMonth(c.get(Calendar.MONTH));
+		newPurchase.setDateYear(c.get(Calendar.YEAR));
+		newPurchase.setUser(userReal);
+		
+		for (Dish dish : newPurchase.getDishes()) {
+			dish.setNbuy(dish.getNbuy()+1);
+			dishService.save(dish);
 		}
+		
+		purchaseService.save(newPurchase);
+		userReal.setNewPurchase(null);
+		userReal.getPurchases().add(newPurchase);
+		userService.save(userReal);
+		
+		return "/paydone";
+	}
+	
 	public String showPurchase(Model model, @PathVariable long id) {
 		
 		model.addAttribute("purchase", purchaseService.findById(id).get());

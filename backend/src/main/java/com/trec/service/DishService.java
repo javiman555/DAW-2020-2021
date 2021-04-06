@@ -31,7 +31,7 @@ public class DishService {
 		dishRepository.save(book);
 	}
 
-	public void delete(long id) {
+	public void deleteById(long id) {
 		dishRepository.deleteById(id);
 	}
 	

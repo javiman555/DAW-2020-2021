@@ -12,13 +12,13 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.DynamicUpdate;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "User")
@@ -38,17 +38,19 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	private String firstName;	
-	private String surname;	
-	private String email;	
+	private String firstName;
+	private String surname;
+	private String email;
 	private int phoneNumber;
 
+	@JsonIgnore
 	@Lob
 	private Blob imageFile;
 	private boolean image;
 	
 	private String name;
 
+	@JsonIgnore
 	private String encodedPassword;
 
 	@ElementCollection(fetch = FetchType.EAGER)
@@ -57,6 +59,7 @@ public class User {
 	private Purchase newPurchase;
 	@OneToMany
 	private List<Purchase> purchases;
+		
 	
 	public User() {
 	}

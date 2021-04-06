@@ -1,9 +1,10 @@
 package com.trec.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "Purchase")
@@ -33,6 +34,7 @@ public class Purchase {
 			   inverseJoinColumns=@JoinColumn(name="Dish_id", referencedColumnName="id"))
 	private List<Dish> dishes;
 	
+	@JsonIgnore
 	@ManyToOne
 	@JoinColumn(name="User_id", nullable=true)
 	private User user;
