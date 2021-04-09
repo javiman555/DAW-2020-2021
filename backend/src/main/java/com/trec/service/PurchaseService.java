@@ -43,6 +43,10 @@ public class PurchaseService {
 		return purchaseRepository.getByUser(user, PageRequest.of(n, 5));
 	}
 	
+	public List<Purchase> findAll() {
+		return purchaseRepository.findAll();
+	}
+	
 	 public Page<Purchase> findAll(int n){
 		 return purchaseRepository.findAll(PageRequest.of(n, 5));
 	 }

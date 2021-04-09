@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.trec.model.Dish;
 import com.trec.model.Ingredient;
+import com.trec.model.Purchase;
+import com.trec.service.PurchaseService;
 import com.trec.service.DishService;
 import com.trec.service.IngredientService;
 
@@ -31,6 +33,8 @@ public class DishController extends DefaultModeAttributes{
 
 	@Autowired
 	private DishService dishService;
+	@Autowired
+	private PurchaseService purchaseService;
 	@Autowired
 	private IngredientService ingredientService;
 
@@ -78,6 +82,33 @@ public class DishController extends DefaultModeAttributes{
 
 		Optional<Dish> dish = dishService.findById(id);
 		if (dish.isPresent()) {
+			List<Purchase> purchases = purchaseService.findAll();
+			List<Dish> dishes = null;
+			Dish dishon = null;
+			int dishIs;
+			for (Purchase purchase : purchases) {
+				dishIs = 0;
+				dishes = purchase.getDishes();
+				for (Dish d : dishes) {
+					
+					if (d.getId().equals(id)) {
+						dishon = d;
+						dishIs = dishIs+1;
+					}
+
+					
+				}
+				
+				if (dishIs > 0) {
+					while(dishIs > 0) {
+						dishes.remove(dishon);
+						dishIs = dishIs -1;
+					}
+					
+					purchase.setDishes(dishes);
+					purchaseService.save(purchase);
+				}
+			}
 			dishService.deleteById(id);
 			model.addAttribute("dish", dish.get());
 		}
