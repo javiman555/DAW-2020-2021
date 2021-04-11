@@ -1,6 +1,7 @@
 package com.trec.rest.controller;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
@@ -27,20 +28,25 @@ import com.trec.model.Ingredient;
 import com.trec.service.DishService;
 import com.trec.service.IngredientService;
 
+//import es.codeurjc.board.Post;
+
+import com.trec.service.ImageService;
+
 import org.hibernate.engine.jdbc.BlobProxy;
-import org.springframework.core.io.InputStreamResource;
-import org.springframework.core.io.Resource;
-import org.springframework.http.HttpHeaders;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
 @RequestMapping("/api/dishes")
 public class DishRestController extends DefaultModeAttributes{
 
+	private static final String POSTS_FOLDER = "posts";
+	
 	@Autowired
 	private DishService dishService;
 	@Autowired
 	private IngredientService ingredientService;
+	@Autowired
+	private ImageService imgService;
 
 	@GetMapping("/")
 	public ResponseEntity<List<Dish>> showDishes() {
@@ -72,6 +78,16 @@ public class DishRestController extends DefaultModeAttributes{
 		}
 	}
 
+//	@PostMapping("/")
+//	public ResponseEntity<Dish> createPost(@RequestBody Post post) {
+//
+//		posts.save(post);
+//
+//		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
+//
+//		return ResponseEntity.created(location).body(post);
+//	}
+	
 	@PostMapping("/")
 	public ResponseEntity<Dish> newDishProcess(@RequestBody Dish dish, @RequestParam List<String> lista, MultipartFile imageField) throws IOException {
 
@@ -117,40 +133,70 @@ public class DishRestController extends DefaultModeAttributes{
 		return ResponseEntity.ok(dish);
 	}
 
-	@GetMapping("/image/{id}")
-	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws SQLException {
+	private void updateImage(Dish dish, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
+			
+			if (!imageField.isEmpty()) {
+				dish.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
+				dish.setImage(true);
+			} else {
+				if (removeImage) {
+					dish.setImageFile(null);
+					dish.setImage(false);
+				} else {
+					// Maintain the same image loading it before updating the dish
+					Dish dbDish = dishService.findById(dish.getId()).orElseThrow();
+					if (dbDish.hasImage()) {
+						dish.setImageFile(BlobProxy.generateProxy(dbDish.getImageFile().getBinaryStream(),
+								dbDish.getImageFile().length()));
+						dish.setImage(true);
+					}
+				}
+			}
+		}
+	
+	@PostMapping("/{id}/image")
+	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
 
-		Optional<Dish> dish = dishService.findById(id);
-		if (dish.isPresent() && dish.get().getImageFile() != null) {
+		Dish dish = dishService.findById(id).get();
 
-			Resource file = new InputStreamResource(dish.get().getImageFile().getBinaryStream());
+		if (dish != null) {
 
-			return ResponseEntity.ok().header(HttpHeaders.CONTENT_TYPE, "image/jpeg")
-					.contentLength(dish.get().getImageFile().length()).body(file);
+			URI location = fromCurrentRequest().build().toUri();
+
+			dish.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+			dishService.save(dish);
+
+			imgService.saveImage(POSTS_FOLDER, dish.getId(), imageFile);
+
+			return ResponseEntity.created(location).build();
 
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
 	
-	private void updateImage(Dish dish, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
+	@GetMapping("/{id}/image")
+	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws MalformedURLException {
 		
-		if (!imageField.isEmpty()) {
-			dish.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			dish.setImage(true);
+		return this.imgService.createResponseFromImage(POSTS_FOLDER, id);
+	}
+	
+	@DeleteMapping("/{id}/image")
+	public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException {
+
+		Dish dish = dishService.findById(id).get();
+		
+		if(dish != null) {
+			
+			dish.setImageFile(null);
+			dishService.save(dish);
+			
+			this.imgService.deleteImage(POSTS_FOLDER, id);
+			
+			return ResponseEntity.noContent().build();
+			
 		} else {
-			if (removeImage) {
-				dish.setImageFile(null);
-				dish.setImage(false);
-			} else {
-				// Maintain the same image loading it before updating the dish
-				Dish dbDish = dishService.findById(dish.getId()).orElseThrow();
-				if (dbDish.hasImage()) {
-					dish.setImageFile(BlobProxy.generateProxy(dbDish.getImageFile().getBinaryStream(),
-							dbDish.getImageFile().length()));
-					dish.setImage(true);
-				}
-			}
-		}
+			return ResponseEntity.notFound().build();
+		}		
 	}
 }

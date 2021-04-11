@@ -1,4 +1,4 @@
-package com.trec.rest.controller;
+package com.trec.controller.auth;
 
 import javax.servlet.http.HttpServletRequest;
 

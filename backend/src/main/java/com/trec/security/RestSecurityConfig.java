@@ -1,4 +1,4 @@
-package com.trec.rest.security;
+package com.trec.security;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
