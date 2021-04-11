@@ -2,10 +2,7 @@ package com.trec.rest.controller;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
 
-import java.io.IOException;
 import java.net.URI;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +22,7 @@ import com.trec.service.IngredientService;
 
 
 @RestController
-@RequestMapping("/api/ingredient")
+@RequestMapping("/api/ingredients")
 public class IngredientRestController{
 
 	@Autowired
