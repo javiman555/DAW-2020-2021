@@ -5,7 +5,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.sql.SQLException;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Optional;
 
 import static org.springframework.web.servlet.support.ServletUriComponentsBuilder.fromCurrentRequest;
@@ -24,9 +23,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.trec.controller.DefaultModeAttributes;
 import com.trec.model.Dish;
-import com.trec.model.Ingredient;
+import com.trec.model.Purchase;
 import com.trec.service.DishService;
-import com.trec.service.IngredientService;
+import com.trec.service.PurchaseService;
 
 //import es.codeurjc.board.Post;
 
@@ -44,7 +43,7 @@ public class DishRestController extends DefaultModeAttributes{
 	@Autowired
 	private DishService dishService;
 	@Autowired
-	private IngredientService ingredientService;
+	private PurchaseService purchaseService;
 	@Autowired
 	private ImageService imgService;
 
@@ -64,15 +63,41 @@ public class DishRestController extends DefaultModeAttributes{
 			return ResponseEntity.notFound().build();
 		}
 	}
-
+	
 	@DeleteMapping("/{id}")
 	public ResponseEntity<Dish> removeDish(@PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
 		
 		if (dish.isPresent()) {
+			List<Purchase> purchases = purchaseService.findAll();
+			List<Dish> dishes = null;
+			Dish dishon = null;
+			int dishIs;
+			for (Purchase purchase : purchases) {
+				dishIs = 0;
+				dishes = purchase.getDishes();
+				for (Dish d : dishes) {
+					
+					if (d.getId().equals(id)) {
+						dishon = d;
+						dishIs = dishIs+1;
+					}	
+				}
+				
+				if (dishIs > 0) {
+					while(dishIs > 0) {
+						dishes.remove(dishon);
+						dishIs = dishIs -1;
+					}
+					
+					purchase.setDishes(dishes);
+					purchaseService.save(purchase);
+				}
+			}
 			dishService.deleteById(id);
 			return ResponseEntity.ok(dish.get());
+			
 		} else {
 			return ResponseEntity.notFound().build();
 		}
@@ -89,21 +114,9 @@ public class DishRestController extends DefaultModeAttributes{
 //	}
 	
 	@PostMapping("/")
-	public ResponseEntity<Dish> newDishProcess(@RequestBody Dish dish, @RequestParam List<String> lista, MultipartFile imageField) throws IOException {
+	public ResponseEntity<Dish> newDishProcess(@RequestBody Dish dish)  {
 
-		if (!imageField.isEmpty()) {
-			dish.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-			dish.setImage(true);
-		}
-
-		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-		for(int i = 0; i < lista.size(); i++) {
-		int idi = Integer.parseInt(lista.get(i));
-		Ingredient ingredient=ingredientService.findById(idi).get();
-		ingredients.add(ingredient);
-		}
-		
-		dish.setIngredients(ingredients);
+		dish.setImage(false);
 		
 		dishService.save(dish);
 		
@@ -114,48 +127,16 @@ public class DishRestController extends DefaultModeAttributes{
 	}
 
 	@PutMapping("/{id}")
-	public ResponseEntity<Dish> replaceDish(@RequestBody Dish dish, @RequestParam List<String> lista, boolean removeImage, MultipartFile imageField)
+	public ResponseEntity<Dish> replaceDish(@RequestBody Dish dish)
 			throws IOException, SQLException {
-
-		updateImage(dish, removeImage, imageField);
-		
-		List<Ingredient> ingredients = new ArrayList<Ingredient>();
-		for(int i = 0; i < lista.size(); i++) {
-			int idi = Integer.parseInt(lista.get(i));
-			Ingredient ingredient=ingredientService.findById(idi).get();
-			ingredients.add(ingredient);
-		}
-
-		dish.setIngredients(ingredients);
 		
 		dishService.save(dish);
 
 		return ResponseEntity.ok(dish);
 	}
-
-	private void updateImage(Dish dish, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
-			
-			if (!imageField.isEmpty()) {
-				dish.setImageFile(BlobProxy.generateProxy(imageField.getInputStream(), imageField.getSize()));
-				dish.setImage(true);
-			} else {
-				if (removeImage) {
-					dish.setImageFile(null);
-					dish.setImage(false);
-				} else {
-					// Maintain the same image loading it before updating the dish
-					Dish dbDish = dishService.findById(dish.getId()).orElseThrow();
-					if (dbDish.hasImage()) {
-						dish.setImageFile(BlobProxy.generateProxy(dbDish.getImageFile().getBinaryStream(),
-								dbDish.getImageFile().length()));
-						dish.setImage(true);
-					}
-				}
-			}
-		}
 	
 	@PostMapping("/{id}/image")
-	public ResponseEntity<Object> uploadImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
+	public ResponseEntity<Object> uploadDishImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
 
 		Dish dish = dishService.findById(id).get();
 
