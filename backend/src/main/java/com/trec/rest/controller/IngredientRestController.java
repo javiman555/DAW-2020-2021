@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trec.model.Dish;
 import com.trec.model.Ingredient;
+import com.trec.service.DishService;
 import com.trec.service.IngredientService;
 
 
@@ -27,6 +29,8 @@ public class IngredientRestController{
 
 	@Autowired
 	private IngredientService ingredientService;
+	@Autowired
+	private DishService dishService;
 	
 	
 	@GetMapping("/")//show all ingredients
@@ -46,20 +50,35 @@ public class IngredientRestController{
 		}
 	}
 	
-	/*
-	@DeleteMapping("/{id}")//delete a ingredient
+
+	@DeleteMapping("/{id}")//delete an ingredient
 	public ResponseEntity<Ingredient> removeIngredient(@PathVariable long id) {
 
 		Optional<Ingredient> ingredient = ingredientService.findById(id);
 		
 		if (ingredient.isPresent()) {
+			
+			List<Dish> dishes = dishService.findAll();
+			
+			for(Dish dish : dishes) {
+				boolean ingredientIs = false;
+				for (Ingredient i : dish.getIngredients()) {
+					if(i.equals(ingredient.get())) {
+						ingredientIs = true;
+					}
+				}
+				if(ingredientIs) {
+					dish.getIngredients().remove(ingredient.get());
+				}
+			}
+			
 			ingredientService.delete(id);
 			return ResponseEntity.ok(ingredient.get());
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	*/
+
 	
 	@PutMapping("/{id}")//change an ingredient
 	public ResponseEntity<Ingredient> replaceIngredient(@PathVariable long id, @RequestBody Ingredient newIngredient) {

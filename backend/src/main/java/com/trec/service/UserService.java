@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.trec.model.Dish;
 import com.trec.model.User;
 import com.trec.repository.UserRepository;
 
@@ -38,6 +39,23 @@ public class UserService {
 		return userRepository.findByName(name);
 	}
 	
-	//Falta método para comprobar si es administrador o no el usuario
-	
+	public User updateUser(User olduser,User changeduser) {
+		
+		User newuser = olduser;
+		
+		if(changeduser.getFirstName() != olduser.getFirstName() && changeduser.getFirstName() != null) {
+			newuser.setFirstName(changeduser.getFirstName());
+		}
+		if(changeduser.getSurname() != olduser.getSurname() && changeduser.getSurname()!= null) {
+			newuser.setSurname(changeduser.getSurname());
+		}
+		if(changeduser.getEmail() != olduser.getEmail() && changeduser.getEmail()!= null) {
+			newuser.setEmail(changeduser.getEmail());
+		}
+		if(changeduser.getPhoneNumber() != olduser.getPhoneNumber() && changeduser.getPhoneNumber()!= 0) {
+			newuser.setPhoneNumber(changeduser.getPhoneNumber());
+		}
+		
+		return newuser;
+	}
 }

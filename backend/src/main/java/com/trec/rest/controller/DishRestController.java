@@ -64,7 +64,7 @@ public class DishRestController extends DefaultModeAttributes{
 		}
 	}
 	
-	@GetMapping("/tipe") // "/tipe?category=Desayuno"
+	@GetMapping("/category") // "/type?category=Desayuno"
 	public ResponseEntity<List<Dish>> showDishesByTipe(@RequestParam String category) {
 		return ResponseEntity.ok(dishService.getByCategory(category));
 	}
