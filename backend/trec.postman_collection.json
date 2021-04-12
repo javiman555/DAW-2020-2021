@@ -251,6 +251,82 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPLOAD Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": "/C:/Users/Javier/Documents/GitHub/webapp10/backend/images/posts/image-22.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/dishes/22/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"dishes",
+								"22",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DOWNLOAD Dish Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/dishes/22/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"dishes",
+								"22",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/dishes/22/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"dishes",
+								"22",
+								"image"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -675,12 +751,144 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "UPLOAD User Image",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "imageFile",
+									"type": "file",
+									"src": "/C:/Users/Javier/Documents/GitHub/webapp10/backend/src/main/resources/static/images/chef-4.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/users/18/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"18",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DOWNLOAD User Image",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/users/18/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"18",
+								"image"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE Image",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/users/18/image",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"users",
+								"18",
+								"image"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
 		{
 			"name": "Purchase",
-			"item": []
+			"item": [
+				{
+					"name": "GET Purchases Admin Pageable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/profile/purchases?numPage=2",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"purchases"
+							],
+							"query": [
+								{
+									"key": "numPage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GET Purchase User 16 Pageable",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/profile/16/purchases?numPage=1",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"profile",
+								"16",
+								"purchases"
+							],
+							"query": [
+								{
+									"key": "numPage",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
 		},
 		{
 			"name": "Security",
