@@ -47,12 +47,12 @@ public class DishRestController extends DefaultModeAttributes{
 	@Autowired
 	private ImageService imgService;
 
-	@GetMapping("/")
+	@GetMapping("/") // Show all dishes
 	public ResponseEntity<List<Dish>> showDishes() {
 		return ResponseEntity.ok(dishService.findAll());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id}") // Show a dish
 	public ResponseEntity<Dish> showDishById(@PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -64,7 +64,18 @@ public class DishRestController extends DefaultModeAttributes{
 		}
 	}
 	
-	@DeleteMapping("/{id}")
+	@GetMapping("/tipe") // "/tipe?category=Desayuno"
+	public ResponseEntity<List<Dish>> showDishesByTipe(@RequestParam String category) {
+		return ResponseEntity.ok(dishService.getByCategory(category));
+	}
+	
+	@GetMapping("/{id}/recomended")// Show recomended dishes
+	public ResponseEntity<List<Dish>> showRecomendedDishes(@PathVariable long id) {
+		return ResponseEntity.ok(dishService.getRecomended(id));
+	}
+	
+	
+	@DeleteMapping("/{id}") //Delete Dish form database and all purchases
 	public ResponseEntity<Dish> removeDish(@PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
@@ -102,18 +113,8 @@ public class DishRestController extends DefaultModeAttributes{
 			return ResponseEntity.notFound().build();
 		}
 	}
-
-//	@PostMapping("/")
-//	public ResponseEntity<Dish> createPost(@RequestBody Post post) {
-//
-//		posts.save(post);
-//
-//		URI location = fromCurrentRequest().path("/{id}").buildAndExpand(post.getId()).toUri();
-//
-//		return ResponseEntity.created(location).body(post);
-//	}
 	
-	@PostMapping("/")
+	@PostMapping("/")//Create Dish without image
 	public ResponseEntity<Dish> newDishProcess(@RequestBody Dish dish)  {
 
 		dish.setImage(false);
@@ -126,16 +127,28 @@ public class DishRestController extends DefaultModeAttributes{
 		return ResponseEntity.created(location).body(dish);
 	}
 
-	@PutMapping("/{id}")
-	public ResponseEntity<Dish> replaceDish(@RequestBody Dish dish)
+	@PutMapping("/{id}")//Change some fields from dish (not image)
+	public ResponseEntity<Dish> replaceDish(@PathVariable long id,@RequestBody Dish dish)
 			throws IOException, SQLException {
 		
-		dishService.save(dish);
+		if (dish != null) {
+			
+			Dish oldish = dishService.findById(id).get();
+			
+			Dish newdish = dishService.updateDish(oldish,dish);
+			
+			dishService.save(newdish);
 
-		return ResponseEntity.ok(dish);
+			return ResponseEntity.ok(newdish);
+
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
-	@PostMapping("/{id}/image")
+	
+	
+	@PostMapping("/{id}/image")//Change image of dish
 	public ResponseEntity<Object> uploadDishImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
 
 		Dish dish = dishService.findById(id).get();
@@ -156,13 +169,13 @@ public class DishRestController extends DefaultModeAttributes{
 		}
 	}
 	
-	@GetMapping("/{id}/image")
+	@GetMapping("/{id}/image")//show image of dish
 	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws MalformedURLException {
 		
 		return this.imgService.createResponseFromImage(POSTS_FOLDER, id);
 	}
 	
-	@DeleteMapping("/{id}/image")
+	@DeleteMapping("/{id}/image")//delete image of dish
 	public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException {
 
 		Dish dish = dishService.findById(id).get();

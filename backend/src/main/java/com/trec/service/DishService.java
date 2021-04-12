@@ -41,4 +41,24 @@ public class DishService {
 	public List<Dish> getRecomended(long id){
 		return dishRepository.getRecomended(id);
 	}
+	
+	public Dish updateDish(Dish oldish,Dish changedish) {
+		
+		Dish newdish = oldish;
+		
+		if(changedish.getName() != oldish.getName()) {
+			newdish.setName(changedish.getName());
+		}
+		if(changedish.getDishPrice() != oldish.getDishPrice()) {
+			newdish.setDishPrice(changedish.getDishPrice());
+		}
+		if(changedish.getCategory() != oldish.getCategory()) {
+			newdish.setCategory(changedish.getCategory());
+		}
+		if(changedish.getIngredients() != oldish.getIngredients() && changedish.getIngredients() != null ) {
+			newdish.setIngredients(changedish.getIngredients());
+		}
+		
+		return newdish;
+	}
 }

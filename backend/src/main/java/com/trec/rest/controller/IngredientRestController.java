@@ -29,12 +29,12 @@ public class IngredientRestController{
 	private IngredientService ingredientService;
 	
 	
-	@GetMapping("/")
+	@GetMapping("/")//show all ingredients
 	public ResponseEntity<List<Ingredient>> showIngredients() {
 		return ResponseEntity.ok(ingredientService.findAll());
 	}
 	
-	@GetMapping("/{id}")
+	@GetMapping("/{id}") //show an ingredient
 	public ResponseEntity<Ingredient> showIngredientById(@PathVariable long id) {
 
 		Optional<Ingredient> ingredient = ingredientService.findById(id);
@@ -46,7 +46,8 @@ public class IngredientRestController{
 		}
 	}
 	
-	@DeleteMapping("/{id}")
+	/*
+	@DeleteMapping("/{id}")//delete a ingredient
 	public ResponseEntity<Ingredient> removeIngredient(@PathVariable long id) {
 
 		Optional<Ingredient> ingredient = ingredientService.findById(id);
@@ -58,8 +59,9 @@ public class IngredientRestController{
 			return ResponseEntity.notFound().build();
 		}
 	}
+	*/
 	
-	@PutMapping("/{id}")
+	@PutMapping("/{id}")//change an ingredient
 	public ResponseEntity<Ingredient> replaceIngredient(@PathVariable long id, @RequestBody Ingredient newIngredient) {
 
 		Optional<Ingredient> ingredient = ingredientService.findById(id);
@@ -75,7 +77,7 @@ public class IngredientRestController{
 		}
 	}
 
-	@PostMapping("/")
+	@PostMapping("/")//create an ingredient
 	public ResponseEntity<Ingredient> newIngredientProcess(@RequestBody Ingredient ingredient){
 
 		ingredientService.save(ingredient);
