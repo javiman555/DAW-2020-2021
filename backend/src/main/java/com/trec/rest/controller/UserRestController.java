@@ -154,7 +154,7 @@ public class UserRestController {
 
 	}
 	
-	@PutMapping("/{iduser}/newPurchase/dish/{iddish}")//Add a dish to the newPurchase of the user
+	@PutMapping("/{iduser}/newPurchase/dishes/{iddish}")//Add a dish to the newPurchase of the user
 	public ResponseEntity<Purchase> addDish(@PathVariable long iduser,@PathVariable long iddish)
 			throws IOException, SQLException {
 		Optional<User> user = userService.findById(iduser);
@@ -176,11 +176,8 @@ public class UserRestController {
 			}
 		} else {
 			return ResponseEntity.notFound().build();
-		}
-		
+		}	
 	}
-	
-	
 	
 	@PostMapping("/")//Create User without image
 	public ResponseEntity<User> newUserProcess(@RequestBody User user)  {

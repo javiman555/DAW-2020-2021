@@ -69,12 +69,6 @@ public class DishRestController extends DefaultModeAttributes{
 		return ResponseEntity.ok(dishService.getByCategory(category));
 	}
 	
-	@GetMapping("/{id}/recomended")// Show recomended dishes
-	public ResponseEntity<List<Dish>> showRecomendedDishes(@PathVariable long id) {
-		return ResponseEntity.ok(dishService.getRecomended(id));
-	}
-	
-	
 	@DeleteMapping("/{id}") //Delete Dish form database and all purchases
 	public ResponseEntity<Dish> removeDish(@PathVariable long id) {
 

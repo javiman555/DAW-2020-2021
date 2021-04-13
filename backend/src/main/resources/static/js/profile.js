@@ -3,7 +3,7 @@ var currentPage = 0;
 function moreContent(id){
 	switchMoreContentButtonActivation(true)
 	currentPage = currentPage + 1;
-    $.ajax('https://localhost:8443/api/profile/' + id + '/purchases?numPage=' + currentPage,{
+    $.ajax('/notanapi/profile/' + id + '/purchases?numPage=' + currentPage,{
 		error: function(){
 			console.log('Something went wrong')
 			switchMoreContentButtonActivation(false)
@@ -25,7 +25,7 @@ function moreContent(id){
 function moreContentAdmin() {
 	switchMoreContentButtonActivation(true)
 	currentPage = currentPage + 1;
-    $.ajax('https://localhost:8443/api/profile/purchases?numPage=' + currentPage,{
+    $.ajax('/notanapi/profile/purchases?numPage=' + currentPage,{
 		error: function(){
 			console.log('Something went wrong')
 			switchMoreContentButtonActivation(false)
