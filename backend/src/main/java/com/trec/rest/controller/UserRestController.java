@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.hibernate.engine.jdbc.BlobProxy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -50,133 +51,192 @@ public class UserRestController {
 	
 	@Autowired
 	private ImageService imgService;
-
-	@GetMapping("/me")
-	public ResponseEntity<User> me(HttpServletRequest request) {
-		
-		Principal principal = request.getUserPrincipal();
-		
-		if(principal != null) {
-			return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
 	
 	@GetMapping("/") // Show all users
 	public ResponseEntity<List<User>> showUsers() {
 		return ResponseEntity.ok(userService.findAll());
 	}
 	@GetMapping("/{id}") // Show a user
-	public ResponseEntity<User> showUserById(@PathVariable long id) {
-
+	public ResponseEntity<User> showUserById(@PathVariable long id, HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
 		Optional<User> user = userService.findById(id);
 		
 		if (user.isPresent()) {
-			return ResponseEntity.ok(user.get());
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				return ResponseEntity.ok(user.get());
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
 	
 	@GetMapping("/{id}/dishes")// Show recomended dishes of the user
-	public ResponseEntity<List<Dish>> showRecomendedDishes(@PathVariable long id) {
-		return ResponseEntity.ok(dishService.getRecomended(id));
-	}
-	@GetMapping("/{id}/purchases") // Show all user purchases
-	public ResponseEntity<List<Purchase>> showDishes(@PathVariable long id) {
-		return ResponseEntity.ok(purchaseService.findAll());
-	}
-	@GetMapping("/{id}/newPurchase")// Show the current order of the user
-	public ResponseEntity<Purchase> showNewPurchase(@PathVariable long id) {
+	public ResponseEntity<List<Dish>> showRecomendedDishes(@PathVariable long id, HttpServletRequest request) {
 		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
 		Optional<User> user = userService.findById(id);
 		
 		if (user.isPresent()) {
-			Purchase newpurchase = user.get().getNewPurchase();
-			if(newpurchase != null) {
-				return ResponseEntity.ok(newpurchase);
-			}else {
-				return ResponseEntity.notFound().build();
-			}
-			
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-		
-	}
-	
-	@PostMapping("/{id}/newPurchase")//Create an empty newPurchase of the user
-	public ResponseEntity<Purchase> newPurchaseProcess(@PathVariable long id)  {
-
-		Optional<User> user = userService.findById(id);
-		
-		if (user.isPresent()) {
-			Purchase newPurchase = new Purchase();
-			user.get().setNewPurchase(newPurchase);
-			userService.save(user.get());
-			URI location = fromCurrentRequest().path("").build().toUri();
-			return ResponseEntity.created(location).body(newPurchase);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-
-	}
-	
-	@PutMapping("/{id}/newPurchase")//Move newPurchase of the user the the purchase list
-	public ResponseEntity<Purchase> newPurchaseDone(@PathVariable long id,@RequestBody Purchase dataPurchase)  {
-
-		Optional<User> user = userService.findById(id);
-		
-		if (user.isPresent()) {
-			Purchase newPurchase = user.get().getNewPurchase();
-			dataPurchase.setId(newPurchase.getId());
-			dataPurchase.setDishes(newPurchase.getDishes());
-			user.get().setNewPurchase(null);
-			user.get().getPurchases().add(dataPurchase);
-			Calendar c = Calendar.getInstance();
-			dataPurchase.setDateDay(c.get(Calendar.DATE));
-			dataPurchase.setDateMonth(c.get(Calendar.MONTH));
-			dataPurchase.setDateYear(c.get(Calendar.YEAR));
-			dataPurchase.setUser(user.get());
-			
-			for (Dish dish : dataPurchase.getDishes()) {
-				dish.setNbuy(dish.getNbuy()+1);
-				dataPurchase.setPrice(dataPurchase.getPrice()+dish.getDishPrice());
-				dishService.save(dish);
-			}
-			userService.save(user.get());
-			
-			return ResponseEntity.ok(dataPurchase);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-
-	}
-	
-	@PutMapping("/{iduser}/newPurchase/dishes/{iddish}")//Add a dish to the newPurchase of the user
-	public ResponseEntity<Purchase> addDish(@PathVariable long iduser,@PathVariable long iddish)
-			throws IOException, SQLException {
-		Optional<User> user = userService.findById(iduser);
-		
-		if (user.isPresent()) {
-			Optional<Dish> dish = dishService.findById(iddish);
-			if (dish.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
 				
-				Purchase newPurchase = user.get().getNewPurchase();
-				
-				newPurchase.getDishes().add(dish.get());
-				
-				userService.save(user.get());
-
-				return ResponseEntity.ok(newPurchase);
-
+				return ResponseEntity.ok(dishService.getRecomended(id));
 			} else {
 				return ResponseEntity.notFound().build();
 			}
 		} else {
 			return ResponseEntity.notFound().build();
-		}	
+		}
+	}
+	
+	@GetMapping("/{id}/purchases") // Show all user purchases
+	public ResponseEntity<List<Purchase>> showUserPurchases(@PathVariable long id, HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
+		
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				return ResponseEntity.ok(purchaseService.findAll());
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@GetMapping("/{id}/newPurchase")// Show the current order of the user
+	public ResponseEntity<Purchase> showNewPurchase(@PathVariable long id, HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
+		
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				Purchase newpurchase = user.get().getNewPurchase();
+				if(newpurchase != null) {
+					return ResponseEntity.ok(newpurchase);
+				}else {
+					return ResponseEntity.notFound().build();
+				}
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@PostMapping("/{id}/newPurchase")//Create an empty newPurchase of the user
+	public ResponseEntity<Purchase> newPurchaseProcess(@PathVariable long id, HttpServletRequest request)  {
+
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
+		
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				Purchase newPurchase = new Purchase();
+				user.get().setNewPurchase(newPurchase);
+				userService.save(user.get());
+				URI location = fromCurrentRequest().path("").build().toUri();
+				return ResponseEntity.created(location).body(newPurchase);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	@PutMapping("/{id}/newPurchase")//Move newPurchase of the user the the purchase list
+	public ResponseEntity<Purchase> newPurchaseDone(@PathVariable long id,@RequestBody Purchase dataPurchase, HttpServletRequest request)  {
+
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
+		
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				Purchase newPurchase = user.get().getNewPurchase();
+				dataPurchase.setId(newPurchase.getId());
+				dataPurchase.setDishes(newPurchase.getDishes());
+				user.get().setNewPurchase(null);
+				user.get().getPurchases().add(dataPurchase);
+				Calendar c = Calendar.getInstance();
+				dataPurchase.setDateDay(c.get(Calendar.DATE));
+				dataPurchase.setDateMonth(c.get(Calendar.MONTH));
+				dataPurchase.setDateYear(c.get(Calendar.YEAR));
+				dataPurchase.setUser(user.get());
+				
+				for (Dish dish : dataPurchase.getDishes()) {
+					dish.setNbuy(dish.getNbuy()+1);
+					dataPurchase.setPrice(dataPurchase.getPrice()+dish.getDishPrice());
+					dishService.save(dish);
+				}
+				userService.save(user.get());
+				
+				return ResponseEntity.ok(dataPurchase);
+				
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+		
+	
+	@PutMapping("/{iduser}/newPurchase/dishes/{iddish}")//Add a dish to the newPurchase of the user
+	public ResponseEntity<Purchase> addDish(@PathVariable long iduser,@PathVariable long iddish, HttpServletRequest request)
+			throws IOException, SQLException {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(iduser);
+		
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				Optional<Dish> dish = dishService.findById(iddish);
+				if (dish.isPresent()) {
+					
+					Purchase newPurchase = user.get().getNewPurchase();
+					
+					newPurchase.getDishes().add(dish.get());
+					
+					userService.save(user.get());
+
+					return ResponseEntity.ok(newPurchase);
+
+				} else {
+					return ResponseEntity.notFound().build();
+				}
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
 	}
 	
 	@PostMapping("/")//Create User without image
@@ -193,70 +253,124 @@ public class UserRestController {
 	}
 
 	@PutMapping("/{id}")//Change some fields from user (not image)
-	public ResponseEntity<User> replaceUser(@PathVariable long id,@RequestBody User user)
+	public ResponseEntity<User> replaceUser(@PathVariable long id,@RequestBody User user, HttpServletRequest request)
 			throws IOException, SQLException {
 		
-		if (user != null) {
-			
-			User olduser = userService.findById(id).get();
-			
-			User newuser = userService.updateUser(olduser,user);
-			
-			userService.save(newuser);
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user1 = userService.findById(id);
+		
+		if (user1.isPresent()) {
+			if (userReal.get().getId() == user1.get().getId()) {
+				
+				if (user != null) {
+					
+					User olduser = userService.findById(id).get();
+					
+					User newuser = userService.updateUser(olduser,user);
+					
+					userService.save(newuser);
 
-			return ResponseEntity.ok(newuser);
+					return ResponseEntity.ok(newuser);
 
+				} else {
+					return ResponseEntity.notFound().build();
+				}
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
-	
-	
 	
 	@PostMapping("/{id}/image")//Change image of user
-	public ResponseEntity<Object> uploadUserImage(@PathVariable long id, @RequestParam MultipartFile imageFile) throws IOException {
+	public ResponseEntity<Object> uploadUserImage(@PathVariable long id, @RequestParam MultipartFile imageFile, HttpServletRequest request) throws IOException {
 
-		User user = userService.findById(id).get();
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
+		
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				User user1 = user.get();
 
-		if (user != null) {
+				if (user1 != null) {
 
-			URI location = fromCurrentRequest().build().toUri();
+					URI location = fromCurrentRequest().build().toUri();
 
-			user.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
-			userService.save(user);
+					user1.setImageFile(BlobProxy.generateProxy(imageFile.getInputStream(), imageFile.getSize()));
+					userService.save(user1);
 
-			imgService.saveImage(POSTS_FOLDER, user.getId(), imageFile);
+					imgService.saveImage(POSTS_FOLDER, user1.getId(), imageFile);
 
-			return ResponseEntity.created(location).build();
+					return ResponseEntity.created(location).build();
 
+				} else {
+					return ResponseEntity.notFound().build();
+				}
+				
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+		
+	@GetMapping("/{id}/image")//show image of user
+	public ResponseEntity<Object> downloadImage(@PathVariable long id, HttpServletRequest request) throws MalformedURLException {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
+		
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				return this.imgService.createResponseFromImage(POSTS_FOLDER, id);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} else {
 			return ResponseEntity.notFound().build();
 		}
 	}
 	
-	@GetMapping("/{id}/image")//show image of dish
-	public ResponseEntity<Object> downloadImage(@PathVariable long id) throws MalformedURLException {
-		
-		return this.imgService.createResponseFromImage(POSTS_FOLDER, id);
-	}
-	
-	@DeleteMapping("/{id}/image")//delete image of dish
-	public ResponseEntity<Object> deleteImage(@PathVariable long id) throws IOException {
+	@DeleteMapping("/{id}/image")//delete image of user
+	public ResponseEntity<Object> deleteImage(@PathVariable long id, HttpServletRequest request) throws IOException {
 
-		User user = userService.findById(id).get();
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
 		
-		if(user != null) {
-			
-			user.setImageFile(null);
-			userService.save(user);
-			
-			this.imgService.deleteImage(POSTS_FOLDER, id);
-			
-			return ResponseEntity.noContent().build();
-			
+		if (user.isPresent()) {
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				User user1 = user.get();
+				
+				if(user1 != null) {
+					
+					user1.setImageFile(null);
+					userService.save(user1);
+					
+					this.imgService.deleteImage(POSTS_FOLDER, id);
+					
+					return ResponseEntity.noContent().build();
+					
+				} else {
+					return ResponseEntity.notFound().build();
+				}
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} else {
 			return ResponseEntity.notFound().build();
-		}		
+		}
 	}
-	
 }

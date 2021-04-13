@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.trec.model.Purchase;
 import com.trec.model.User;
+import com.trec.service.PageableService;
 import com.trec.service.PurchaseService;
 import com.trec.service.UserService;
 
@@ -24,53 +25,18 @@ import com.trec.service.UserService;
 public class PurchasePaginationController {
 	
 	@Autowired
-	private PurchaseService purchaseService;
-	@Autowired
-	private UserService userService;
+	private PageableService pageableService;
 	
 	@GetMapping("/{id}/purchases")
 	public ResponseEntity<Page<Purchase>> showMore(@PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
 		
-		Principal principal = request.getUserPrincipal();
-		String userNameReal = principal.getName();
-		Optional<User> userReal = userService.findByName(userNameReal);
-		Optional<User> user = userService.findById(id);
-		
-		int pageRequested = 0;
-		String numPage = request.getParameter("numPage");
-		if (numPage != null) {
-			pageRequested = Integer.parseInt(numPage);
-		}
-	
-		if (userReal.get().getId() == user.get().getId()) {
-			
-			Page<Purchase> page = purchaseService.getByUser(user.get(), pageRequested);
-			return ResponseEntity.ok(page);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		return pageableService.showUserMore(id, request, response);
 	}
 	
 	@GetMapping("/purchases")
 	public ResponseEntity<Page<Purchase>> showAdminMore(HttpServletRequest request, HttpServletResponse response) {
 		
-		Principal principal = request.getUserPrincipal();
-		String userNameReal = principal.getName();
-		Optional<User> userReal = userService.findByName(userNameReal);
-		
-		int pageRequested = 0;
-		String numPage = request.getParameter("numPage");
-		if (numPage != null) {
-			pageRequested = Integer.parseInt(numPage);
-		}
-		
-		if (userReal.get().getRoles().contains("ADMIN")) {
-			
-			Page<Purchase> page = purchaseService.findAll(pageRequested);
-			return ResponseEntity.ok(page);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		return pageableService.showAdminMore(request, response);
 	}
 }
 	

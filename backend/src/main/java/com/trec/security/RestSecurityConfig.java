@@ -57,7 +57,6 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/ingredient/**").hasRole("ADMIN");
 
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/").hasRole("ADMIN");
-        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/me").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/{id}").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.PUT, "/api/users/{id}").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/users/{id}/dishes").hasRole("USER");
@@ -72,6 +71,8 @@ public class RestSecurityConfig extends WebSecurityConfigurerAdapter {
     	
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/purchases/{id}").hasRole("USER");
         http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/purchases/").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/purchases/id").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers(HttpMethod.GET, "/api/purchases/price").hasRole("ADMIN");
         http.authorizeRequests().antMatchers(HttpMethod.DELETE, "/api/purchases/").hasRole("ADMIN");
         
         // Other URLs can be accessed without authentication

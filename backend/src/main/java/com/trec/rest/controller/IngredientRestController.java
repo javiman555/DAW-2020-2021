@@ -50,36 +50,6 @@ public class IngredientRestController{
 		}
 	}
 	
-
-	@DeleteMapping("/{id}")//delete an ingredient
-	public ResponseEntity<Ingredient> removeIngredient(@PathVariable long id) {
-
-		Optional<Ingredient> ingredient = ingredientService.findById(id);
-		
-		if (ingredient.isPresent()) {
-			
-			List<Dish> dishes = dishService.findAll();
-			
-			for(Dish dish : dishes) {
-				boolean ingredientIs = false;
-				for (Ingredient i : dish.getIngredients()) {
-					if(i.equals(ingredient.get())) {
-						ingredientIs = true;
-					}
-				}
-				if(ingredientIs) {
-					dish.getIngredients().remove(ingredient.get());
-				}
-			}
-			
-			ingredientService.delete(id);
-			return ResponseEntity.ok(ingredient.get());
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
-
-	
 	@PutMapping("/{id}")//change an ingredient
 	public ResponseEntity<Ingredient> replaceIngredient(@PathVariable long id, @RequestBody Ingredient newIngredient) {
 

@@ -1,6 +1,7 @@
 package com.trec.rest.controller;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trec.model.Purchase;
 import com.trec.model.User;
 import com.trec.service.DishService;
+import com.trec.service.PageableService;
 import com.trec.service.PurchaseService;
 import com.trec.service.UserService;
 
@@ -31,50 +34,19 @@ public class PurchaseRestController {
 	private UserService userService;
 	@Autowired
 	private DishService dishService;
+	@Autowired
+	private PageableService pageableService;
 	
 	@GetMapping("/{id}")
 	public ResponseEntity<Page<Purchase>> showMore(@PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
 		
-		Principal principal = request.getUserPrincipal();
-		String userNameReal = principal.getName();
-		Optional<User> userReal = userService.findByName(userNameReal);
-		Optional<User> user = userService.findById(id);
-		
-		int pageRequested = 0;
-		String numPage = request.getParameter("numPage");
-		if (numPage != null) {
-			pageRequested = Integer.parseInt(numPage);
-		}
-	
-		if (userReal.get().getId() == user.get().getId()) {
-			
-			Page<Purchase> page = purchaseService.getByUser(user.get(), pageRequested);
-			return ResponseEntity.ok(page);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		return pageableService.showUserMore(id, request, response);
 	}
 	
 	@GetMapping("/")
 	public ResponseEntity<Page<Purchase>> showAdminMore(HttpServletRequest request, HttpServletResponse response) {
 		
-		Principal principal = request.getUserPrincipal();
-		String userNameReal = principal.getName();
-		Optional<User> userReal = userService.findByName(userNameReal);
-		
-		int pageRequested = 0;
-		String numPage = request.getParameter("numPage");
-		if (numPage != null) {
-			pageRequested = Integer.parseInt(numPage);
-		}
-		
-		if (userReal.get().getRoles().contains("ADMIN")) {
-			
-			Page<Purchase> page = purchaseService.findAll(pageRequested);
-			return ResponseEntity.ok(page);
-		} else {
-			return ResponseEntity.notFound().build();
-		}
+		return pageableService.showAdminMore(request, response);
 	}
 	
 	@DeleteMapping("/{id}")
@@ -88,6 +60,23 @@ public class PurchaseRestController {
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+	}
+	
+	// Show the fields of the purchases that will be shown in the graph
+	
+	@GetMapping("/id")
+	public ResponseEntity<List<Long>> showPurchasesId() {
+		
+		return ResponseEntity.ok(purchaseService.findIdAll());
+
+		
+	}
+	
+	@GetMapping("/price")
+	public ResponseEntity<List<Float>> showPurchasesPrice() {
+		
+			return ResponseEntity.ok(purchaseService.findPriceAll());
+		
 	}
 	
 }

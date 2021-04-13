@@ -6,6 +6,92 @@
 	},
 	"item": [
 		{
+			"name": "Security",
+			"item": [
+				{
+					"name": "User Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"user\", \"password\": \"pass\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Admin Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{ \"username\": \"admin\", \"password\": \"adminpass\" }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://localhost:8443/api/auth/login",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "https://localhost:8443/api/auth/logout",
+							"protocol": "https",
+							"host": [
+								"localhost"
+							],
+							"port": "8443",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
 			"name": "Dish",
 			"item": [
 				{
@@ -135,27 +221,12 @@
 					"response": []
 				},
 				{
-					"name": "GET recomended Dishes By User Id",
+					"name": "GET recomended Dishes of an User",
 					"request": {
-						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "adminpass",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "string"
-								}
-							]
-						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/dishes/recomended/16",
+							"raw": "https://localhost:8443/api/users/18/dishes",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -163,9 +234,9 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"dishes",
-								"recomended",
-								"16"
+								"users",
+								"18",
+								"dishes"
 							]
 						}
 					},
@@ -464,27 +535,6 @@
 						}
 					},
 					"response": []
-				},
-				{
-					"name": "DELETE Ingredient",
-					"request": {
-						"method": "DELETE",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:8443/api/ingredients/10",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"ingredients",
-								"10"
-							]
-						}
-					},
-					"response": []
 				}
 			]
 		},
@@ -641,15 +691,6 @@
 		{
 			"name": "User",
 			"item": [
-				{
-					"name": "GET User",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": null
-					},
-					"response": []
-				},
 				{
 					"name": "GET All Users",
 					"request": {
@@ -839,7 +880,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/profile/purchases?numPage=2",
+							"raw": "https://localhost:8443/api/purchases/?numPage=2",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -847,8 +888,8 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"profile",
-								"purchases"
+								"purchases",
+								""
 							],
 							"query": [
 								{
@@ -866,7 +907,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/profile/16/purchases?numPage=1",
+							"raw": "https://localhost:8443/api/purchases/16?numPage=1",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -874,9 +915,8 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"profile",
-								"16",
-								"purchases"
+								"purchases",
+								"16"
 							],
 							"query": [
 								{
@@ -891,24 +931,15 @@
 			]
 		},
 		{
-			"name": "Security",
+			"name": "Graph",
 			"item": [
 				{
-					"name": "User Login",
+					"name": "GET Purchases Price for Graph",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"username\": \"user\", \"password\": \"pass\" }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://localhost:8443/api/auth/login",
+							"raw": "https://localhost:8443/api/purchases/price",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -916,29 +947,20 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"auth",
-								"login"
+								"purchases",
+								"price"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "Admin Login",
+					"name": "GET Purchases Id for Graph",
 					"request": {
-						"method": "POST",
+						"method": "GET",
 						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{ \"username\": \"admin\", \"password\": \"adminpass\" }",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
 						"url": {
-							"raw": "https://localhost:8443/api/auth/login",
+							"raw": "https://localhost:8443/api/purchases/id",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -946,29 +968,8 @@
 							"port": "8443",
 							"path": [
 								"api",
-								"auth",
-								"login"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "Logout",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"url": {
-							"raw": "https://localhost:8443/api/auth/logout",
-							"protocol": "https",
-							"host": [
-								"localhost"
-							],
-							"port": "8443",
-							"path": [
-								"api",
-								"auth",
-								"logout"
+								"purchases",
+								"id"
 							]
 						}
 					},
