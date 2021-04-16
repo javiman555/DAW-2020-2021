@@ -149,30 +149,8 @@ public class PurchaseController extends DefaultModeAttributes{
 		String userNameReal = principal.getName();
 
 		User userReal = userService.findByName(userNameReal).get();
-		Purchase newPurchase = userReal.getNewPurchase();
-
-		newPurchase.setFirstName(purchase.getFirstName());
-		newPurchase.setSurname(purchase.getSurname());
-		newPurchase.setAddress(purchase.getAddress());
-		newPurchase.setPostalCode(purchase.getPostalCode());
-		newPurchase.setCity(purchase.getCity());
-		newPurchase.setCountry(purchase.getCountry());
-		newPurchase.setPhoneNumber(purchase.getPhoneNumber());
-		Calendar c = Calendar.getInstance();
-		newPurchase.setDateDay(c.get(Calendar.DATE));
-		newPurchase.setDateMonth(c.get(Calendar.MONTH));
-		newPurchase.setDateYear(c.get(Calendar.YEAR));
-		newPurchase.setUser(userReal);
 		
-		for (Dish dish : newPurchase.getDishes()) {
-			dish.setNbuy(dish.getNbuy()+1);
-			dishService.save(dish);
-		}
-		
-		purchaseService.save(newPurchase);
-		userReal.setNewPurchase(null);
-		userReal.getPurchases().add(newPurchase);
-		userService.save(userReal);
+		purchaseService.fillPurchase(purchase,principal,userReal);
 		
 		return "/paydone";
 	}

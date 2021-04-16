@@ -31,14 +31,17 @@ public class PageableService {
 		
 		int pageRequested = 0;
 		String numPage = request.getParameter("numPage");
-		if (numPage != null) {
-			pageRequested = Integer.parseInt(numPage);
-		}
-	
-		if (userReal.get().getId() == user.get().getId()) {
+		if (numPage != null){
 			
-			Page<Purchase> page = purchaseService.getByUser(user.get(), pageRequested);
-			return ResponseEntity.ok(page);
+			pageRequested = Integer.parseInt(numPage);
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				Page<Purchase> page = purchaseService.getByUser(user.get(), pageRequested);
+				return ResponseEntity.ok(page);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		
 		} else {
 			return ResponseEntity.notFound().build();
 		}
@@ -54,12 +57,13 @@ public class PageableService {
 		String numPage = request.getParameter("numPage");
 		if (numPage != null) {
 			pageRequested = Integer.parseInt(numPage);
-		}
-		
-		if (userReal.get().getRoles().contains("ADMIN")) {
-			
-			Page<Purchase> page = purchaseService.findAll(pageRequested);
-			return ResponseEntity.ok(page);
+			if (userReal.get().getRoles().contains("ADMIN")) {
+				
+				Page<Purchase> page = purchaseService.findAll(pageRequested);
+				return ResponseEntity.ok(page);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
 		} else {
 			return ResponseEntity.notFound().build();
 		}

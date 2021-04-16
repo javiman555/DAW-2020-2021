@@ -32,6 +32,7 @@ import com.trec.model.Purchase;
 import com.trec.model.User;
 import com.trec.service.DishService;
 import com.trec.service.ImageService;
+import com.trec.service.PurchaseService;
 import com.trec.service.UserService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -51,6 +52,8 @@ public class UserRestController {
 	private UserService userService;
 	@Autowired
 	private DishService dishService;
+	@Autowired
+	private PurchaseService purchaseService;
 	
 	@Autowired
 	private ImageService imgService;
@@ -317,23 +320,7 @@ public class UserRestController {
 		if (user.isPresent()) {
 			if (userReal.get().getId() == user.get().getId()) {
 				
-				Purchase newPurchase = user.get().getNewPurchase();
-				dataPurchase.setId(newPurchase.getId());
-				dataPurchase.setDishes(newPurchase.getDishes());
-				user.get().setNewPurchase(null);
-				user.get().getPurchases().add(dataPurchase);
-				Calendar c = Calendar.getInstance();
-				dataPurchase.setDateDay(c.get(Calendar.DATE));
-				dataPurchase.setDateMonth(c.get(Calendar.MONTH));
-				dataPurchase.setDateYear(c.get(Calendar.YEAR));
-				dataPurchase.setUser(user.get());
-				
-				for (Dish dish : dataPurchase.getDishes()) {
-					dish.setNbuy(dish.getNbuy()+1);
-					dataPurchase.setPrice(dataPurchase.getPrice()+dish.getDishPrice());
-					dishService.save(dish);
-				}
-				userService.save(user.get());
+				purchaseService.fillPurchase(dataPurchase,principal,userReal.get());
 				
 				return ResponseEntity.ok(dataPurchase);
 				
@@ -408,6 +395,13 @@ public class UserRestController {
 	
 	@PostMapping("/")//Create User without image
 	public ResponseEntity<User> newUserProcess(@RequestBody User user)  {
+		
+		List<User> users = userService.findAll();
+		boolean exist = userService.existUser(user, users);
+		if(exist) {
+			
+			return ResponseEntity.notFound().build();
+		}
 
 		user.setImage(false);
 		
@@ -569,8 +563,13 @@ public class UserRestController {
 		
 		if (user.isPresent()) {
 			if (userReal.get().getId() == user.get().getId()) {
+				User user1 = user.get();
 				
-				return this.imgService.createResponseFromImage(POSTS_FOLDER, id);
+				if(user1 != null) {
+					return this.imgService.createResponseFromImage(POSTS_FOLDER, id);
+				} else {
+					return ResponseEntity.notFound().build();
+				}
 			} else {
 				return ResponseEntity.notFound().build();
 			}

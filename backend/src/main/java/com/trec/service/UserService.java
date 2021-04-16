@@ -58,4 +58,18 @@ public class UserService {
 		
 		return newuser;
 	}
+	
+	public boolean existUser(User user,List<User> users) {
+		boolean exist = false;
+		for(User u : users) {
+			if(user.getName().equals(u.getName())) {
+				exist = true;
+			}
+		}
+		return exist;
+	}
+	
+	
+	
+	
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.trec.model.Dish;
+import com.trec.model.Purchase;
 import com.trec.repository.DishRepository;
 
 @Service
@@ -14,6 +15,8 @@ public class DishService {
 
 	@Autowired
 	private DishRepository dishRepository;
+	@Autowired
+	private PurchaseService purchaseService;
 
 	public Optional<Dish> findById(long id) {
 		return dishRepository.findById(id);
@@ -61,4 +64,44 @@ public class DishService {
 		
 		return newdish;
 	}
+	
+	public boolean deleteDish(Optional<Dish> dish,long id) {
+		
+		if (dish.isPresent()) {
+			List<Purchase> purchases = purchaseService.findAll();
+			List<Dish> dishes = null;
+			Dish dishon = null;
+			int dishIs;
+			for (Purchase purchase : purchases) {
+				dishIs = 0;
+				dishes = purchase.getDishes();
+				for (Dish d : dishes) {
+					
+					if (d.getId().equals(id)) {
+						dishon = d;
+						dishIs = dishIs+1;
+					}	
+				}
+				
+				if (dishIs > 0) {
+					while(dishIs > 0) {
+						dishes.remove(dishon);
+						dishIs = dishIs -1;
+					}
+					
+					purchase.setDishes(dishes);
+					purchaseService.save(purchase);
+				}
+			}
+			dish.get().setIngredients(null);
+			this.deleteById(id);
+			return true;
+			
+		} else {
+			return false;
+		}
+	}
+	
+	
+	
 }

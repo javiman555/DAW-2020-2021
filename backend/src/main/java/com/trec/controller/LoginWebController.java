@@ -68,14 +68,9 @@ public class LoginWebController extends DefaultModeAttributes{
 
 		model.addAttribute("loginerror", false);
 	
-		boolean existe = false;
 		List<User> users = userService.findAll();
-		for(User u : users) {
-			if(user.getName().equals(u.getName())) {
-				existe = true;
-			}
-		}
-		if(existe) {
+		boolean exist = userService.existUser(user, users);
+		if(exist) {
 			
 			model.addAttribute("registererror", true);
 			return "register";
@@ -94,11 +89,11 @@ public class LoginWebController extends DefaultModeAttributes{
 	@PostMapping("/edituser")
 	public String editUserProcess(Model model, User user, boolean removeImage, MultipartFile imageField) throws IOException, SQLException {
 
-		System.out.println(user.toString());
+		User user1 = userService.updateUser(userService.findById(user.getId()).get(),user);
 		
-		updateImage(user, removeImage, imageField);
+		updateImage(user1, removeImage, imageField);
 		
-		userService.save(user);
+		userService.save(user1);
 		//model.addAttribute("user", user);
 
 		return "/index";

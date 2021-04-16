@@ -166,42 +166,16 @@ public class DishRestController extends DefaultModeAttributes{
 	
 	@DeleteMapping("/{id}") //Delete Dish form database and all purchases
 	public ResponseEntity<Dish> removeDish(@Parameter(description="id of the dish to be deleted") @PathVariable long id) {
-
-		Optional<Dish> dish = dishService.findById(id);
 		
-		if (dish.isPresent()) {
-			List<Purchase> purchases = purchaseService.findAll();
-			List<Dish> dishes = null;
-			Dish dishon = null;
-			int dishIs;
-			for (Purchase purchase : purchases) {
-				dishIs = 0;
-				dishes = purchase.getDishes();
-				for (Dish d : dishes) {
-					
-					if (d.getId().equals(id)) {
-						dishon = d;
-						dishIs = dishIs+1;
-					}	
-				}
-				
-				if (dishIs > 0) {
-					while(dishIs > 0) {
-						dishes.remove(dishon);
-						dishIs = dishIs -1;
-					}
-					
-					purchase.setDishes(dishes);
-					purchaseService.save(purchase);
-				}
-			}
-			dish.get().setIngredients(null);
-			dishService.deleteById(id);
+		Optional<Dish> dish = dishService.findById(id);
+		boolean ok = dishService.deleteDish(dish, id);
+		
+		if (ok){
 			return ResponseEntity.ok(dish.get());
-			
 		} else {
 			return ResponseEntity.notFound().build();
 		}
+		
 	}
 	
 	@Operation(summary = "Upload a new dish without an image (only admin can do that)")
@@ -358,7 +332,13 @@ public class DishRestController extends DefaultModeAttributes{
 	@GetMapping("/{id}/image")//show image of dish
 	public ResponseEntity<Object> downloadImage(@Parameter(description="id of dish") @PathVariable long id) throws MalformedURLException {
 		
+		Dish dish = dishService.findById(id).get();
+		
+		if(dish != null) {
 		return this.imgService.createResponseFromImage(POSTS_FOLDER, id);
+		} else {
+			return ResponseEntity.notFound().build();
+		}	
 	}
 	
 	@Operation(summary = "Delete the image of a dish (only admin can do that)")

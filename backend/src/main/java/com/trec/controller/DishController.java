@@ -86,38 +86,14 @@ public class DishController extends DefaultModeAttributes{
 	public String removeDish(Model model, @PathVariable long id) {
 
 		Optional<Dish> dish = dishService.findById(id);
-		if (dish.isPresent()) {
-			List<Purchase> purchases = purchaseService.findAll();
-			List<Dish> dishes = null;
-			Dish dishon = null;
-			int dishIs;
-			for (Purchase purchase : purchases) {
-				dishIs = 0;
-				dishes = purchase.getDishes();
-				for (Dish d : dishes) {
-					
-					if (d.getId().equals(id)) {
-						dishon = d;
-						dishIs = dishIs+1;
-					}
-
-					
-				}
-				
-				if (dishIs > 0) {
-					while(dishIs > 0) {
-						dishes.remove(dishon);
-						dishIs = dishIs -1;
-					}
-					
-					purchase.setDishes(dishes);
-					purchaseService.save(purchase);
-				}
-			}
-			dishService.deleteById(id);
+		boolean ok = dishService.deleteDish(dish, id);
+		
+		if (ok){
 			model.addAttribute("dish", dish.get());
 		}
 		return "removeddish";
+
+		
 	}
 
 	@GetMapping("/newdish")
@@ -137,7 +113,6 @@ public class DishController extends DefaultModeAttributes{
 		List<Ingredient> ingredients =new ArrayList<Ingredient>();
 		for(int i = 0; i < lista.size(); i++) {
 		int idi = Integer.parseInt(lista.get(i));
-		System.out.print(idi);
 		Ingredient ingredient=ingredientService.findById(idi).get();
 		ingredients.add(ingredient);
 		}
@@ -145,7 +120,6 @@ public class DishController extends DefaultModeAttributes{
 		dish.setIngredients(ingredients);
 		
 		dishService.save(dish);
-		System.out.print(lista);
 
 		model.addAttribute("dishId", dish.getId());
 
@@ -180,7 +154,9 @@ public class DishController extends DefaultModeAttributes{
 
 		dish.setIngredients(ingredients);
 		
-		dishService.save(dish);
+		Dish newdish = dishService.updateDish(dishService.findById(dish.getId()).get(), dish);
+		
+		dishService.save(newdish);
 
 		model.addAttribute("dishId", dish.getId());
 
