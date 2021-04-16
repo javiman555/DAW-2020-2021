@@ -1,7 +1,6 @@
 package com.trec.service;
 
 import java.security.Principal;
-import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -9,18 +8,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 
-import com.trec.model.Dish;
 import com.trec.model.Purchase;
 import com.trec.model.User;
-import com.trec.repository.PurchaseRepository;
 
 @Service
 public class PageableService {

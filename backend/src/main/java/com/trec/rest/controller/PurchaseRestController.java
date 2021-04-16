@@ -1,8 +1,6 @@
 package com.trec.rest.controller;
 
-import java.security.Principal;
 import java.util.List;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,19 +8,22 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.trec.model.Dish;
 import com.trec.model.Purchase;
-import com.trec.model.User;
-import com.trec.service.DishService;
 import com.trec.service.PageableService;
 import com.trec.service.PurchaseService;
-import com.trec.service.UserService;
+
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 @RestController
 @RequestMapping("/api/purchases")
@@ -31,17 +32,68 @@ public class PurchaseRestController {
 	@Autowired
 	private PurchaseService purchaseService;
 	@Autowired
-	private UserService userService;
-	@Autowired
-	private DishService dishService;
-	@Autowired
 	private PageableService pageableService;
 	
+	
+	@Operation(summary = "User gets a page of its purchases")
+	@ApiResponses(value = {
+		 @ApiResponse(
+		 responseCode = "200",
+		 description = "Found the page of purchases",
+		 content = {@Content(
+		 mediaType = "application/json",
+		 schema = @Schema(implementation=Dish.class)
+		 )}
+		 ),
+		 @ApiResponse(
+		 responseCode = "400",
+		 description = "Invalid user id and page number supplied",
+		 content = @Content
+		 ), 
+		 @ApiResponse(
+		responseCode = "403",
+		description = "Forbidden. You have to be logged as a user to do this",
+		content = @Content
+		),
+		 @ApiResponse(
+		 responseCode = "404",
+		 description = "Page not found",
+		 content = @Content
+		 )
+		})
+	
 	@GetMapping("/{id}")
-	public ResponseEntity<Page<Purchase>> showMore(@PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<Page<Purchase>> showMore(@Parameter(description="id of user") @PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
 		
 		return pageableService.showUserMore(id, request, response);
 	}
+	
+	@Operation(summary = "Admin gets a page of all purchases")
+	@ApiResponses(value = {
+		 @ApiResponse(
+		 responseCode = "200",
+		 description = "Found the page of purchases",
+		 content = {@Content(
+		 mediaType = "application/json",
+		 schema = @Schema(implementation=Dish.class)
+		 )}
+		 ),
+		 @ApiResponse(
+		 responseCode = "400",
+		 description = "Invalid page number supplied",
+		 content = @Content
+		 ), 
+		 @ApiResponse(
+		responseCode = "403",
+		description = "Forbidden. You have to be an admin to do this",
+		content = @Content
+		),
+		 @ApiResponse(
+		 responseCode = "404",
+		 description = "Page not found",
+		 content = @Content
+		 )
+		})
 	
 	@GetMapping("/")
 	public ResponseEntity<Page<Purchase>> showAdminMore(HttpServletRequest request, HttpServletResponse response) {
@@ -49,31 +101,71 @@ public class PurchaseRestController {
 		return pageableService.showAdminMore(request, response);
 	}
 	
-	@DeleteMapping("/{id}")
-	public ResponseEntity<Purchase> removePurchase(@PathVariable long id) {
-
-		Optional<Purchase> purchase = purchaseService.findById(id);
-		
-		if (purchase.isPresent()) {
-			dishService.deleteById(id);
-			return ResponseEntity.ok(purchase.get());
-		} else {
-			return ResponseEntity.notFound().build();
-		}
-	}
-	
 	// Show the fields of the purchases that will be shown in the graph
 	
+	@Operation(summary = "Get id of all purchases to show it on a graph")
+	@ApiResponses(value = {
+		 @ApiResponse(
+		 responseCode = "200",
+		 description = "Found all ids of the purchases",
+		 content = {@Content(
+		 mediaType = "application/json",
+		 schema = @Schema(implementation=Dish.class)
+		 )}
+		 ),
+		 @ApiResponse(
+		 responseCode = "400",
+		 description = "Invalid URL",
+		 content = @Content
+		 ), 
+		 @ApiResponse(
+		responseCode = "403",
+		description = "Forbidden. You have to be an admin to do this",
+		content = @Content
+		),
+		 @ApiResponse(
+		 responseCode = "404",
+		 description = "Ids of purchases not found",
+		 content = @Content
+		 )
+		})
+	
 	@GetMapping("/id")
-	public ResponseEntity<List<Long>> showPurchasesId() {
+	public ResponseEntity<List<Long>> findPurchasesId() {
 		
 		return ResponseEntity.ok(purchaseService.findIdAll());
-
 		
 	}
 	
+	@Operation(summary = "Get price of all purchases to show it on a graph")
+	@ApiResponses(value = {
+		 @ApiResponse(
+		 responseCode = "200",
+		 description = "Found all prices of the purchases",
+		 content = {@Content(
+		 mediaType = "application/json",
+		 schema = @Schema(implementation=Dish.class)
+		 )}
+		 ),
+		 @ApiResponse(
+		 responseCode = "400",
+		 description = "Invalid URL",
+		 content = @Content
+		 ), 
+		 @ApiResponse(
+		responseCode = "403",
+		description = "Forbidden. You have to be an admin to do this",
+		content = @Content
+		),
+		 @ApiResponse(
+		 responseCode = "404",
+		 description = "Price of purchases not found",
+		 content = @Content
+		 )
+		})
+	
 	@GetMapping("/price")
-	public ResponseEntity<List<Float>> showPurchasesPrice() {
+	public ResponseEntity<List<Float>> findPurchasesPrice() {
 		
 			return ResponseEntity.ok(purchaseService.findPriceAll());
 		

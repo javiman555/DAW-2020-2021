@@ -26,7 +26,16 @@ public class Purchase {
 	private int dateDay;
 	private int dateMonth;
 	private int dateYear;
+	private boolean current;
 	
+	public boolean isCurrent() {
+		return current;
+	}
+
+	public void setCurrent(boolean current) {
+		this.current = current;
+	}
+
 	@ManyToMany
 	 @JoinTable(
 			   name="Pur_Dish",
@@ -186,7 +195,5 @@ public class Purchase {
 	public void setDateYear(int dateYear) {
 		this.dateYear = dateYear;
 	}
-
-	
 
 }
