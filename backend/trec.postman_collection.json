@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d1272112-1aea-40c4-910b-d905362d53d8",
+		"_postman_id": "ada943e0-c733-4e4e-a27c-22eea79a06ee",
 		"name": "trec",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -248,7 +248,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/dishes/22",
+							"raw": "https://localhost:8443/api/dishes/23",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -257,7 +257,7 @@
 							"path": [
 								"api",
 								"dishes",
-								"22"
+								"23"
 							]
 						}
 					},
@@ -308,7 +308,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/dishes/46",
+							"raw": "https://localhost:8443/api/dishes/22",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -317,7 +317,7 @@
 							"path": [
 								"api",
 								"dishes",
-								"46"
+								"22"
 							]
 						}
 					},
@@ -334,7 +334,7 @@
 								{
 									"key": "imageFile",
 									"type": "file",
-									"src": "/C:/Users/Javier/Documents/GitHub/webapp10/backend/images/posts/image-22.jpg"
+									"src": "/C:/Users/Javier/Documents/GitHub/webapp10/backend/images/posts/image-23.jpg"
 								}
 							]
 						},
@@ -410,7 +410,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/18/newPurchases",
+							"raw": "https://localhost:8443/api/users/16/newPurchases",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -419,7 +419,7 @@
 							"path": [
 								"api",
 								"users",
-								"18",
+								"16",
 								"newPurchases"
 							]
 						}
@@ -432,7 +432,7 @@
 						"method": "POST",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/18/newPurchase",
+							"raw": "https://localhost:8443/api/users/16/newPurchase",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -441,7 +441,7 @@
 							"path": [
 								"api",
 								"users",
-								"18",
+								"16",
 								"newPurchase"
 							]
 						}
@@ -478,7 +478,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/users/18/newPurchase/dish/22",
+							"raw": "https://localhost:8443/api/users/16/newPurchase/dishes/22",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -487,9 +487,9 @@
 							"path": [
 								"api",
 								"users",
-								"18",
+								"16",
 								"newPurchase",
-								"dish",
+								"dishes",
 								"22"
 							]
 						}
@@ -511,7 +511,7 @@
 							}
 						},
 						"url": {
-							"raw": "https://localhost:8443/api/users/18/newPurchase",
+							"raw": "https://localhost:8443/api/users/16/newPurchase",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -520,7 +520,7 @@
 							"path": [
 								"api",
 								"users",
-								"18",
+								"16",
 								"newPurchase"
 							]
 						}
@@ -559,7 +559,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/18",
+							"raw": "https://localhost:8443/api/users/16",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -568,7 +568,7 @@
 							"path": [
 								"api",
 								"users",
-								"18"
+								"16"
 							]
 						}
 					},
@@ -645,7 +645,7 @@
 								{
 									"key": "imageFile",
 									"type": "file",
-									"src": "/C:/Users/conch/OneDrive/Documentos/GitHub/webapp10/backend/images/posts/image-16.jpg"
+									"src": "/C:/Users/Javier/Documents/GitHub/webapp10/backend/images/posts/image-18.jpg"
 								}
 							]
 						},
