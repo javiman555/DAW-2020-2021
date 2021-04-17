@@ -1,8 +1,5 @@
 package com.trec.controller;
 
-import java.security.Principal;
-import java.util.Optional;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -15,10 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.trec.model.Purchase;
-import com.trec.model.User;
 import com.trec.service.PageableService;
-import com.trec.service.PurchaseService;
-import com.trec.service.UserService;
 
 @RestController
 @RequestMapping("/notanapi/profile")

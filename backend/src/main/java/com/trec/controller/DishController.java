@@ -17,11 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.trec.model.Dish;
 import com.trec.model.Ingredient;
-import com.trec.model.Purchase;
-import com.trec.service.PurchaseService;
-
-import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.responses.ApiResponses;
 
 import com.trec.service.DishService;
 import com.trec.service.IngredientService;
@@ -37,8 +32,6 @@ public class DishController extends DefaultModeAttributes{
 
 	@Autowired
 	private DishService dishService;
-	@Autowired
-	private PurchaseService purchaseService;
 	@Autowired
 	private IngredientService ingredientService;
 

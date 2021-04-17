@@ -1,0 +1,921 @@
+openapi: 3.0.1
+info:
+  title: OpenAPI definition
+  version: v0
+servers:
+- url: https://localhost:8443
+  description: Generated server url
+paths:
+  /api/users/{id}:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get a user by its id
+      operationId: findUserById
+      parameters:
+      - name: id
+        in: path
+        description: id of user to be searched
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Found the user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "400":
+          description: Invalid id supplied
+        "404":
+          description: User not found
+        "403":
+          description: Forbidden. You have to be an admin to do this
+    put:
+      tags:
+      - user-rest-controller
+      summary: Update the information of the current user (not the image)
+      operationId: replaceUser
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "404":
+          description: Information from current user couldn't be updated
+        "403":
+          description: Forbidden. You have to be logged as a user to do this
+        "400":
+          description: Invalid user id supplied
+        "200":
+          description: Information from current user has been updated correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/users/{id}/newPurchase:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get a user's current purchase
+      operationId: findNewPurchase
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: Forbidden. You have to be logged as a user to do this
+        "400":
+          description: Invalid user id supplied
+        "200":
+          description: Found the user's current
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: User's current purchase not found
+    put:
+      tags:
+      - user-rest-controller
+      summary: Update a current purchase making it final
+      operationId: newPurchaseDone
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Purchase'
+        required: true
+      responses:
+        "200":
+          description: Current purchase has been updated correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "403":
+          description: Forbidden. You have to be logged as a user to do this
+        "400":
+          description: Invalid user id supplied
+        "404":
+          description: Current purchase couldn't be updated
+    post:
+      tags:
+      - user-rest-controller
+      summary: Create an empty purchase
+      operationId: newPurchaseProcess
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "201":
+          description: Empty purchase created correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "403":
+          description: Forbidden. You have to be logged as a user to do this
+        "404":
+          description: Empty purchase couldn't be created
+        "400":
+          description: Invalid user id supplied
+  /api/users/{iduser}/newPurchase/dishes/{iddish}:
+    put:
+      tags:
+      - user-rest-controller
+      summary: Update the current purchase of the user to add a dish
+      operationId: addDish
+      parameters:
+      - name: iduser
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: iddish
+        in: path
+        description: id of dish to be introduced to the current purchase
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Current purchase has been updated correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "403":
+          description: Forbidden. You have to be logged as a user to do this
+        "400":
+          description: Invalid user id supplied
+        "404":
+          description: Current purchase couldn't be updated
+  /api/dishes/{id}:
+    get:
+      tags:
+      - dish-rest-controller
+      summary: Get a dish by its id
+      operationId: findDishById
+      parameters:
+      - name: id
+        in: path
+        description: id of dish to be searched
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: Found the dish
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "400":
+          description: Invalid id supplied
+        "404":
+          description: Dish not found
+    put:
+      tags:
+      - dish-rest-controller
+      summary: Update a dish not including the image (only admin can do that)
+      operationId: replaceDish
+      parameters:
+      - name: id
+        in: path
+        description: id of dish to be updated
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dish'
+        required: true
+      responses:
+        "400":
+          description: Invalid form of introducing the data for updating the dish
+        "200":
+          description: The dish has been updated correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "404":
+          description: Dish couldn't be updated
+        "403":
+          description: Forbidden. You have to be an admin to do this
+    delete:
+      tags:
+      - dish-rest-controller
+      summary: Delete a dish by its id (only admin can do that)
+      operationId: removeDish
+      parameters:
+      - name: id
+        in: path
+        description: id of the dish to be deleted
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid id supplied
+        "200":
+          description: The dish has been deleted correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "403":
+          description: Forbidden. You have to be an admin to do this
+        "404":
+          description: Dish couldn't be deleted
+  /api/users/{id}/image:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Download image of current user
+      operationId: downloadUserImage
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Current user image couldn't be downloaded
+        "200":
+          description: Current user image has been downloaded correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+    post:
+      tags:
+      - user-rest-controller
+      summary: Upload the image of a user (only current user can do that)
+      operationId: uploadUserImage
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  description: image of current user
+                  format: binary
+      responses:
+        "200":
+          description: The user image has been uploaded correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "403":
+          description: Forbidden. You have to be the current user to do this
+        "404":
+          description: User image couldn't be uploaded
+        "400":
+          description: Invalid form of introducing the image of the user
+    delete:
+      tags:
+      - user-rest-controller
+      summary: Delete image of current user (only current user can do that)
+      operationId: deleteUserImage
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Current user image couldn't be deleted
+        "400":
+          description: Invalid user id supplied
+        "403":
+          description: Forbidden. You have to be the current user to do this
+        "204":
+          description: No content. Current user image has been deleted correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+  /api/users/:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get all users
+      operationId: findUsers
+      responses:
+        "200":
+          description: Found all users
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        "404":
+          description: Users not found
+        "403":
+          description: Forbidden. You have to be an admin to do this
+    post:
+      tags:
+      - user-rest-controller
+      summary: Register a new user without an image
+      operationId: newUserProcess
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+        required: true
+      responses:
+        "201":
+          description: The user has been registered correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "404":
+          description: User couldn't be created
+        "400":
+          description: Invalid form of introducing the data for the new user
+  /api/dishes/{id}/image:
+    get:
+      tags:
+      - dish-rest-controller
+      summary: Download the image of a dish
+      operationId: downloadImage
+      parameters:
+      - name: id
+        in: path
+        description: id of dish
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "404":
+          description: Dish image couldn't be downloaded
+        "200":
+          description: The dish image has been downloaded correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+    post:
+      tags:
+      - dish-rest-controller
+      summary: Upload the image of a dish (only admin can do that)
+      operationId: uploadDishImage
+      parameters:
+      - name: id
+        in: path
+        description: id of dish
+        required: true
+        schema:
+          type: integer
+          format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                imageFile:
+                  type: string
+                  description: image of the dish
+                  format: binary
+      responses:
+        "400":
+          description: Invalid form of introducing the image of the dish
+        "404":
+          description: Dish image couldn't be uploaded
+        "403":
+          description: Forbidden. You have to be an admin to do this
+        "200":
+          description: The dish image has been uploaded correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+    delete:
+      tags:
+      - dish-rest-controller
+      summary: Delete the image of a dish (only admin can do that)
+      operationId: deleteImage
+      parameters:
+      - name: id
+        in: path
+        description: id of dish
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "400":
+          description: Invalid id supplied
+        "404":
+          description: Dish image couldn't be deleted
+        "204":
+          description: No content. The dish image has been deleted correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "403":
+          description: Forbidden. You have to be an admin to do this
+  /api/dishes/:
+    get:
+      tags:
+      - dish-rest-controller
+      summary: Get all dishes
+      operationId: findDishes
+      responses:
+        "404":
+          description: Dishes not found
+        "200":
+          description: Found all dishes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+    post:
+      tags:
+      - dish-rest-controller
+      summary: Upload a new dish without an image (only admin can do that)
+      operationId: newDishProcess
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Dish'
+        required: true
+      responses:
+        "201":
+          description: The dish has been uploaded correctly
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "404":
+          description: Dish couldn't be created
+        "400":
+          description: Invalid form of introducing the data for the new dish
+        "403":
+          description: Forbidden. You have to be an admin to do this
+  /api/auth/refresh:
+    post:
+      tags:
+      - login-controller
+      operationId: refreshToken
+      parameters:
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/logout:
+    post:
+      tags:
+      - login-controller
+      operationId: logOut
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /api/auth/login:
+    post:
+      tags:
+      - login-controller
+      operationId: login
+      parameters:
+      - name: accessToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      - name: refreshToken
+        in: cookie
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoginRequest'
+        required: true
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+  /notanapi/profile/{id}/purchases:
+    get:
+      tags:
+      - purchase-pagination-controller
+      operationId: showMore
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagePurchase'
+  /notanapi/profile/purchases:
+    get:
+      tags:
+      - purchase-pagination-controller
+      operationId: showAdminMore
+      responses:
+        "200":
+          description: OK
+          content:
+            '*/*':
+              schema:
+                $ref: '#/components/schemas/PagePurchase'
+  /api/users/{id}/dishes:
+    get:
+      tags:
+      - user-rest-controller
+      summary: Get a user's recomended dishes
+      operationId: findRecomendedDishes
+      parameters:
+      - name: id
+        in: path
+        description: id of current user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: Forbidden. You have to be logged as a user to do this
+        "400":
+          description: Invalid user id supplied
+        "404":
+          description: User's recomended dishes not found
+        "200":
+          description: Found the user's recomended dishes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+  /api/purchases/{id}:
+    get:
+      tags:
+      - purchase-rest-controller
+      summary: User gets a page of its purchases
+      operationId: showMore_1
+      parameters:
+      - name: id
+        in: path
+        description: id of user
+        required: true
+        schema:
+          type: integer
+          format: int64
+      responses:
+        "403":
+          description: Forbidden. You have to be logged as a user to do this
+        "400":
+          description: Invalid user id and page number supplied
+        "200":
+          description: Found the page of purchases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "404":
+          description: Page not found
+  /api/purchases/price:
+    get:
+      tags:
+      - purchase-rest-controller
+      summary: Get price of all purchases to show it on a graph
+      operationId: findPurchasesPrice
+      responses:
+        "404":
+          description: Price of purchases not found
+        "200":
+          description: Found all prices of the purchases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "403":
+          description: Forbidden. You have to be an admin to do this
+  /api/purchases/id:
+    get:
+      tags:
+      - purchase-rest-controller
+      summary: Get id of all purchases to show it on a graph
+      operationId: findPurchasesId
+      responses:
+        "404":
+          description: Ids of purchases not found
+        "403":
+          description: Forbidden. You have to be an admin to do this
+        "200":
+          description: Found all ids of the purchases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+  /api/purchases/:
+    get:
+      tags:
+      - purchase-rest-controller
+      summary: Admin gets a page of all purchases
+      operationId: showAdminMore_1
+      responses:
+        "200":
+          description: Found the page of purchases
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "403":
+          description: Forbidden. You have to be an admin to do this
+        "400":
+          description: Invalid page number supplied
+        "404":
+          description: Page not found
+  /api/dishes/category:
+    get:
+      tags:
+      - dish-rest-controller
+      summary: Get all dishes from a category
+      operationId: findDishesByTipe
+      parameters:
+      - name: category
+        in: query
+        description: "category of dish to be searched (desayuno, comida or cena)"
+        required: true
+        schema:
+          type: string
+      responses:
+        "404":
+          description: Dishes from category not found
+        "200":
+          description: Found the dishes from a category
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Dish'
+        "400":
+          description: Invalid category supplied
+components:
+  schemas:
+    Dish:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        dishPrice:
+          type: number
+          format: float
+        category:
+          type: string
+        nbuy:
+          type: integer
+          format: int32
+        image:
+          type: boolean
+        ingredients:
+          type: array
+          items:
+            $ref: '#/components/schemas/Ingredient'
+    Ingredient:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        name:
+          type: string
+        nameAllergen:
+          type: string
+        allergen:
+          type: boolean
+    Purchase:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        surname:
+          type: string
+        address:
+          type: string
+        postalCode:
+          type: integer
+          format: int32
+        city:
+          type: string
+        country:
+          type: string
+        phoneNumber:
+          type: integer
+          format: int32
+        price:
+          type: number
+          format: float
+        dateDay:
+          type: integer
+          format: int32
+        dateMonth:
+          type: integer
+          format: int32
+        dateYear:
+          type: integer
+          format: int32
+        current:
+          type: boolean
+        dishes:
+          type: array
+          items:
+            $ref: '#/components/schemas/Dish'
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+        firstName:
+          type: string
+        surname:
+          type: string
+        email:
+          type: string
+        phoneNumber:
+          type: integer
+          format: int32
+        image:
+          type: boolean
+        name:
+          type: string
+        roles:
+          type: array
+          items:
+            type: string
+        newPurchase:
+          $ref: '#/components/schemas/Purchase'
+        purchases:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+    AuthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+          enum:
+          - SUCCESS
+          - FAILURE
+        message:
+          type: string
+        error:
+          type: string
+    LoginRequest:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+    PagePurchase:
+      type: object
+      properties:
+        totalElements:
+          type: integer
+          format: int64
+        totalPages:
+          type: integer
+          format: int32
+        size:
+          type: integer
+          format: int32
+        content:
+          type: array
+          items:
+            $ref: '#/components/schemas/Purchase'
+        number:
+          type: integer
+          format: int32
+        sort:
+          $ref: '#/components/schemas/Sort'
+        first:
+          type: boolean
+        last:
+          type: boolean
+        numberOfElements:
+          type: integer
+          format: int32
+        pageable:
+          $ref: '#/components/schemas/Pageable'
+        empty:
+          type: boolean
+    Pageable:
+      type: object
+      properties:
+        offset:
+          type: integer
+          format: int64
+        sort:
+          $ref: '#/components/schemas/Sort'
+        pageSize:
+          type: integer
+          format: int32
+        pageNumber:
+          type: integer
+          format: int32
+        paged:
+          type: boolean
+        unpaged:
+          type: boolean
+    Sort:
+      type: object
+      properties:
+        sorted:
+          type: boolean
+        unsorted:
+          type: boolean
+        empty:
+          type: boolean

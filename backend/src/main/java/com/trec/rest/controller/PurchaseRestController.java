@@ -114,11 +114,6 @@ public class PurchaseRestController {
 		 )}
 		 ),
 		 @ApiResponse(
-		 responseCode = "400",
-		 description = "Invalid URL",
-		 content = @Content
-		 ), 
-		 @ApiResponse(
 		responseCode = "403",
 		description = "Forbidden. You have to be an admin to do this",
 		content = @Content
@@ -147,11 +142,6 @@ public class PurchaseRestController {
 		 schema = @Schema(implementation=Dish.class)
 		 )}
 		 ),
-		 @ApiResponse(
-		 responseCode = "400",
-		 description = "Invalid URL",
-		 content = @Content
-		 ), 
 		 @ApiResponse(
 		responseCode = "403",
 		description = "Forbidden. You have to be an admin to do this",

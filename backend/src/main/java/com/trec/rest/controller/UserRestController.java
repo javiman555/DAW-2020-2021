@@ -7,7 +7,6 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.security.Principal;
 import java.sql.SQLException;
-import java.util.Calendar;
 import java.util.List;
 import java.util.Optional;
 
@@ -393,8 +392,30 @@ public class UserRestController {
 		}
 	}
 	
+	@Operation(summary = "Register a new user without an image")
+	@ApiResponses(value = {
+		 @ApiResponse(
+		 responseCode = "201",
+		 description = "The user has been registered correctly",
+		 content = {@Content(
+		 mediaType = "application/json",
+		 schema = @Schema(implementation=Dish.class)
+		 )}
+		 ),
+		 @ApiResponse(
+		 responseCode = "400",
+		 description = "Invalid form of introducing the data for the new user",
+		 content = @Content
+		 ), 
+		 @ApiResponse(
+		 responseCode = "404",
+		 description = "User couldn't be created",
+		 content = @Content
+		 )
+		})
+	
 	@PostMapping("/")//Create User without image
-	public ResponseEntity<User> newUserProcess(@RequestBody User user)  {
+	public ResponseEntity<User> newUserProcess(@Parameter(description="to register a new user: first name, surname, user name, email, phone number and password") @RequestBody User user)  {
 		
 		List<User> users = userService.findAll();
 		boolean exist = userService.existUser(user, users);
