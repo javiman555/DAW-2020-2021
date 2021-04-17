@@ -1,0 +1,35 @@
+version: "3"
+services:
+
+    mysqldb:
+        image: mysql:8.0.23
+        ports:
+            - "3336:3306"
+        networks:
+            - trec-network
+        volumes:
+            - ./mysql-volume:/var/lib/mysql
+        environment:
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=trec
+        restart: always
+    
+    trec:
+        build:
+            context: ../
+            dockerfile: Docker/Dockerfile
+        image: trec
+        ports:
+            - "8443:8443"
+        networks:
+            - trec-network
+        links:
+            - mysqldb
+        environment:
+            - SPRING_DATASOURCE_INITIALIZATION-MODE=always
+            - SPRING_DATASOURCE_URL=jdbc:mysql://mysqldb:3306/trec?serverTimezone=UTC&createDatabaseIfNotExist=true&autoReconnect=true
+        restart: always
+
+networks:
+    trec-network:
+        driver: bridge
