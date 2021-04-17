@@ -303,7 +303,7 @@ This is our Classes and Templates Diagram:
 
 ## Phase 3
 
-### Clases and templates Diagram
+### Clases and templates Diagram:
 
 This is our Classes and Templates Diagram updated with the RestControllers:
 
@@ -313,12 +313,54 @@ This is our Classes and Templates Diagram updated with the RestControllers:
 
 #### Specification OpenApi:
 
-![api-docs yaml](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/api-docs/api-docs/api-docs.yaml)
+![api-docs yaml](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/api-docs/api-docs.yaml)
 
 #### Documentation:
 
-![api-docs html](https://raw.githack.com/CodeURJC-DAW-2020-21/webapp10/api-docs/api-docs/api-docs.html)
+![api-docs html](https://raw.githack.com/CodeURJC-DAW-2020-21/webapp10/main/api-docs/api-docs.html)
 
-#### Execution instructions:
+### Execution instructions:
 
-#### Construction of the docker image:
+### Construction of the docker image:
+
+
+### Member Participation:
+
+#### Azahara Andújar
+- Security.
+- Documentation of the API.
+- Classes diagram.
+- Bug fixes.
+- Readme.
+#### David Mestanza
+- Pagination in purchases (API REST and AJAX).
+- Docker.
+- Bug fixes.
+- DishRestController.
+- Readme.
+#### Javier Méndez
+- API Rest.
+- Services to be used by web and API Rest.
+- Commands in Postman.
+- Bug fixes.
+- Documentation of the API.
+
+#### Commits:
+
+| Azahara                                                                                                                                                    | D. Mestanza     | Javier                                                                                                                                          |                                                                                                                
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Rest Security added](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/a8ee6476c4607713ba6d157804f5434882d9ba01)                                    | ---             | [API Dish and Ingredient](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/33f8809612038c35bdd3eb60cf18af30305daca0)                     |
+| [API Documentation and deleted IngredientRestController](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/7d5091c033ffcd92a9864b68dca2ca29973f3ad2) | ---             | [Almost All API funcionality done](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/24451673b48fa148ecb7614f59c652a9f961d751)            |
+| [Class Diagram Modified](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/f663911d595df22519993671e48ab9cd5a0d4989)                                 | ---             | [Comands postman added](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/2ab29f27b45805e9e22d83b9c01f26b849d4ca52)                       |
+| [Changes in DishRestController](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/677641e7f91dfb5db4875deb1ac69393912f3548)                          | ---             | [API REST Done](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/7a39fc9baf378a35e2b42b6dc5d62e4795dca5e5)                               |
+| ---                                                                                                                                                        | ---             | [Bug fix](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/511167052abf5f93ff2d97f7eaf535b51c66ed83)                                     |
+
+#### Files:
+
+| Azahara                                                                                                                                                                                   | D. Mestanza          | Javier                                                                                                                                                      |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [LoginController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/auth/LoginController.java)                                    |---                   | [DishService.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/service/DishService.java)                      | 
+| [RestSecurityConfig.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/security/RestSecurityConfig.java)                                     |---                   | [UserRestController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/rest/controller/UserRestController.java)|
+| [DishRestController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/rest/controller/DishRestController.java)                              |---                   | [PurchaseService.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/service/PurchaseService.java)              |
+| [UserRestController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/rest/controller/UserRestController.java)                              |---                   | [UserService.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/service/UserService.java)                      |
+| [README.md](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/README.md)                                                                                                         |---                   | [PageableService.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/service/PageableService.java)              |
