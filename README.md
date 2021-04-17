@@ -173,11 +173,14 @@ This is our error page. If the user access to a forbbiden page, this page will a
 ![Diagram](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/NavigationDiagram.png)
 In this diagram we can see the interactions between each page. The blue arrows represents the conexions of the front of the web, the green arrows connect functions of the registered user and the red arrow represents the options that only the admin can do.
 
+***
+***
+
 ## Phase 2
 
 ### Navegation
 
-#### Guide for the Demostraton
+#### Guide for the Demostration
 We have put in the databa several ingredients, dishes with those ingredients and purchases with those dishes. We also have some users and one admin. 
 
 - 1 First, without register we access to the menu and we can see that there is nothing we can do.
@@ -295,4 +298,27 @@ This is our Classes and Templates Diagram:
 | [profile.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/resources/templates/profile.html)                            | [purchase.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/resources/templates/purchase.html)                                       | [PurchaseController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/PurchaseController.java)     | [register.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/resources/templates/register.html) |
 | [PurchaseController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/PurchaseController.java) | [profile.js](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/resources/static/js/profile.js)                                             | [IngredientController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/IngredientController.java) | ---                                                                                                                            |
 | [README.md](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/README.md)                                                                       | [profile.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/TREC/src/main/resources/templates/profile.html)                                         | [LoginWebController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/LoginWebController.java)     | ---                                                                                                                            |
+***
+***
 
+## Phase 3
+
+### Clases and templates Diagram
+
+This is our Classes and Templates Diagram updated with the RestControllers:
+
+![ClassesDiagramv2](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/ClassDiagramv2.png)
+
+### Documentation of the API Rest with OpenApi:
+
+#### Specification OpenApi:
+
+![api-docs yaml](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/api-docs/api-docs/api-docs.yaml)
+
+#### Documentation:
+
+![api-docs html](https://raw.githack.com/CodeURJC-DAW-2020-21/webapp10/api-docs/api-docs/api-docs.html)
+
+#### Execution instructions:
+
+#### Construction of the docker image:
