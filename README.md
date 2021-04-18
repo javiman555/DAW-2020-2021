@@ -4,7 +4,7 @@
 
 - Azahara Andújar Muñoz-Quirós, a.andujar.2017@alumnos.urjc.es, Github: azzzahara.
 - Javier Méndez García-Brioles, j.mendezg.2017@alumnos.urjc.es, Github: javiman555.
-- David Herrera García, d.herrera.2016@alumnos.urjc.es, Github: davhg.
+- ~~David Herrera García, d.herrera.2016@alumnos.urjc.es, Github: davhg.~~
 - David Mestanza Rubia, d.mestanza.2017@alumnos.urjc.es, Github: dmestanza369.
 
 ## TRELLO BOARD
@@ -364,7 +364,7 @@ Other form to build the website image is calling the Dockerfile with the command
 | [API Documentation and deleted IngredientRestController](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/7d5091c033ffcd92a9864b68dca2ca29973f3ad2) | [Security and Pagination fixed](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/b873022e27c326e07668316aa172b039b7975a4c)             | [Almost All API funcionality done](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/24451673b48fa148ecb7614f59c652a9f961d751)            |
 | [Class Diagram Modified](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/f663911d595df22519993671e48ab9cd5a0d4989)                                 | [Create_image.bat added](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/dc032c509ebd709faba7c3e5005a46a2e4cc20eb)             | [Comands postman added](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/2ab29f27b45805e9e22d83b9c01f26b849d4ca52)                       |
 | [Changes in DishRestController](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/677641e7f91dfb5db4875deb1ac69393912f3548)                          | [New .bat files](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/e31837c37618c67d43c05d8bc529cdbce0238e1d)             | [API REST Done](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/7a39fc9baf378a35e2b42b6dc5d62e4795dca5e5)                               |
-| [Readme](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/c44bc8e08b3c165fe61c27d09fdcbdd3809a22ce)                                                 | ---             | [Bug fix](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/511167052abf5f93ff2d97f7eaf535b51c66ed83)                                     |
+| [Readme](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/c44bc8e08b3c165fe61c27d09fdcbdd3809a22ce)                                                 | [Readme](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/8abf00257fe8468f0ffea48499877c38020d4b07)             | [Bug fix](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/511167052abf5f93ff2d97f7eaf535b51c66ed83)                                     |
 
 
 #### Files:
