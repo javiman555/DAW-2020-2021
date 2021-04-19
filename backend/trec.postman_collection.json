@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "ada943e0-c733-4e4e-a27c-22eea79a06ee",
+		"_postman_id": "e337a110-e16a-4d71-b499-7d9474d47ae6",
 		"name": "trec",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -98,19 +98,7 @@
 					"name": "GET All dishes",
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "adminpass",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -137,19 +125,7 @@
 					},
 					"request": {
 						"auth": {
-							"type": "basic",
-							"basic": [
-								{
-									"key": "password",
-									"value": "adminpass",
-									"type": "string"
-								},
-								{
-									"key": "username",
-									"value": "admin",
-									"type": "string"
-								}
-							]
+							"type": "noauth"
 						},
 						"method": "GET",
 						"header": [],
@@ -226,7 +202,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/18/dishes",
+							"raw": "https://localhost:8443/api/users/16/dishes",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -235,7 +211,7 @@
 							"path": [
 								"api",
 								"users",
-								"18",
+								"16",
 								"dishes"
 							]
 						}
@@ -410,7 +386,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "https://localhost:8443/api/users/16/newPurchases",
+							"raw": "https://localhost:8443/api/users/16/newPurchase",
 							"protocol": "https",
 							"host": [
 								"localhost"
@@ -420,7 +396,7 @@
 								"api",
 								"users",
 								"16",
-								"newPurchases"
+								"newPurchase"
 							]
 						}
 					},
