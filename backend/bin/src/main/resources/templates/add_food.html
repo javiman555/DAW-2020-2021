@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+
+{{>header}}
+	<!-- END nav -->
+
+	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate text-center mb-5">
+					<h1 class="mb-2 bread">Añade platos o ingredientes</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+		<br>
+		<div class="navbar-default" id="ftco-nav">
+			<ul id="infoPerfil" class="nav ml-auto nav-pills nav-fill">
+				<li role="presentation" class="nav-item"><a class="nav-link active" href="#add-dish">Añadir plato</a></li>
+				<li role="presentation" class="nav-item"><a class="nav-link" href="#add-ingredient">Añadir ingrediente</a></li>
+			</ul>
+		</div>
+
+		<div class="tab-content panel panel-info">
+			<div role="tabpanel" class="tab-pane fade in active show" id="add-dish" aria-labelledby="tabInfo">
+			<form action="/newdish" method="post" enctype="multipart/form-data">
+				<div class="container">
+					<h1 class="page-header">Añadir plato</h1>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+
+				 			<div class="form-group">
+								<label class="col-md control-label">Nombre del plato:</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text" name='name'/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md control-label">Precio:</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text" name='dishPrice'/>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md control-label">Categoría:</label>
+								<select name="category" id="category">
+	  							<option value="Desayuno">Desayuno</option>
+	  							<option value="Comida">Comida</option>
+	  							<option value="Cena">Cena</option>
+								</select>
+							</div>
+						
+							<div class="form-group">
+								<label class="col-md control-label">Ingredientes:</label>
+								<select name="lista" id="ingredients" multiple>
+								{{#ingredients}}
+	  							<option value={{id}}>{{name}}</option>
+	  							{{/ingredients}}
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="col-md control-label">Imagen del plato(.jpg):</label>
+								<div class="col-md-8">
+									<input type='file' name='imageField' accept=".jpg, .jpeg, .png" class="text-center center-block well well-sm"/>
+								</div>
+							</div>
+						  	<div class="form-group">
+						    	<input class="btn btn-primary" type="submit" value="Añadir plato"/>
+						    	<input type="hidden" name="_csrf" value="{{token}}"/>
+						    	<input class="btn btn-secondary" value="Cancelar" type="reset">
+						 	</div>
+						</div>
+					</div>
+				</div>
+			</form>	
+			<br>
+		</div>
+
+			<div role="tabpanel" class="tab-pane fade" id="add-ingredient" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Añadir ingrediente</h1>
+					<div class="col-md-8 col-sm-6 col-xs-12 personal-info align-left">
+						<form action="/newingredient" method="post" enctype="multipart/form-data" class="form-horizontal" role="form">
+							<div class="form-group">
+								<label class="col-md control-label">Nombre del ingrediente:</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text" name='name'>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md control-label">Nombre del alérgeno (dejar vacío si no es alérgeno):</label>
+								<div class="col-md-8">
+									<input class="form-control" value="" type="text" name=nameAllergen>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-md-3 control-label"></label>
+								<div class="col-md-8">
+								  	<div class="form-group">
+								    	<input class="btn btn-primary" type="submit" value="Añadir ingrediente"/>
+								 	</div>
+								 	<input type="hidden" name="_csrf" value="{{token}}"/>
+									<input class="btn btn-secondary" value="Cancelar" type="reset">
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+				<br>
+			</div>
+		</div>
+    </section>
+
+{{>footer}}

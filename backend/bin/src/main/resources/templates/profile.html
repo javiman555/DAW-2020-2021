@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+<script src="https://www.chartjs.org/dist/2.9.4/Chart.min.js"></script>
+<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+{{>header}}
+	<!-- END nav -->
+
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate text-center mb-5">
+					<h1 class="mb-2 bread">Bienvenido, {{user.firstName}}</h1>
+				</div>
+			</div>
+		</div>
+	</section>
+
+    <section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+
+		<div class="navbar-default" id="ftco-nav">
+			<ul id="infoPerfil" class="nav ml-auto nav-pills nav-fill">
+				<li role="presentation" class="nav-item"><a class="nav-link active" href="#editar">Editar datos</a></li>
+				{{^admin}}
+				<li role="presentation" class="nav-item"><a class="nav-link" href="#platos">Platos recomendados</a></li>
+				{{/admin}}
+				<li role="presentation" class="nav-item"><a class="nav-link" href="#facturas">Facturas</a></li>
+				{{#admin}}
+				<li role="presentation" class="nav-item"><a class="nav-link" href="#estadisticas">Estadisticas</a></li>
+				{{/admin}}
+			</ul>
+		</div>
+
+		<div class="tab-content panel panel-info">
+			<div role="tabpanel" class="tab-pane fade in active show" id="editar" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Editar perfil</h1>
+					<div class="row">
+					<!-- left column -->
+						<div class="col-md-4 col-sm-6 col-xs-12">
+							{{#user.image}}
+							<img src="/user/{{user.id}}/image" style="width:200px;height:200px;">
+							{{/user.image}}
+							
+							{{^user.image}}
+							<div class="text-center">
+								<img src="https://www.optimaley.com/wp-content/uploads/2014/09/foto-perfil-generica.jpg" class="avatar img-circle img-thumbnail" alt="avatar">
+							</div>
+							{{/user.image}}
+						</div>
+					<!-- edit form column -->
+						<div class="col-md-8 col-sm-6 col-xs-12 personal-info">
+							<form action="/edituser" method="post" enctype="multipart/form-data" class="appointment-form">
+								<div class="form-group">
+									<label class="col-md control-label">Nombre:</label>
+									<div class="col-md-8">
+										<input name="firstName" value="{{user.firstName}}" placeholder="{{user.firstName}}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md control-label">Apellidos:</label>
+									<div class="col-md-8">
+										<input name="surname" value="{{user.surname}}" placeholder="{{user.surname}}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md control-label">Correo electrónico:</label>
+									<div class="col-md-8">
+										<input name="email" value="{{user.email}}" placeholder="{{user.email}}" />
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-md control-label">Teléfono</label>
+									<div class="col-md-8">
+										<input name="phoneNumber" value="{{user.phoneNumber}}" placeholder="{{user.phoneNumber}}" />
+									</div>
+								</div>
+			
+								  {{#user.image}}
+								  <input type='checkbox' name='removeImage'> <label>Borrar imagen</label><br>
+								  <label>Actualizar imagen: </label><br>
+								  {{/user.image}}
+								
+								  {{^user.image}}
+								  <label>Subir imagen: </label><br>
+								  {{/user.image}}
+								    
+								  <input type='file' name='imageField' accept=".jpg, .jpeg" />
+								  <input type="hidden" name="_csrf" value="{{token}}" />
+								  <input type="hidden" name="id" value="{{user.id}}"/>
+								  <input type="hidden" name="name" value="{{user.name}}"/>
+								  <input type="hidden" name="encodedPassword" value="{{user.encodedPassword}}" />
+								  
+								<div class="form-group">
+									<label class="col-md-3 control-label"></label>
+									<div class="col-md-8">
+										<input class="btn btn-primary" type="submit" value="Guardar cambios" />
+									</div>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>
+				<br>
+			</div>
+			
+			{{^admin}}
+			<div role="tabpanel" class="tab-pane fade" id="platos" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Platos recomendados</h1>
+					<br>
+					{{#dishesRecomended}}
+					<div class="row">
+						<div class="col-md-4">
+				  			{{#image}}
+	 						<img src="/dishes/{{id}}/image" style="width:200px;height:150px;">
+	 						{{/image}}			    
+						    {{^image}}
+							<img src="/images/no_image.png" style="width:200px;height:150px;">
+							{{/image}}
+							<div>
+								<p>{{name}}</p>
+							</div>
+						</div>
+						<div class="col-md-8">
+							<form action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+								<input type="hidden" name="id" value="{{id}}" />
+								<input type="hidden" name="userName" value="{{userName}}" />
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+								<p>
+									<input class="btn btn-primary" type="submit" value="Pedir" />
+								</p>
+							</form>	
+							<h4 style="color: white;"><strong>{{dishPrice}}€<span class="text-muted"></span></strong></h4>
+						</div>
+						
+					</div>
+					<hr>
+					{{/dishesRecomended}}
+					
+					{{^dishesRecomended}}
+					<b>No hay recomendaciones.</b>
+					{{/dishesRecomended}}
+				</div>
+				<br>
+			</div>
+			{{/admin}}
+	
+			<div role="tabpanel" class="tab-pane fade" id="facturas" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Facturas</h1>
+					<br>
+					{{#logged}}
+<!-- 					ADMIN -->
+						{{#admin}}
+							<div id="userPurchases">
+								{{#adminpurchases}}
+									<p><a href="/purchase/{{id}}">Factura #{{id}}</a></p>
+								{{/adminpurchases}}
+							</div>
+							{{^isadminempty}}
+								<button type="button" class="btn btn-primary" id="moreContentButton" onclick="moreContentAdmin()">
+								<span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
+								<span id="moreContentText">Cargar más...</span></button>
+							{{/isadminempty}}
+						
+							{{^adminpurchases}}
+								<b>No ha realizado ningún pedido.</b>
+							{{/adminpurchases}}
+						{{/admin}}
+						
+<!-- 					NORMAL USER -->						
+						{{^admin}}
+							<div id="userPurchases">
+								{{#purchases}}
+									<p><a href="/purchase/{{id}}">Factura #{{id}}</a></p>
+								{{/purchases}}
+							</div>
+							{{^isempty}}
+								<button type="button" class="btn btn-primary" id="moreContentButton" onclick="moreContent('{{user.id}}')">
+								<span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
+								<span id="moreContentText">Cargar más...</span></button>
+							{{/isempty}}
+							
+							{{^purchases}}
+								<b>No ha realizado ningún pedido.</b>
+							{{/purchases}}
+						{{/admin}}
+					{{/logged}}
+					
+				</div>
+				<br>
+			</div>
+			{{#admin}}
+			<div role="tabpanel" class="tab-pane fade" id="estadisticas" aria-labelledby="tabInfo">
+				<div class="container" style="padding-top: 60px;">
+					<h1 class="page-header">Estadisticas</h1>
+					<br>
+					<!--<div>
+					<img style="display: block;margin-left: auto; margin-right: auto;" src="https://chart.googleapis.com/chart?cht=p&chs=500x200&chd=t:{{#purchases}}{{id}}{{/purchases}},{{#purchases}}{{id}}{{/purchases}}&chl=Likes ({{#purchases}}{{id}}{{/purchases}})|Plazas libres ({{#purchases}}{{id}}{{/purchases}})&chco=FF0000,ebe1c9">
+					</div>
+					<img style="display: block;margin-left: auto; margin-right: auto;" src="https://chart.apis.google.com/chart?chs=500x200&chd=t:12.5,76.5,44.0&chds=-20,80&cht=lc&chl={{#adminpurchases}}{{id}}|{{/adminpurchases}}">
+					--><canvas id="canvas"></canvas>
+					
+					<script >
+					var config = {
+					type: 'line',
+					data: {
+						labels: [{{#graficid}}{{.}},{{/graficid}}],
+						datasets: [{
+							label: 'Precio por pedido',
+							backgroundColor: window.chartColors.red,
+							borderColor: window.chartColors.red,
+							data: [
+								{{#graficprice}}{{.}},{{/graficprice}}
+							],
+							fill: false,
+						}]
+					},
+					options: {
+						responsive: true,
+						title: {
+							display: true,
+							text: 'Pedidos'
+						},
+						tooltips: {
+							mode: 'index',
+							intersect: false,
+						},
+						hover: {
+							mode: 'nearest',
+							intersect: true
+						},
+						scales: {
+							xAxes: [{
+								display: true,
+								scaleLabel: {
+									display: true,
+									labelString: 'ID del pedido'
+								}
+							}],
+							yAxes: [{
+								display: true,
+								scaleLabel: {
+									display: true,
+									labelString: 'Precio'
+								}
+							}]
+						}
+					}
+				};
+		
+				window.onload = function() {
+					var ctx = document.getElementById('canvas').getContext('2d');
+					window.myLine = new Chart(ctx, config);
+				};
+					</script>
+				</div>
+				<br>
+			</div>
+			{{/admin}}
+		</div>
+    </section>
+		
+{{>footer}}

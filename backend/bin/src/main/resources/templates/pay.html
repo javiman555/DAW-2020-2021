@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+
+{{>header}}
+	<!-- END nav -->
+
+	<section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate text-center mb-5">
+					<h1 class="mb-2 bread">Paga tu Pedido</h1>
+					<p class="breadcrumbs"><span class="mr-2"><a href="/index">Principal<span class="mr-2"><i class="fa fa-chevron-right"></i><a href="/cart">Carro <i class="fa fa-chevron-right"></i></a></span> <span>Pagar <i class="fa fa-chevron-right"></i></span></p>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+		<br>
+		<div class="container">
+			<form action="/processpay" method="post" enctype="multipart/form-data" class="appointment-form">
+				<h2 style="color: aliceblue;"><b>Datos personales:</b></h2>
+				<div class="row">
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="email">Nombre:</label>
+							<input type="text" name="firstName" class="form-control" id="name" placeholder="Introduce tu nombre">
+						</div>
+					</div>
+					<div class="col-lg-6">
+						<div class="form-group">
+							<label for="email">Apellidos:</label>
+							<input type="text" name="surname" class="form-control" id="surname" placeholder="Introduce tus apellidos">
+						</div>
+					</div>
+				</div>
+				<br>
+				<h2 style="color: aliceblue;"><b>Datos de dirección de envío:</b></h2>
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="form-group">
+							<label for="email">Dirección:</label>
+							<input type="text" name="address"class="form-control" id="direction" placeholder="Introduce tu dirección">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2">
+						<div class="form-group">
+							<label for="email">Código Postal:</label>
+							<input type="text" name="postalCode" class="form-control" id="cp" placeholder="CP">
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<div class="form-group">
+							<label for="email">Localidad:</label>
+							<input type="text" name="city" class="form-control" id="city" placeholder="Localidad">
+						</div>
+					</div>
+					<div class="col-lg-5">
+						<div class="form-group">
+							<label for="email">País:</label>
+							<input type="text" name="country" class="form-control" id="country" placeholder="País">
+						</div>
+					</div>
+				</div>
+				<br>
+				<div class="row">
+					<div class="col-lg-4">
+						<div class="form-group">
+							<label for="pwd">Número de teléfono:</label>
+							<input type="text" name="phoneNumber" class="form-control" id="tel" placeholder="Introduce tu número de teléfono">
+						</div>
+					</div>
+						<div class="col-md-12">
+							<div class="form-group">
+								<input type="submit" value="Pagar" class="btn btn-primary">
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+							</div>
+						</div>
+				</div>
+			</form>
+		</div>
+		<br>
+	</section>
+{{>footer}}

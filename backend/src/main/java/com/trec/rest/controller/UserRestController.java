@@ -7,6 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.security.Principal;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -205,7 +206,7 @@ public class UserRestController {
 		 )
 		})
 	
-	@GetMapping("/{id}/newPurchase")// Show the current order of the user
+	@GetMapping("/{id}/currentPurchase")// Show the current order of the user
 	public ResponseEntity<Purchase> findNewPurchase(@Parameter(description="id of current user")@PathVariable long id, HttpServletRequest request) {
 		
 		Principal principal = request.getUserPrincipal();
@@ -257,7 +258,7 @@ public class UserRestController {
 		 )
 		})
 	
-	@PostMapping("/{id}/newPurchase")//Create an empty newPurchase of the user
+	@PostMapping("/{id}/currentPurchase")//Create an empty newPurchase of the user
 	public ResponseEntity<Purchase> newPurchaseProcess(@Parameter(description="id of current user") @PathVariable long id, HttpServletRequest request)  {
 
 		Principal principal = request.getUserPrincipal();
@@ -308,7 +309,7 @@ public class UserRestController {
 		 )
 		})
 	
-	@PutMapping("/{id}/newPurchase")//Move newPurchase of the user the the purchase list
+	@PutMapping("/{id}/currentPurchase")//Move newPurchase of the user the the purchase list
 	public ResponseEntity<Purchase> newPurchaseDone(@Parameter(description="id of current user") @PathVariable long id,@Parameter(description="to update a purchase: first name, surname, address, postal code, city, country and phone number") @RequestBody Purchase dataPurchase, HttpServletRequest request)  {
 
 		Principal principal = request.getUserPrincipal();
@@ -358,7 +359,7 @@ public class UserRestController {
 		 )
 		})
 	
-	@PutMapping("/{iduser}/newPurchase/dishes/{iddish}")//Add a dish to the newPurchase of the user
+	@PutMapping("/{iduser}/currentPurchase/dishes/{iddish}")//Add a dish to the newPurchase of the user
 	public ResponseEntity<Purchase> addDish(@Parameter(description="id of current user") @PathVariable long iduser, @Parameter(description="id of dish to be introduced to the current purchase") @PathVariable long iddish, HttpServletRequest request)
 			throws IOException, SQLException {
 		
@@ -418,6 +419,7 @@ public class UserRestController {
 	public ResponseEntity<User> newUserProcess(@Parameter(description="to register a new user: first name, surname, user name, email, phone number and password") @RequestBody User user)  {
 		
 		List<User> users = userService.findAll();
+		List<String> roles = new ArrayList<>();
 		boolean exist = userService.existUser(user, users);
 		if(exist) {
 			
@@ -425,6 +427,8 @@ public class UserRestController {
 		}
 
 		user.setImage(false);
+		roles.add("USER");
+		user.setRoles(roles);
 		
 		userService.save(user);
 		

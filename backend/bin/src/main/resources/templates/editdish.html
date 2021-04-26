@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<meta charset="UTF-8"/>
+
+{{>header}}
+
+<section class="hero-wrap hero-wrap-2" style="background-image: url('/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 ftco-animate text-center mb-5">
+					<h1 class="mb-2 bread">Editar plato "{{dish.name}}"</h1>
+				</div>
+			</div>
+		</div>
+</section>
+
+<section style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+<br>
+	<div class="container">
+		<div class="text-center">
+		<form action="/editdish" method="post" enctype="multipart/form-data" class="appointment-form">
+		  <h2 class="page-header">{{dish.name}}</h2>
+		  <br>
+		  <input type="hidden" name="id" value="{{dish.id}}" />
+		  <div>
+		    <label >Nombre del plato: </label>
+		    <input name="name" value="{{dish.name}}" placeholder="{{dish.name}}" />
+		  </div>
+		  <div>
+		    <label>Ingredientes: </label>
+		    <select name="lista" id="ingredients" multiple>
+				{{#ingredients}}
+	 			<option value={{id}} selected>{{name}}</option>
+	  			{{/ingredients}}
+			</select>
+		  </div>
+		  <div class="form-group">
+			<label class="col-md control-label">Categoría:</label>
+			<select name="category" id="category">
+	  		<option value="Desayuno">Desayuno</option>
+	  		<option value="Comida">Comida</option>
+	  		<option value="Cena">Cena</option>
+			</select>
+		 </div>
+		 <div>
+			<label>Precio:</label>
+			<div>
+			<input value="{{dish.dishPrice}}" type="text" name='dishPrice' placeholder="{{dish.dishPrice}}"/>
+			</div>
+		</div>
+		  <p>Imagen del plato: </p>
+		  
+		  {{#dish.image}}
+		  <img src="/dishes/{{dish.id}}/image" style="width:400px;height:300px;"><br>
+		  <input type='checkbox' name='removeImage'> <label>Borrar imagen</label><br>
+		  <label>Actualizar imagen: </label><br>
+		  {{/dish.image}}
+		
+		  {{^dish.image}}
+		  <img src="/images/no_image.png" style="width:400px;height:300px;"><br>
+		  <label>Subir imagen: </label><br>
+		  {{/dish.image}}
+		    
+		  <input type='file' name='imageField' accept=".jpg, .jpeg" />
+		  <input type="hidden" name="_csrf" value="{{token}}" />
+		  <br>
+		  <br>
+		  <p>
+		    <button class="btn btn-primary" onclick="location.href='/dishes/{{dish.id}}'; return false;">Cancelar</button>
+		    <input class="btn btn-primary" type="submit" value="Guardar cambios" />
+		  </p>
+		</form>
+		</div>
+	</div>
+<br>
+</section>
+{{>footer}}
