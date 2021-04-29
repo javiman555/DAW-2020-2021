@@ -58,6 +58,18 @@ public class UserRestController {
 	@Autowired
 	private ImageService imgService;
 	
+	@GetMapping("/me")
+	public ResponseEntity<User> me(HttpServletRequest request) {
+		
+		Principal principal = request.getUserPrincipal();
+		
+		if(principal != null) {
+			return ResponseEntity.ok(userService.findByName(principal.getName()).orElseThrow());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
 	@Operation(summary = "Get all users")
 	@ApiResponses(value = {
 			 @ApiResponse(
