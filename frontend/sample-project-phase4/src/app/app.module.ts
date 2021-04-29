@@ -5,14 +5,25 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { routing } from './app.routing';
-import { LoginComponent } from './components/login/login.component';
-import { DishListComponent } from './components/dishes/dish-list.component';
-import { DishFormComponent } from './components/dishes/dish-form.component';
+
 import { DishDetailComponent } from './components/dishes/dish-detail.component';
+import { DishFormComponent } from './components/dishes/dish-form.component';
+import { DishListComponent } from './components/dishes/dish-list.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
-  declarations: [AppComponent, DishDetailComponent, DishListComponent, DishFormComponent, LoginComponent],
-  imports: [BrowserModule, FormsModule, HttpClientModule, routing],
+  declarations: [
+    AppComponent,
+    DishDetailComponent,
+    DishFormComponent,
+    DishListComponent,
+    LoginComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    HttpClientModule,
+    routing],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
