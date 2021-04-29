@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
 
-const BASE_URL = '/api/auth';
+const BASE_URL_LOGIN = '/api/auth';
+const BASE_URL_USER = '/api/users';
 
 @Injectable({ providedIn: 'root' })
 export class LoginService {
@@ -16,7 +17,7 @@ export class LoginService {
 
     reqIsLogged() {
 
-        this.http.get('/api/users/me', { withCredentials: true }).subscribe(
+        this.http.get(BASE_URL_USER+'me', { withCredentials: true }).subscribe(
             response => {
                 this.user = response as User;
                 this.logged = true;
@@ -32,7 +33,7 @@ export class LoginService {
 
     logIn(user: string, pass: string) {
 
-        this.http.post(BASE_URL + "/login", { username: user, password: pass }, { withCredentials: true })
+        this.http.post(BASE_URL_LOGIN + "/login", { username: user, password: pass }, { withCredentials: true })
             .subscribe(
                 (response) => this.reqIsLogged(),
                 (error) => alert("Wrong credentials")
@@ -42,7 +43,7 @@ export class LoginService {
 
     logOut() {
 
-        return this.http.post(BASE_URL + '/logout', { withCredentials: true })
+        return this.http.post(BASE_URL_LOGIN + '/logout', { withCredentials: true })
             .subscribe((resp: any) => {
                 console.log("LOGOUT: Successfully");
                 this.logged = false;
@@ -62,4 +63,5 @@ export class LoginService {
     currentUser() {
         return this.user;
     }
+
 }

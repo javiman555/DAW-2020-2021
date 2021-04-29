@@ -18,6 +18,12 @@ export class DishesService {
 		) as Observable<Dish[]>;
 	}
 
+	getDishesByCategory(category: string): Observable<Dish[]> {
+		return this.httpClient.get(BASE_URL+"category"+category).pipe(
+			catchError(error => this.handleError(error))
+		) as Observable<Dish[]>;
+	}
+	
 	getDish(id: number | string): Observable<Dish> {
 		return this.httpClient.get(BASE_URL + id).pipe(
 			catchError(error => this.handleError(error))
