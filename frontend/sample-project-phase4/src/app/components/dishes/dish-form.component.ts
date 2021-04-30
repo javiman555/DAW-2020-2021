@@ -12,13 +12,18 @@ import { DishesService } from 'src/app/services/dishes.service';
     <label>Id: </label>{{dish.id}}
   </div>
   <div>
-    <label>Title: </label>
-    <input [(ngModel)]="dish.name" placeholder="title"/>
+    <label>Nombre: </label>
+    <input [(ngModel)]="dish.name" placeholder="nombre"/>
   </div>
   <div>
-    <label>Abstract: </label>
-    <textarea [(ngModel)]="dish.category" placeholder="description"></textarea>
+    <label>Categoria: </label>
+    <input [(ngModel)]="dish.category" placeholder="categoria"/>
   </div>
+  <div>
+    <label>Precio: </label>
+    <textarea [(ngModel)]="dish.dishPrice" placeholder="precio"></textarea>
+  </div>
+
   <p>
     <button (click)="cancel()">Cancel</button>
     <button (click)="save()">Save</button>
@@ -43,10 +48,11 @@ export class DishFormComponent {
       );
       this.newDish = false;
     } else {
-      this.dish = { name: '',nbuy:0,dishPrice:0, category: '' };
+      this.dish = { name: '',nbuy:0,dishPrice:0, category: '',ingredients:[]};
       this.newDish = true;
     }
   }
+  
 
   cancel() {
     window.history.back();

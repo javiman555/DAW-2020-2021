@@ -43,7 +43,6 @@ public class Dish {
 			   name="Dish_Ing",
 			   joinColumns=@JoinColumn(name="Dish_id", referencedColumnName="id"),
 			   inverseJoinColumns=@JoinColumn(name="Ing_id", referencedColumnName="id"))
-	@JsonIgnore
 	private List<Ingredient> ingredients;
 
 	public Dish() {}

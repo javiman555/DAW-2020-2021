@@ -9,12 +9,15 @@ import { LoginService } from 'src/app/services/login.service';
     template: `
   <div *ngIf="dish">
   <h2>dish "{{dish.name}}"</h2>
-  <div>
-    <p>{{dish.category}}</p>
-  </div>
+  <h2>categoria: "{{dish.category}}"</h2>
+  <h2>precio: "{{dish.dishPrice}}"</h2>
+  <h2>Ingredientes:</h2>
+      <li *ngFor="let ingredient of dish.ingredients">
+        <h3>{{ingredient.name}}</h3>
+      </li>
   <p>
     <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeDish()">Remove</button>
-    <button *ngIf="loginService.isLogged()" (click)="editDish()">Edit</button>
+    <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="editDish()">Edit</button>
     <br>
     <button (click)="gotoDishes()">All Books</button>
   </p>
