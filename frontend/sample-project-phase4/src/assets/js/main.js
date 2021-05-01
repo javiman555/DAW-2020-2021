@@ -267,11 +267,11 @@
   });
 
 
-  $('.book_date').datepicker({
+/*   $('.book_date').datepicker({
 	  'format': 'm/d/yyyy',
 	  'autoclose': true
 	});
-	$('.book_time').timepicker();
+	$('.book_time').timepicker(); */
 
 	
 	$('#infoPerfil a').click(function (e) {

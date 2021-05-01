@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../models/user.model';
+import { Router } from '@angular/router';
 
 const BASE_URL_LOGIN = '/api/auth';
 const BASE_URL_USER = '/api/users';
@@ -11,13 +12,13 @@ export class LoginService {
     logged: boolean;
     user: User;
 
-    constructor(private http: HttpClient) {
-        this.reqIsLogged();
+    constructor(private http: HttpClient, private router: Router) {
+        // this.reqIsLogged();
     }
 
     reqIsLogged() {
 
-        this.http.get(BASE_URL_USER+'me', { withCredentials: true }).subscribe(
+        this.http.get(BASE_URL_USER+'/me', { withCredentials: true }).subscribe(
             response => {
                 this.user = response as User;
                 this.logged = true;
@@ -48,6 +49,7 @@ export class LoginService {
                 console.log("LOGOUT: Successfully");
                 this.logged = false;
                 this.user = undefined;
+                this.router.navigate(['/index']);
             });
 
     }
