@@ -8,6 +8,5 @@ import { Router } from '@angular/router'
 })
 export class IndexComponent {
     constructor(private router: Router){
-        
     }
 }
