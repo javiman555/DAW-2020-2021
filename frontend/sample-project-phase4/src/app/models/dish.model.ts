@@ -7,4 +7,5 @@ export interface Dish {
 	nbuy: number;
 	dishPrice: number;
 	ingredients: Ingredient[];
+	image: boolean;
 }

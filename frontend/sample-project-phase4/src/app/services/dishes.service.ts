@@ -44,6 +44,20 @@ export class DishesService {
 		}
 	}
 
+	setDishImage(dish: Dish, formData: FormData) {
+		return this.httpClient.post(BASE_URL + dish.id + '/image', formData)
+			.pipe(
+				catchError(error => this.handleError(error))
+			);
+	}
+
+	deleteDishImage(dish: Dish) {
+		return this.httpClient.delete(BASE_URL + dish.id + '/image')
+			.pipe(
+				catchError(error => this.handleError(error))
+			);
+	}
+
 	removeDish(dish: Dish) {
 		return this.httpClient.delete(BASE_URL + dish.id).pipe(
 			catchError(error => this.handleError(error))
@@ -55,9 +69,6 @@ export class DishesService {
 			catchError(error => this.handleError(error))
 		);
 	}
-	
-
-
 	
 	private handleError(error: any) {
 		console.log("ERROR:");

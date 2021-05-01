@@ -33,10 +33,10 @@ public class Dish {
 	private String category;
 	private int nbuy;
 
-	@JsonIgnore
 	@Lob
-	private Blob imageFile;
 	@JsonIgnore
+	private Blob imageFile;
+	
 	private boolean image;
 
 	@ManyToMany
