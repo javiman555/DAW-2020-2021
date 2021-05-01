@@ -27,17 +27,19 @@ export class PurchaseListComponent implements OnInit {
   constructor(private router: Router, private service: PurchasesService, public loginService: LoginService) { }
 
   ngOnInit() {
+
     if(this.loginService.isAdmin){
-    this.service.getPurchasesAdmin(0).subscribe(
-      purchases => this.purchases = purchases,
-      error => console.log(error)
-    );
-    }else{
-      this.service.getPurchasesUser(this.loginService.currentUser().id,0).subscribe(
-      purchases => this.purchases = purchases,
-      error => console.log(error)
+      this.service.getPurchasesAdmin(0).subscribe(
+        purchases => this.purchases = purchases,
+        error => console.log(error)
       );
-    }
+      }else{
+        this.service.getPurchasesUser(this.loginService.user.id,0).subscribe(
+        purchases => this.purchases = purchases,
+        error => console.log(error)
+        );
+      }
+    
   }
 
   newPurchase() {

@@ -14,15 +14,15 @@ import { PurchasesService } from 'src/app/services/purchases.service';
   </div>
   <div>
     <label>Nombre: </label>
-    <input [(ngModel)]="purchase.firstName" placeholder="nombre"/>
+    <input [(ngModel)]="purchase.firstName" placeholder="firstName"/>
   </div>
   <div>
     <label>Apellidos: </label>
-    <input [(ngModel)]="purchase.surname" placeholder="categoria"/>
+    <input [(ngModel)]="purchase.surname" placeholder="surname"/>
   </div>
   <div>
     <label>Telefono: </label>
-    <textarea [(ngModel)]="purchase.phoneNumber" placeholder="precio"></textarea>
+    <textarea [(ngModel)]="purchase.phoneNumber" placeholder="phoneNumber"></textarea>
   </div>
 
   <p>

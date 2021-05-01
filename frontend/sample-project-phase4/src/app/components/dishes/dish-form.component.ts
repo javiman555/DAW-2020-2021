@@ -30,10 +30,6 @@ import { DishesService } from 'src/app/services/dishes.service';
   </p>
   </div>
   
-  <h1>Upload and Download File</h1>
-<input type="file" id="customFile" (change)="selectFile($event)">
-<button class="btn btn-primary" [disabled]="!selectedFiles " (click)="upload()">Save File</button>
-  
   `
 })
 export class DishFormComponent {
@@ -59,13 +55,6 @@ export class DishFormComponent {
     }
   }
 
-  upload() {
-    this.service.postPhotos(this.selectedFiles,20)
-  }
-
-  selectFile(event) {
-    this.selectedFiles = event.target.files;
-  }
 
   cancel() {
     window.history.back();

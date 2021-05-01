@@ -13,7 +13,7 @@ export class PurchasesService {
 	constructor(private httpClient: HttpClient) { }
 
 	getPurchasesUser(user_id: number | string, page: number): Observable<Purchase[]> {
-		return this.httpClient.get(BASE_URL+'?numPage='+page).pipe(
+		return this.httpClient.get(BASE_URL+user_id+'?numPage='+page).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Purchase[]>;
 	}

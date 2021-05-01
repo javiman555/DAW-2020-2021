@@ -55,18 +55,7 @@ export class DishesService {
 			catchError(error => this.handleError(error))
 		);
 	}
-
-
-	postPhotos(files: any,id: number | string): Observable<any> { 
-		const url = BASE_URL+id+"/image";
-		let formData = new FormData();
-		formData.append("files",files,"files");
-		let headers = new HttpHeaders({
-				'Content-Type':'multipart/form-data'
-				   });
-			  let options = { headers: headers };
-		   return this.httpClient.post(url, formData,options);  
-	   }
+	
 
 
 	

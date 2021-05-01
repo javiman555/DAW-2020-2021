@@ -8,7 +8,6 @@ import { Router } from '@angular/router';
 
   <ul class="nav navbar-nav">
       <li>
-hola
       </li>
   </ul>
 
