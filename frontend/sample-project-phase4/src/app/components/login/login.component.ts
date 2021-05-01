@@ -7,6 +7,8 @@ import { LoginService } from '../../services/login.service';
 })
 export class LoginComponent {
 
+  imgLogo = "assets/images/logo.png";
+
   constructor(public loginService: LoginService) { }
 
   logIn(event: any, user: string, pass: string) {
