@@ -43,9 +43,10 @@ public class User {
 	private String email;
 	private int phoneNumber;
 
-	@JsonIgnore
 	@Lob
+	@JsonIgnore
 	private Blob imageFile;
+	
 	private boolean image;
 	
 	private String name;

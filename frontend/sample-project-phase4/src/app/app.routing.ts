@@ -7,6 +7,7 @@ import { CartComponent } from './components/purchases/cart.component';
 import { PurchaseDetailComponent } from './components/purchases/purchase-detail.component';
 import { PurchaseFormComponent } from './components/purchases/purchase-form.component';
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
+import { UserDetailComponent } from './components/users/user-detail.component';
 
 
 const appRoutes = [
@@ -20,7 +21,8 @@ const appRoutes = [
     { path: 'purchases', component: PurchaseListComponent },
     { path: 'purchases/new', component: PurchaseFormComponent },
     { path: 'purchases/:id', component: PurchaseDetailComponent },
-    { path: 'cart', component: CartComponent }
+    { path: 'cart', component: CartComponent },
+    { path: 'users/:id', component: UserDetailComponent }
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);
