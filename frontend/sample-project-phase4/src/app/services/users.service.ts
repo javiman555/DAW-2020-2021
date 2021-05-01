@@ -10,7 +10,7 @@ import { Purchase } from '../models/purchase.model';
 const BASE_URL = '/api/users/';
 
 @Injectable({ providedIn: 'root' })
-export class DishesService {
+export class UsersService {
 
 	constructor(private httpClient: HttpClient) { }
 

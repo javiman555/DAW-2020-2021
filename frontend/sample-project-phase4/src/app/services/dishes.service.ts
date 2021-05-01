@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Dish } from '../models/dish.model';
@@ -57,7 +57,16 @@ export class DishesService {
 	}
 
 
-
+	postPhotos(files: any,id: number | string): Observable<any> { 
+		const url = BASE_URL+id+"/image";
+		let formData = new FormData();
+		formData.append("files",files,"files");
+		let headers = new HttpHeaders({
+				'Content-Type':'multipart/form-data'
+				   });
+			  let options = { headers: headers };
+		   return this.httpClient.post(url, formData,options);  
+	   }
 
 
 	

@@ -1,6 +1,7 @@
 package com.trec.rest.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -34,6 +35,18 @@ public class PurchaseRestController {
 	@Autowired
 	private PageableService pageableService;
 	
+	
+	@GetMapping("/purchase/{id}") // Show a purchase
+	public ResponseEntity<Purchase> findPurchaseById(@Parameter(description="id of purchase to be searched") @PathVariable long id) {
+
+		Optional<Purchase> purchase = purchaseService.findById(id);
+		
+		if (purchase.isPresent()) {
+			return ResponseEntity.ok(purchase.get());
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 	
 	@Operation(summary = "User gets a page of its purchases")
 	@ApiResponses(value = {

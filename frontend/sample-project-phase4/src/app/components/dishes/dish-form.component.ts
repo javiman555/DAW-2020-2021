@@ -28,13 +28,19 @@ import { DishesService } from 'src/app/services/dishes.service';
     <button (click)="cancel()">Cancel</button>
     <button (click)="save()">Save</button>
   </p>
-  </div>`
+  </div>
+  
+  <h1>Upload and Download File</h1>
+<input type="file" id="customFile" (change)="selectFile($event)">
+<button class="btn btn-primary" [disabled]="!selectedFiles " (click)="upload()">Save File</button>
+  
+  `
 })
 export class DishFormComponent {
 
   newDish: boolean;
   dish: Dish;
-
+  selectedFiles = null;
   constructor(
     private router: Router,
     activatedRoute: ActivatedRoute,
@@ -52,7 +58,14 @@ export class DishFormComponent {
       this.newDish = true;
     }
   }
-  
+
+  upload() {
+    this.service.postPhotos(this.selectedFiles,20)
+  }
+
+  selectFile(event) {
+    this.selectedFiles = event.target.files;
+  }
 
   cancel() {
     window.history.back();

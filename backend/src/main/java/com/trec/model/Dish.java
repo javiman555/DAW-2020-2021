@@ -36,6 +36,7 @@ public class Dish {
 	@JsonIgnore
 	@Lob
 	private Blob imageFile;
+	@JsonIgnore
 	private boolean image;
 
 	@ManyToMany

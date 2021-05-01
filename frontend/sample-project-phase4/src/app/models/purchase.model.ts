@@ -11,4 +11,5 @@ export interface Purchase {
 	phoneNumber: number;
 	price: number;
 	dishes: Dish[];	
+	
 }

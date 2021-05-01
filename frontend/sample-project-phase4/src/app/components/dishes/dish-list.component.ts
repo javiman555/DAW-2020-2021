@@ -6,12 +6,7 @@ import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   template: `
-    <h2>Dishes</h2>
-    <ul class="items">
-      <li *ngFor="let dish of dishes">
-        <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
-      </li>
-    </ul>
+
     <h2>Dishes</h2>
     <ul class="items">
       <h2>Desayuno</h2>
@@ -27,12 +22,13 @@ import { LoginService } from 'src/app/services/login.service';
         <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
       </li>
     </ul>
+
+
     <button *ngIf="loginService.isLogged()" (click)="newDish()">New book</button>
   `
 })
 export class DishListComponent implements OnInit {
 
-  dishes: Dish[];
   dishes1: Dish[];
   dishes2: Dish[];
   dishes3: Dish[];
@@ -41,10 +37,6 @@ export class DishListComponent implements OnInit {
   constructor(private router: Router, private service: DishesService, public loginService: LoginService) { }
 
   ngOnInit() {
-    this.service.getDishes().subscribe(
-      dishes => this.dishes = dishes,
-      error => console.log(error)
-    );
     this.service.getDishesByCategory('Desayuno').subscribe(
       dishes => this.dishes1 = dishes,
       error => console.log(error)

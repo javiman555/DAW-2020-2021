@@ -8,20 +8,26 @@ import { Purchase } from '../models/purchase.model';
 const BASE_URL = '/api/purchases/';
 
 @Injectable({ providedIn: 'root' })
-export class DishesService {
+export class PurchasesService {
 
 	constructor(private httpClient: HttpClient) { }
 
-	getPurchasesUser(user_id: number | string): Observable<Purchase[]> {
-		return this.httpClient.get(BASE_URL).pipe(
+	getPurchasesUser(user_id: number | string, page: number): Observable<Purchase[]> {
+		return this.httpClient.get(BASE_URL+'?numPage='+page).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Purchase[]>;
 	}
 
-	getPurchasesAdmin(): Observable<Purchase[]> {
-		return this.httpClient.get(BASE_URL).pipe(
+	getPurchasesAdmin(page: number): Observable<Purchase[]> {
+		return this.httpClient.get(BASE_URL+'?numPage='+page).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Purchase[]>;
+	}
+
+	getPurchase(id: number | string): Observable<Purchase> {
+		return this.httpClient.get(BASE_URL+"purchase/" + id).pipe(
+			catchError(error => this.handleError(error))
+		) as Observable<Purchase>;
 	}
 
 	getPurchasesId(): Observable<number[]> {
@@ -35,6 +41,21 @@ export class DishesService {
 			catchError(error => this.handleError(error))
 		) as Observable<number[]>;
 	}
+
+	addPurchase(purchase: Purchase,user_id: number | string) {
+
+		if (!purchase.id) {
+			return this.httpClient.post('/api/users/'+user_id+'currentPurchase', purchase)
+				.pipe(
+					catchError(error => this.handleError(error))
+				);
+		} else {
+			return this.httpClient.put('/api/users/'+user_id+'currentPurchase', purchase).pipe(
+				catchError(error => this.handleError(error))
+			);
+		}
+	}
+
 
 	private handleError(error: any) {
 		console.log("ERROR:");
