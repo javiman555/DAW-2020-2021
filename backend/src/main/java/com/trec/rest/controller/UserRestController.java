@@ -546,9 +546,12 @@ public class UserRestController {
 		Optional<User> user = userService.findById(id);
 		
 		if (user.isPresent()) {
+			
 			if (userReal.get().getId() == user.get().getId()) {
 				
 				User user1 = user.get();
+				
+				user1.setImage(true);
 
 				if (user1 != null) {
 

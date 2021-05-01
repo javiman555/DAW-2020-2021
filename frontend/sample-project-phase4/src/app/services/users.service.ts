@@ -79,6 +79,20 @@ export class UsersService {
 		);
 	}
 
+	setUserImage(user: User, formData: FormData) {
+		return this.httpClient.post(BASE_URL + user.id + '/image', formData)
+			.pipe(
+				catchError(error => this.handleError(error))
+			);
+	}
+
+	deleteUserImage(user: User) {
+		return this.httpClient.delete(BASE_URL + user.id + '/image')
+			.pipe(
+				catchError(error => this.handleError(error))
+			);
+	}
+
 	private handleError(error: any) {
 		console.log("ERROR:");
 		console.error(error);

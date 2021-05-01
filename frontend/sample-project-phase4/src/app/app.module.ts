@@ -14,6 +14,7 @@ import { PurchaseDetailComponent } from './components/purchases/purchase-detail.
 import { PurchaseFormComponent } from './components/purchases/purchase-form.component';
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
 import { CartComponent } from './components/purchases/cart.component';
+import { UserDetailComponent } from './components/users/user-detail.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { CartComponent } from './components/purchases/cart.component';
     PurchaseFormComponent,
     PurchaseListComponent,
     CartComponent,
-    LoginComponent
+    LoginComponent,
+    UserDetailComponent
   ],
   imports: [
     BrowserModule,
