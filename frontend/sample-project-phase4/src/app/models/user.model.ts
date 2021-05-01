@@ -9,4 +9,5 @@ export interface User {
     name: string;
     roles: string[];
     purchases:Purchase[];
+    image: boolean;
 }
