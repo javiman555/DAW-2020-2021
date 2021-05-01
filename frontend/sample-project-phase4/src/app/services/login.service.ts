@@ -59,11 +59,14 @@ export class LoginService {
     }
 
     isAdmin() {
-        return this.user && this.user.roles.indexOf('ADMIN') !== -1;
+        return this.user && this.user.roles.indexOf('ADMIN') !== -1 ;
     }
 
     currentUser() {
         return this.user;
+    }
+    currentUserId() {
+        return this.user.id;
     }
 
 }

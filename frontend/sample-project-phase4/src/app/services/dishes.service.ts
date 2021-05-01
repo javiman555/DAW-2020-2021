@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Dish } from '../models/dish.model';
@@ -10,6 +10,7 @@ const BASE_URL = '/api/dishes/';
 @Injectable({ providedIn: 'root' })
 export class DishesService {
 
+
 	constructor(private httpClient: HttpClient) { }
 
 	getDishes(): Observable<Dish[]> {
@@ -19,7 +20,7 @@ export class DishesService {
 	}
 
 	getDishesByCategory(category: string): Observable<Dish[]> {
-		return this.httpClient.get(BASE_URL+"category"+category).pipe(
+		return this.httpClient.get(BASE_URL+"category?category="+category).pipe(
 			catchError(error => this.handleError(error))
 		) as Observable<Dish[]>;
 	}
@@ -44,6 +45,20 @@ export class DishesService {
 		}
 	}
 
+	setDishImage(dish: Dish, formData: FormData) {
+		return this.httpClient.post(BASE_URL + dish.id + '/image', formData)
+			.pipe(
+				catchError(error => this.handleError(error))
+			);
+	}
+
+	deleteDishImage(dish: Dish) {
+		return this.httpClient.delete(BASE_URL + dish.id + '/image')
+			.pipe(
+				catchError(error => this.handleError(error))
+			);
+	}
+
 	removeDish(dish: Dish) {
 		return this.httpClient.delete(BASE_URL + dish.id).pipe(
 			catchError(error => this.handleError(error))
@@ -55,7 +70,7 @@ export class DishesService {
 			catchError(error => this.handleError(error))
 		);
 	}
-
+	
 	private handleError(error: any) {
 		console.log("ERROR:");
 		console.error(error);

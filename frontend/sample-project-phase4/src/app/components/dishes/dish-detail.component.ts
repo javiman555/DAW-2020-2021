@@ -8,16 +8,22 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
     template: `
   <div *ngIf="dish">
-  <h2>dish "{{dish.name}}"</h2>
-  <div>
-    <p>{{dish.category}}</p>
-  </div>
-  <p>
-    <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeDish()">Remove</button>
-    <button *ngIf="loginService.isLogged()" (click)="editDish()">Edit</button>
-    <br>
-    <button (click)="gotoDishes()">All Books</button>
-  </p>
+    <h2>dish "{{dish.name}}"</h2>
+
+    <img [src]="dishImage()" style="width:200px;height:150px;">
+    
+    <h2>categoria: "{{dish.category}}"</h2>
+    <h2>precio: "{{dish.dishPrice}}"</h2>
+    <h2>Ingredientes:</h2>
+        <li *ngFor="let ingredient of dish.ingredients">
+            <h3>{{ingredient.name}}</h3>
+        </li>
+    <p>
+        <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeDish()">Remove</button>
+        <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="editDish()">Edit</button>
+        <br>
+        <button (click)="gotoDishes()">All Dishes</button>
+    </p>
   </div>`
 })
 export class DishDetailComponent {
@@ -50,5 +56,9 @@ export class DishDetailComponent {
 
     gotoDishes() {
         this.router.navigate(['/dishes']);
+    }
+
+    dishImage(){
+        return this.dish.image? '/api/dishes/'+this.dish.id+'/image' : '/assets/images/no_image.png';
     }
 }

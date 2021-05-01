@@ -23,18 +23,12 @@ public class Purchase {
 	private String country;
 	private int phoneNumber;
 	private float price;
+	@JsonIgnore
 	private int dateDay;
+	@JsonIgnore
 	private int dateMonth;
+	@JsonIgnore
 	private int dateYear;
-	private boolean current;
-	
-	public boolean isCurrent() {
-		return current;
-	}
-
-	public void setCurrent(boolean current) {
-		this.current = current;
-	}
 
 	@ManyToMany
 	 @JoinTable(
