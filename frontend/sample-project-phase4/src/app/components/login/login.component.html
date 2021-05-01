@@ -1,26 +1,94 @@
-<form *ngIf="!loginService.isLogged()" class="navbar-form navbar-right form-inline" role="search">
-
-	<div class="form-group">
-		<input #user type="text" class="form-control" name="username" placeholder="Username">
-	</div>
-
-	<div class="form-group">
-		<input #pass type="password" class="form-control" name="password" placeholder="Password">
-	</div>
-
-	<button type="submit" (click)="logIn($event, user.value, pass.value)" class="btn btn-default">Sign In</button>
-
-</form>
-
-<div *ngIf="loginService.isLogged()" class="nav navbar-nav navbar-right">
-
-	<ul class="nav navbar-nav">
-		<div class="navbar-nav mr-auto">
-			<a class="navbar-brand" href="/">Current user: {{loginService.currentUser().name}}</a>
+<section class="hero-wrap hero-wrap-2" style="background-image:url('../assets/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+	<div class="overlay"></div>
+	<div class="container">
+		<div class="row no-gutters slider-text align-items-end justify-content-center">
+			<div class="col-md-9 ftco-animate text-center mb-5">
+				<h1 class="mb-2 bread">¡Regístrate ya!</h1>
+			</div>
 		</div>
-		<li>
-			<button class="btn btn-default navbar-btn" (click)="logOut()" type="button">Log Out</button>
-		</li>
-	</ul>
+	</div>
+</section>
 
-</div>
+<section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt">
+	<div class="container">
+		<div class="col" style="background-image:url('../assets/images/chef-4.jpg');">
+			<div class="row">
+				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-md-end bg-primary">
+					<form action="/newuser" method="post" enctype="multipart/form-data" class="appointment-form">
+						<h3 class="mb-3">Regístrate</h3>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" name="firstName" class="form-control" placeholder="Nombre">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" name="surname" class="form-control" placeholder="Apellidos">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" name="name" class="form-control" placeholder="Nombre de usuario">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="email" name="email" class="form-control" placeholder="Correo electrónico">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="text" name="phoneNumber" class="form-control" placeholder="Teléfono">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="password" name="encodedPassword" class="form-control" placeholder="Contraseña">
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="submit" value="Regístrate" class="btn btn-white py-3 px-4">
+									<!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
+									<input type="hidden" name="roles" value="USER"/>
+								</div>
+						<!-- {{#registererror}}
+						<p style="color:white;">Credenciales inválidas. Elige otro nombre de usuario.</p>
+						{{/registererror}} -->
+							</div>
+						</div>
+					</form>
+				</div>
+				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-center">
+				</div>
+				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-center bg-primary">
+					<form action="/login" method="post" class="appointment-form">
+						<h3 class="mb-3">Iniciar sesión</h3>
+						<div class="row">
+							<div class="col-md-12">
+								<div class="form-group">
+									<input #user type="text" class="form-control" name="username" placeholder="Nombre de usuario"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input #pass type="password" class="form-control" name="password" placeholder="Contraseña"/>
+								</div>
+							</div>
+							<div class="col-md-12">
+								<div class="form-group">
+									<input type="submit" value="Iniciar sesión" class="btn btn-white py-3 px-4" (click)="logIn($event, user.value, pass.value)"/>
+								</div>			
+							<!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
+							</div>
+						</div>
+						<!-- {{#loginerror}}
+						<p style="color:white;">Credenciales inválidas. Introduce datos válidos.</p>
+						{{/loginerror}} -->
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
