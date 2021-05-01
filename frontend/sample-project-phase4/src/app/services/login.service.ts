@@ -13,7 +13,7 @@ export class LoginService {
     user: User;
 
     constructor(private http: HttpClient, private router: Router) {
-        // this.reqIsLogged();
+        this.reqIsLogged();
     }
 
     reqIsLogged() {

@@ -9,13 +9,14 @@ import { LoginService } from 'src/app/services/login.service';
   selector: 'cart',
     template: `
   <div *ngIf="purchase">
+  <h2>{{purchase.id}}</h2>
   <h2>Platos:</h2>
       <li *ngFor="let dish of purchase.dishes">
         <h3>{{dish.name}}</h3>
       </li>
   <p>
 
-    <button (click)="gotoPurchases()">All Books</button>
+    <button (click)="gotoPay()">All Books</button>
   </p>
   </div>
   <div>
@@ -31,13 +32,13 @@ export class CartComponent {
         public loginService: LoginService) {
 
         const id = activatedRoute.snapshot.params['id'];
-        service.getCurrentPurchase(16).subscribe(
+        service.getCurrentPurchase(this.loginService.currentUserId()).subscribe(
             purchase => this.purchase = purchase,
             error => console.error(error)
         );
     }
 
-    gotoPurchases() {
-        this.router.navigate(['/purchases']);
+    gotoPay() {
+        this.router.navigate(['purchases/new']);
     }
 }

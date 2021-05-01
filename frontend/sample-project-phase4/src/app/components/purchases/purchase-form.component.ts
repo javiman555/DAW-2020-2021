@@ -21,8 +21,28 @@ import { PurchasesService } from 'src/app/services/purchases.service';
     <input [(ngModel)]="purchase.surname" placeholder="surname"/>
   </div>
   <div>
+    <label>Dirección: </label>
+    <input [(ngModel)]="purchase.address" placeholder="address"/>
+  </div>
+  <div>
+    <label>Codigo Postal: </label>
+    <input [(ngModel)]="purchase.postalCode" placeholder="postalCode">
+  </div>
+  <div>
+    <label>city: </label>
+    <input [(ngModel)]="purchase.city" placeholder="city"/>
+  </div>
+  <div>
+    <label>country: </label>
+    <input [(ngModel)]="purchase.country" placeholder="country"/>
+  </div>
+  <div>
     <label>Telefono: </label>
-    <textarea [(ngModel)]="purchase.phoneNumber" placeholder="phoneNumber"></textarea>
+    <input [(ngModel)]="purchase.phoneNumber" placeholder="phoneNumber">
+  </div>
+  <div>
+    <label>price: </label>
+    <input [(ngModel)]="purchase.price" placeholder="price">
   </div>
 
   <p>

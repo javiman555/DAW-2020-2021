@@ -50,12 +50,12 @@ export class PurchasesService {
 	addPurchase(purchase: Purchase,user_id: number | string) {
 
 		if (!purchase.id) {
-			return this.httpClient.post('/api/users/'+user_id+'currentPurchase', purchase)
+			return this.httpClient.post('/api/users/'+user_id+'/currentPurchase', purchase)
 				.pipe(
 					catchError(error => this.handleError(error))
 				);
 		} else {
-			return this.httpClient.put('/api/users/'+user_id+'currentPurchase', purchase).pipe(
+			return this.httpClient.put('/api/users/'+user_id+'/currentPurchase', purchase).pipe(
 				catchError(error => this.handleError(error))
 			);
 		}

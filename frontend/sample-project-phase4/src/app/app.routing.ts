@@ -26,7 +26,7 @@ const appRoutes = [
     { path: 'cart', component: CartComponent },
     { path: 'register', component: LoginComponent},
     { path: 'error', component: ErrorComponent},
-    { path: 'index', component: IndexComponent}
+    { path: 'index', component: IndexComponent},
     { path: 'users/:id', component: UserDetailComponent }
 ]
 

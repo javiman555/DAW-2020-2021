@@ -389,6 +389,13 @@ public class UserRestController {
 					Purchase newPurchase = user.get().getNewPurchase();
 					
 					newPurchase.getDishes().add(dish.get());
+					newPurchase.setFirstName("");
+					newPurchase.setSurname("");
+					newPurchase.setCity("");
+					newPurchase.setCountry("");
+					newPurchase.setAddress("");
+					
+					
 					
 					userService.save(user.get());
 
