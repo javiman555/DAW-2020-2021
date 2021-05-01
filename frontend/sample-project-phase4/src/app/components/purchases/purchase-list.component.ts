@@ -14,8 +14,6 @@ import { LoginService } from 'src/app/services/login.service';
         <a [routerLink]="['/purchases', purchase.id]">{{purchase.id}}</a>
       </li>
     </ul>
-
-
     <button *ngIf="loginService.isLogged()" (click)="newPurchase()">New book</button>
   `
 })

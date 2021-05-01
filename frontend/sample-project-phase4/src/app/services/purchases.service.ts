@@ -9,6 +9,11 @@ const BASE_URL = '/api/purchases/';
 
 @Injectable({ providedIn: 'root' })
 export class PurchasesService {
+    getCurrentPurchase(user_id: number | string): Observable<Purchase> {
+		return this.httpClient.get('/api/users/'+user_id+'/currentPurchase').pipe(
+			catchError(error => this.handleError(error))
+		) as Observable<Purchase>;
+    }
 
 	constructor(private httpClient: HttpClient) { }
 
@@ -55,7 +60,13 @@ export class PurchasesService {
 			);
 		}
 	}
-
+	
+	addDishPurchase(dish_id: number, user_id: number) {
+		return this.httpClient.put('/api/users/'+user_id+'/currentPurchase/dishes/'+dish_id,null)
+		.pipe(
+			catchError(error => this.handleError(error))
+		);
+	  }
 
 	private handleError(error: any) {
 		console.log("ERROR:");

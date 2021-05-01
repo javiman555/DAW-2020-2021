@@ -63,5 +63,8 @@ export class LoginService {
     currentUser() {
         return this.user;
     }
+    currentUserId() {
+        return this.user.id;
+    }
 
 }

@@ -13,6 +13,7 @@ import { LoginComponent } from './components/login/login.component';
 import { PurchaseDetailComponent } from './components/purchases/purchase-detail.component';
 import { PurchaseFormComponent } from './components/purchases/purchase-form.component';
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
+import { CartComponent } from './components/purchases/cart.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { PurchaseListComponent } from './components/purchases/purchase-list.comp
     PurchaseDetailComponent,
     PurchaseFormComponent,
     PurchaseListComponent,
+    CartComponent,
     LoginComponent
   ],
   imports: [

@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { Dish } from 'src/app/models/dish.model';
 import { DishesService } from 'src/app/services/dishes.service';
 import { LoginService } from 'src/app/services/login.service';
+import { PurchasesService } from 'src/app/services/purchases.service';
 
 @Component({
   template: `
@@ -12,14 +13,17 @@ import { LoginService } from 'src/app/services/login.service';
       <h2>Desayuno</h2>
       <li *ngFor="let dish of dishes1">
         <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
+        <button (click)="addDishPurchase(dish.id)">Pedir</button>
       </li>
       <h2>Comida</h2>
       <li *ngFor="let dish of dishes2">
         <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
+        <button *ngIf="loginService.isLogged()" (click)="addDishPurchase(dish.id)">Pedir</button>
       </li>
       <h2>Cena</h2>
       <li *ngFor="let dish of dishes3">
         <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
+        <button *ngIf="loginService.isLogged()" (click)="addDishPurchase(dish.id)">Pedir</button>
       </li>
     </ul>
 
@@ -34,7 +38,7 @@ export class DishListComponent implements OnInit {
   dishes3: Dish[];
 
 
-  constructor(private router: Router, private service: DishesService, public loginService: LoginService) { }
+  constructor(private router: Router, private service: DishesService,private purchaseService: PurchasesService, public loginService: LoginService) { }
 
   ngOnInit() {
     this.service.getDishesByCategory('Desayuno').subscribe(
@@ -54,4 +58,9 @@ export class DishListComponent implements OnInit {
   newDish() {
     this.router.navigate(['/dishes/new']);
   }
+
+  addDishPurchase(dish_id: number){
+    this.purchaseService.addDishPurchase(dish_id,18);
+  }
+
 }
