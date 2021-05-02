@@ -15,7 +15,7 @@ import { PurchaseFormComponent } from './components/purchases/purchase-form.comp
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
 import { CartComponent } from './components/purchases/cart.component';
 import { UserDetailComponent } from './components/profile/user-detail.component';
-import { RecomendedDishListComponent } from './components/profile/user-recomendesDishes.component';
+import { RecomendedDishListComponent } from './components/profile/user-recomendedDishes.component';
 import { ErrorComponent } from './components/error/error.component';
 import { IndexComponent } from './components/index/index.component';
 import { ContactComponent } from './components/contact/contact.component';

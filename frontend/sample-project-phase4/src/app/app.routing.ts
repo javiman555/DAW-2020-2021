@@ -14,7 +14,7 @@ import { PurchaseFormComponent } from './components/purchases/purchase-form.comp
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
 import { TeamComponent } from './components/team/team.component';
 import { UserDetailComponent } from './components/profile/user-detail.component';
-import { RecomendedDishListComponent } from './components/profile/user-recomendesDishes.component';
+import { RecomendedDishListComponent } from './components/profile/user-recomendedDishes.component';
 
 
 
