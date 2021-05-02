@@ -1,0 +1,37 @@
+<section class="hero-wrap hero-wrap-2" style="background-image: url('../assets/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 text-center mb-5">
+                <h1 class="mb-2 bread">Plato "{{dish.name}}"</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+<br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <img [src]="dishImage()" style="width:400px;height:300px;">
+            <div>
+            <h3>Precio: </h3><h5>{{dish.dishPrice}}.00€</h5>
+            <!-- <h3>Ingredientes:</h3>
+            <ul *ngFor="let ingredient of dish.ingredients">
+                <li>{{ingredient.name}}</li>
+            </ul> -->
+            </div>
+        </div>
+        <div class="col-md-6">
+            <p>
+                <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeDish()">Borrar</button>
+                <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="editDish()">Editar</button>
+            <br>
+            <br>
+                <button class="btn btn-primary" [routerLink]="['/dishes']">Volver a "Carta"</button>
+            </p>
+        </div>
+    </div>
+</div>
+</section>

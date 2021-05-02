@@ -6,39 +6,55 @@ import { DishesService } from 'src/app/services/dishes.service';
 
 @Component({
   template: `
-  <div *ngIf="dish">
-  <h2>Dish "{{dish.name}}"</h2>
-  <div *ngIf="dish.id">
-    <label>Id: </label>{{dish.id}}
-  </div>
-  <div>
-    <label>Nombre: </label>
-    <input [(ngModel)]="dish.name" placeholder="nombre"/>
-  </div>
-  <div>
-    <label>Categoria: </label>
-    <input [(ngModel)]="dish.category" placeholder="categoria"/>
-  </div>
-  <div>
-    <label>Precio: </label>
-    <textarea [(ngModel)]="dish.dishPrice" placeholder="precio"></textarea>
-  </div>
-  <p>Imagen: </p>
-    <img [src]="dishImage()" style="width:200px;height:150px;"><br>
+  <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+		<div class="overlay"></div>
+		<div class="container">
+			<div class="row no-gutters slider-text align-items-end justify-content-center">
+				<div class="col-md-9 text-center mb-5">
+					<h1 class="mb-2 bread">Añade platos</h1>
+				</div>
+			</div>
+		</div>
+	</section>
 
-    <ng-template [ngIf]="dish.id">
-        <br><input type='checkbox' name='removeImage' [(ngModel)]="removeDishImage"> <label>Remove image</label><br>
+  <section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+    <div *ngIf="dish">
+    <h2>Plato "{{dish.name}}"</h2>
+    <div *ngIf="dish.id">
+      <label>Id: </label>{{dish.id}}
+    </div>
+    <div class="form-group">
+			<label class="col-md control-label">Nombre del plato:</label>
+			<div class="col-md-8">
+        <input [(ngModel)]="dish.name" placeholder="nombre"/>
+      </div>
+    </div>
+    <div class="form-group">
+			<label class="col-md control-label">Categoría:</label>
+        <input [(ngModel)]="dish.category" placeholder="categoria"/>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-md control-label">Precio:</label>
+      <div class="col-md-8">
+        <textarea [(ngModel)]="dish.dishPrice" placeholder="precio"></textarea>
+      </div>
+    </div>
+    <p>Imagen: </p>
+      <img [src]="dishImage()" style="width:200px;height:150px;"><br>
 
-        <label>Subir imagen: </label><br>  
-    </ng-template>
+      <ng-template [ngIf]="dish.id">
+          <br><input type='checkbox' name='removeImage' [(ngModel)]="removeDishImage"> <label>Remove image</label><br>
 
-    <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />
-  <p>
-    <button (click)="cancel()">Cancelar</button>
-    <button (click)="save()">Guardar</button>
-  </p>
-  </div>
-  
+          <label>Subir imagen: </label><br>  
+      </ng-template>
+
+      <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />
+    <p>
+      <button (click)="cancel()">Cancelar</button>
+      <button (click)="save()">Guardar</button>
+    </p>
+  </section>
   `
 })
 export class DishFormComponent {

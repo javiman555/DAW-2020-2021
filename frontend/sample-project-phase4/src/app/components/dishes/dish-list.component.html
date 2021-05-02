@@ -1,0 +1,123 @@
+<section class="hero-wrap hero-wrap-2" style="background-image:url('../assets/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+            <div class="col-md-9 text-center mb-5">
+                <h1 class="mb-2 bread">Carta</h1>
+                <p class="breadcrumbs"><span class="mr-2"><a [routerLink]="['/index']">Principal <i class="fa fa-chevron-right"></i></a></span> <span>Carta <i class="fa fa-chevron-right"></i></span></p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5 pb-2">
+            <div class="col-md-7 text-center heading-section">
+                <span class="subheading">Especialidades</span>
+                <h2 class="mb-4">Nuestra Carta</h2>
+                <a *ngIf="loginService.isAdmin()" [routerLink]="['/dishes/new']" class="btn btn-primary btn-sm">Añadir Plato</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-lg-4">
+                <div class="menu-wrap">
+                    <div class="heading-menu text-center">
+                        <h3>Desayuno</h3>
+                    </div>
+                    <div *ngFor="let dish of dishes1" class="menus d-flex">
+                        <div *ngIf="dish.image" class="menu-img img"><img [src]="dishImage(dish)"></div>
+                        
+                        <div class="text">
+                            <div class="d-flex">
+                                <div class="one-half">
+                                    <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
+                                </div>
+                                <div class="one-forth">
+                                    <span class="price"><a [routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                </div>
+                            </div>
+                                
+                                <form *ngIf="loginService.isLogged() && !loginService.isAdmin()" action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+                                    <!-- <input type="hidden" name="id" value="{{id}}" />
+                                    <input type="hidden" name="userName" value="{{userName}}" />
+                                    <input type="hidden" name="_csrf" value="{{token}}"/> -->
+                                  <p>
+                                    <button (click)="addDishPurchase(   dish.id)">Pedir</button>
+                                  </p>
+                                </form>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="menu-wrap">
+                    <div class="heading-menu text-center">
+                        <h3>Comida</h3>
+
+                    </div>
+                    <div *ngFor="let dish of dishes2" class="menus d-flex">
+                        <div *ngIf="dish.image" class="menu-img img"><img [src]="dishImage(dish)"></div>
+                        
+                        <div class="text">
+                            <div class="d-flex">
+                                <div class="one-half">
+                                    <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
+                                </div>
+                                <div class="one-forth">
+                                    <span class="price"><a [routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                </div>
+                            </div>
+                                
+                                <form *ngIf="loginService.isLogged() && !loginService.isAdmin()" action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+                                      <!-- <input type="hidden" name="id" value="{{id}}" />
+                                      <input type="hidden" name="userName" value="{{userName}}" />
+                                      <input type="hidden" name="_csrf" value="{{token}}"/> -->
+                                  <p>
+                                    <button (click)="addDishPurchase(dish.id)">Pedir</button>
+                                  </p>
+                                </form>	
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6 col-lg-4">
+                <div class="menu-wrap">
+                    <div class="heading-menu text-center">
+                        <h3>Cena</h3>
+                    </div>
+                
+                    <div *ngFor="let dish of dishes3" class="menus d-flex">
+                        <div *ngIf="dish.image" class="menu-img img"><img [src]="dishImage(dish)"></div>
+                        
+                        <div class="text">
+                            <div class="d-flex">
+                                <div class="one-half">
+                                    <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
+                                </div>
+                                <div class="one-forth">
+                                    <span class="price"><a [routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                </div>
+                            </div>
+                                
+                                <form *ngIf="loginService.isLogged() && !loginService.isAdmin()" action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
+                                      <!-- <input type="hidden" name="id" value="{{id}}" />
+                                      <input type="hidden" name="userName" value="{{userName}}" />
+                                      <input type="hidden" name="_csrf" value="{{token}}"/> -->
+                                  <p>
+                                    <button (click)="addDishPurchase(dish.id)">Pedir</button>
+                                  </p>
+                                </form>	
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
