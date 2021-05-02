@@ -1,0 +1,53 @@
+import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Dish } from 'src/app/models/dish.model';
+import { DishesService } from 'src/app/services/dishes.service';
+import { PurchasesService } from 'src/app/services/purchases.service';
+import { UsersService } from 'src/app/services/users.service';
+import { LoginService } from 'src/app/services/login.service';
+import { User } from 'src/app/models/user.model';
+
+@Component({
+    template: `
+      <h2>Recomended dishes:</h2>
+      <ul class="items">
+        <li *ngFor="let dish of dishes">
+          <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
+          <button *ngIf="loginService.isLogged()" (click)="addDishPurchase(dish.id)">Pedir</button>
+        </li>
+      </ul>
+    `
+  })
+
+  export class RecomendedDishListComponent{
+
+    dishes: Dish[];
+    user: User;
+    purchase: any;
+  
+    constructor(
+         private router:Router, 
+         activatedRoute: ActivatedRoute,
+         private service: DishesService,
+         private purchaseService: PurchasesService,
+         private usersService: UsersService,
+         public loginService: LoginService) { 
+  
+     
+  
+      this.user = this.loginService.currentUser();
+
+      const id = activatedRoute.snapshot.params['id'];
+      this.usersService.getRecomendedDishes(id).subscribe(
+        dishes => this.dishes = dishes,
+        error => console.log(error)
+      );
+    }
+
+    addDishPurchase(dish_id: number){
+        this.purchaseService.addDishPurchase(dish_id,this.loginService.currentUser().id).subscribe(
+          purchase => this.purchase = purchase,
+          error => console.log(error)
+        );
+      }
+  }
