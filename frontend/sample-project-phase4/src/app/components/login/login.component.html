@@ -19,37 +19,37 @@
 						<div class="row">
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" [(ngModel)]="registerUser.firstName" class="form-control" placeholder="Nombre">
+									<input #firstName type="text" class="form-control" name="firstName" placeholder="Nombre"/>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" [(ngModel)]="registerUser.surname" class="form-control" placeholder="Apellidos">
+									<input #surname type="text" class="form-control" name="surname" placeholder="Apellidos"/>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" [(ngModel)]="registerUser.name" class="form-control" placeholder="Nombre de usuario">
+									<input #user type="text" class="form-control" name="username" placeholder="Nombre de usuario"/>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="email" [(ngModel)]="registerUser.email" class="form-control" placeholder="Correo electrónico">
+									<input #email type="email" class="form-control" name="email" placeholder="Correo electrónico"/>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="text" [(ngModel)]="registerUser.phoneNumber" class="form-control" placeholder="Teléfono">
+									<input #phoneNumber type="text" class="form-control" name="phoneNumber" placeholder="Teléfono"/>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="password" [(ngModel)]="registerUser.encodedPassword" class="form-control" placeholder="Contraseña">
+									<input #encodedPassword type="password" class="form-control" name="encodedPassword" placeholder="Contraseña"/>
 								</div>
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="submit" value="Regístrate" class="btn btn-white py-3 px-4" (click)="saveUser()">
+									<input type="submit" value="Regístrate" class="btn btn-white py-3 px-4" (click)="saveUser($event, user.value, encodedPassword.value,phoneNumber.value,email.value,firstName.value,surname.value)">
 									<!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
 									<input type="hidden" name="roles" value="USER"/>
 								</div>

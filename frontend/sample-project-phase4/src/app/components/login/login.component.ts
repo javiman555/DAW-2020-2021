@@ -14,7 +14,6 @@ export class LoginComponent {
 
   newUser: boolean;
   user: User;
-  registerUser: User;
 
   constructor(
     private router: Router,
@@ -46,11 +45,13 @@ export class LoginComponent {
   logOut() {
     this.loginService.logOut();
   }
+  saveUser(event: any, user: string, pass: string,phoneNumber:number,email:string,firstName:string,surname:string) {
+    event.preventDefault();
 
-  saveUser() {
-    this.service.addUser(this.registerUser).subscribe(
+    this.user = {firstName: firstName,surname:surname, email:email, phoneNumber:phoneNumber , name:user, encodedPassword:pass, roles:['USER'], newPurchase: null, purchases:[], image:false}
+    this.service.addUser(this.user).subscribe(
       (user: User) => this.router.navigate(['/index']),
-      error => alert('Error creating new user: ' + error)
+      error => alert('Error creating new user: ')
     );
   }
 }
