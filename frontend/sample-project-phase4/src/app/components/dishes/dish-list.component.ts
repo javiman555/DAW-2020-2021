@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Dish } from 'src/app/models/dish.model';
-import { Purchase } from 'src/app/models/purchase.model';
 import { DishesService } from 'src/app/services/dishes.service';
 import { LoginService } from 'src/app/services/login.service';
 import { PurchasesService } from 'src/app/services/purchases.service';
@@ -62,8 +61,6 @@ export class DishListComponent implements OnInit {
   }
 
   addDishPurchase(dish_id: number){
-
-
 
     this.purchaseService.addDishPurchase(dish_id,this.loginService.currentUser().id).subscribe(
       purchase => this.purchase = purchase,

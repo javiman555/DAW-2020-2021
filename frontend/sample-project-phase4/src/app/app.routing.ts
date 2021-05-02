@@ -13,7 +13,8 @@ import { PurchaseDetailComponent } from './components/purchases/purchase-detail.
 import { PurchaseFormComponent } from './components/purchases/purchase-form.component';
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
 import { TeamComponent } from './components/team/team.component';
-import { UserDetailComponent } from './components/users/user-detail.component';
+import { UserDetailComponent } from './components/profile/user-detail.component';
+import { RecomendedDishListComponent } from './components/profile/user-recomendesDishes.component';
 
 
 
@@ -37,7 +38,8 @@ const appRoutes = [
     { path: 'error', component: ErrorComponent },
     { path: 'index', component: IndexComponent },
     { path: 'team', component: TeamComponent },
-    { path: 'users/:id', component: UserDetailComponent }
+    { path: 'users/:id', component: UserDetailComponent },
+    { path: 'users/:id/dishes', component: RecomendedDishListComponent }
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);

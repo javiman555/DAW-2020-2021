@@ -39,7 +39,11 @@ export class LoginComponent {
 
     event.preventDefault();
 
+    this.loginService.logIn
+
     this.loginService.logIn(user, pass);
+
+    this.router.navigate(['/index'])
   }
 
   logOut() {
