@@ -68,4 +68,53 @@ public class PageableService {
 			return ResponseEntity.notFound().build();
 		}
 	}
+
+	public ResponseEntity<Purchase[]> showArrayUserMore(long id, HttpServletRequest request, HttpServletResponse response) {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		Optional<User> user = userService.findById(id);
+		
+		int pageRequested = 0;
+		String numPage = request.getParameter("numPage");
+		if (numPage != null){
+			
+			pageRequested = Integer.parseInt(numPage);
+			if (userReal.get().getId() == user.get().getId()) {
+				
+				Page<Purchase> page = purchaseService.getByUser(user.get(), pageRequested);
+				Purchase[] arrayPage = (Purchase[]) page.getContent().toArray();
+				return ResponseEntity.ok(arrayPage);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
+	
+	public ResponseEntity<Purchase[]> showArrayAdminMore(HttpServletRequest request, HttpServletResponse response) {
+		
+		Principal principal = request.getUserPrincipal();
+		String userNameReal = principal.getName();
+		Optional<User> userReal = userService.findByName(userNameReal);
+		
+		int pageRequested = 0;
+		String numPage = request.getParameter("numPage");
+		if (numPage != null) {
+			pageRequested = Integer.parseInt(numPage);
+			if (userReal.get().getRoles().contains("ADMIN")) {
+				
+				Page<Purchase> page = purchaseService.findAll(pageRequested);
+				Purchase[] arrayPage = (Purchase[]) page.getContent().toArray();
+				return ResponseEntity.ok(arrayPage);
+			} else {
+				return ResponseEntity.notFound().build();
+			}
+		} else {
+			return ResponseEntity.notFound().build();
+		}
+	}
 }

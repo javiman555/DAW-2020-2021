@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -76,9 +75,9 @@ public class PurchaseRestController {
 		})
 	
 	@GetMapping("/{id}")
-	public ResponseEntity<Page<Purchase>> showMore(@Parameter(description="id of user") @PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<Purchase[]> showMore(@Parameter(description="id of user") @PathVariable long id, HttpServletRequest request, HttpServletResponse response) {
 		
-		return pageableService.showUserMore(id, request, response);
+		return pageableService.showArrayUserMore(id, request, response);
 	}
 	
 	@Operation(summary = "Admin gets a page of all purchases")
@@ -109,9 +108,9 @@ public class PurchaseRestController {
 		})
 	
 	@GetMapping("/")
-	public ResponseEntity<Page<Purchase>> showAdminMore(HttpServletRequest request, HttpServletResponse response) {
+	public ResponseEntity<Purchase[]> showAdminMore(HttpServletRequest request, HttpServletResponse response) {
 		
-		return pageableService.showAdminMore(request, response);
+		return pageableService.showArrayAdminMore(request, response);
 	}
 	
 	// Show the fields of the purchases that will be shown in the graph
