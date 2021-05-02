@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/styles.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
               "src/assets/css/jquery.timepicker.css",
               "src/assets/css/owl.carousel.min.css",
@@ -46,6 +47,7 @@
               "src/assets/js/scrollax.min.js",
               "src/assets/js/owl.carousel.min.js",
               "src/assets/js/bootstrap.min.js",
+              "src/assets/js/googlemapsapi.js",
               "src/assets/js/main.js",
               "src/assets/js/profile.js"
             ]
@@ -104,7 +106,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
             "karmaConfig": "karma.conf.js",
-            "src/assets": [
+            "assets": [
               "src/favicon.ico",
               "src/assets"
             ],

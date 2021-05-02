@@ -15,6 +15,11 @@ import { PurchaseFormComponent } from './components/purchases/purchase-form.comp
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
 import { CartComponent } from './components/purchases/cart.component';
 import { UserDetailComponent } from './components/users/user-detail.component';
+import { ErrorComponent } from './components/error/error.component';
+import { IndexComponent } from './components/index/index.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { TeamComponent } from './components/team/team.component';
+import { PaydoneComponent } from './components/paydone/paydone.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +32,12 @@ import { UserDetailComponent } from './components/users/user-detail.component';
     PurchaseListComponent,
     CartComponent,
     LoginComponent,
-    UserDetailComponent
+    UserDetailComponent,
+    ErrorComponent,
+    IndexComponent,
+    ContactComponent,
+    TeamComponent,
+    PaydoneComponent
   ],
   imports: [
     BrowserModule,
