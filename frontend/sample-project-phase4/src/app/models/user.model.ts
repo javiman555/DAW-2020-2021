@@ -7,7 +7,9 @@ export interface User {
     email:string;
     phoneNumber: number;
     name: string;
+    encodedPassword: string;
     roles: string[];
-    purchases:Purchase[];
+    purchases: Purchase[];
+    newPurchase: Purchase;
     image: boolean;
 }
