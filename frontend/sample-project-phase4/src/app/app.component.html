@@ -7,17 +7,17 @@
         </div>
         <login></login>
     </div> -->
-    <div class="wrap">
+    <div class="wrap" style="background-color:black;">
 		<div class="container">
-			<div class="row justify-content-between">
+			<div class="row justify-content-between" >
 				<div class="col-12 col-md d-flex align-items-center">
 				</div>
 				<div *ngIf="!loginService.isLogged(); else registered" class="col-12 col-md-4 d-flex justify-content-md-end btn-group">
-					<a href="/register" class="btn btn-primary btn-sm">Regístrate o inicia sesión</a>
+                    <button class="btn btn-primary" [routerLink]="['/register']">Regístrate o inicia sesión</button>
 				</div>
 				<ng-template #registered>
                     <div *ngIf="loginService.isLogged()" class="col-8 col-md-2 d-flex justify-content-md-end btn-group">
-                        <button class="btn btn-primary btn-sm" type="submit" value="Cerrar sesión" (click)="loginService.logOut()"></button>
+                        <button class="btn btn-primary btn-sm" type="submit" value="Cerrar sesión" (click)="loginService.logOut()">Cerrar Sesión</button>
                         <!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
                     </div>
                     <div *ngIf="!loginService.isAdmin()" class="col-4 col-md-1 d-flex justify-content-md-end btn-group">
@@ -82,23 +82,25 @@
                 <div class="ftco-footer-widget mb-4">
                     <h2 class="ftco-heading-2">Horario</h2>
                     <ul class="list-unstyled open-hours">
-                        <li class="d-flex"><span>Lunes</span><span>10:00 - 22:00</span></li>
-                        <li class="d-flex"><span>Martes</span><span>Cerrado</span></li>
-                        <li class="d-flex"><span>Miercoles</span><span>10:00 - 22:00</span></li>
-                        <li class="d-flex"><span>Jueves</span><span>10:00 - 22:00</span></li>
-                        <li class="d-flex"><span>Viernes</span><span>10:00 - 22:00</span></li>
-                        <li class="d-flex"><span>Sabado</span><span>10:00 - 22:00</span></li>
-                        <li class="d-flex"><span>Domingo</span><span>10:00 - 22:00</span></li>
+                        <li class="d-flex"><span>Lunes</span><span style="color:white">10:00 - 22:00</span></li>
+                        <li class="d-flex"><span>Martes</span><span style="color:white">Cerrado</span></li>
+                        <li class="d-flex"><span>Miercoles</span><span style="color:white">10:00 - 22:00</span></li>
+                        <li class="d-flex"><span>Jueves</span><span style="color:white">10:00 - 22:00</span></li>
+                        <li class="d-flex"><span>Viernes</span><span style="color:white">10:00 - 22:00</span></li>
+                        <li class="d-flex"><span>Sabado</span><span style="color:white">10:00 - 22:00</span></li>
+                        <li class="d-flex"><span>Domingo</span><span style="color:white">10:00 - 22:00</span></li>
                     </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container-fluid px-0 bg-primary py-3">
+    <div class="container-fluid"style="background-color:#FF0000;">
         <div class="row no-gutters">
             <div class="col-md-12 text-center">
                 <p class="mb-0"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    <br>
                     Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                    <br>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
             </div>

@@ -17,16 +17,16 @@
             <img [src]="dishImage()" style="width:400px;height:300px;">
             <div>
             <h3>Precio: </h3><h5>{{dish.dishPrice}}.00€</h5>
-            <!-- <h3>Ingredientes:</h3>
-            <ul *ngFor="let ingredient of dish.ingredients">
-                <li>{{ingredient.name}}</li>
-            </ul> -->
+            <h3>Ingredientes:</h3>
+            <div *ngFor="let ingredient of dish.ingredients">
+                <h5>{{ingredient.name}}</h5>
+            </div> 
             </div>
         </div>
         <div class="col-md-6">
             <p>
-                <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeDish()">Borrar</button>
-                <button *ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="editDish()">Editar</button>
+                <button class="btn btn-primary"*ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="removeDish()">Borrar</button>
+                <button class="btn btn-primary"*ngIf="loginService.isLogged() && loginService.isAdmin()" (click)="editDish()">Editar</button>
             <br>
             <br>
                 <button class="btn btn-primary" [routerLink]="['/dishes']">Volver a "Carta"</button>

@@ -13,7 +13,7 @@
 	<div class="container">
 		<div class="col" style="background-image:url('../assets/images/chef-4.jpg');">
 			<div class="row">
-				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-md-end bg-primary">
+				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-md-end"style="background-color:#e52b34;">
 					<form action="/newuser" method="post" enctype="multipart/form-data" class="appointment-form">
 						<h3 class="mb-3">Regístrate</h3>
 						<div class="row">
@@ -49,7 +49,7 @@
 							</div>
 							<div class="col-md-12">
 								<div class="form-group">
-									<input type="submit" value="Regístrate" class="btn btn-white py-3 px-4" (click)="saveUser($event, user.value, encodedPassword.value,phoneNumber.value,email.value,firstName.value,surname.value)">
+									<input type="submit" value="Regístrate" class="btn btn-white py-3 px-4" (click)="saveUser($event, name.value, encodedPassword.value,phoneNumber.value,email.value,firstName.value,surname.value)">
 									<!-- <input type="hidden" name="_csrf" value="{{token}}"/> -->
 									<input type="hidden" name="roles" value="USER"/>
 								</div>
@@ -62,7 +62,7 @@
 				</div>
 				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-center">
 				</div>
-				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-center bg-primary">
+				<div class="col-sm-4 p-4 p-md-4 d-flex align-items-center justify-content-center"style="background-color:#e52b34;">
 					<form action="/login" method="post" class="appointment-form">
 						<h3 class="mb-3">Iniciar sesión</h3>
 						<div class="row">

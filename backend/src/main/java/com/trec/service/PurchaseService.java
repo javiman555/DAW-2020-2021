@@ -76,12 +76,14 @@ public class PurchaseService {
 		newPurchase.setDateMonth(c.get(Calendar.MONTH));
 		newPurchase.setDateYear(c.get(Calendar.YEAR));
 		newPurchase.setUser(userReal);
-		
+		float price = 0;
 		for (Dish dish : newPurchase.getDishes()) {
 			dish.setNbuy(dish.getNbuy()+1);
+			price = price + dish.getDishPrice();
 			dishService.save(dish);
 		}
 		
+		newPurchase.setPrice(price);
 		this.save(newPurchase);
 		userReal.setNewPurchase(null);
 		userReal.getPurchases().add(newPurchase);

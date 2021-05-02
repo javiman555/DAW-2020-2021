@@ -26,26 +26,24 @@
                         <h3>Desayuno</h3>
                     </div>
                     <div *ngFor="let dish of dishes1" class="menus d-flex">
-                        <div *ngIf="dish.image" class="menu-img img"><img [src]="dishImage(dish)"></div>
+                        <div *ngIf="dish.image"><img [src]="dishImage(dish)"class="menu-img img"style="width:200px;height:150px;"></div>
                         
                         <div class="text">
                             <div class="d-flex">
                                 <div class="one-half">
-                                    <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
-                                </div>
-                                <div class="one-forth">
-                                    <span class="price"><a [routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                    <a style="color:#e52b34;"[routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
                                 </div>
                             </div>
-                                
-                                <form *ngIf="loginService.isLogged() && !loginService.isAdmin()" action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
-                                    <!-- <input type="hidden" name="id" value="{{id}}" />
-                                    <input type="hidden" name="userName" value="{{userName}}" />
-                                    <input type="hidden" name="_csrf" value="{{token}}"/> -->
-                                  <p>
-                                    <button (click)="addDishPurchase(   dish.id)">Pedir</button>
-                                  </p>
-                                </form>
+                            <div class="d-flex">
+                                <p>
+                                    <button *ngIf="loginService.isLogged() && !loginService.isAdmin()" class="btn btn-primary" (click)="addDishPurchase(dish.id)">Pedir</button>
+                                </p>
+                            </div>
+                            <div class="d-flex">
+                                <div class="one-forth">
+                                    <span class="price"><a style="color:#e52b34;"[routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -60,26 +58,24 @@
 
                     </div>
                     <div *ngFor="let dish of dishes2" class="menus d-flex">
-                        <div *ngIf="dish.image" class="menu-img img"><img [src]="dishImage(dish)"></div>
+                        <div *ngIf="dish.image"><img [src]="dishImage(dish)"class="menu-img img"style="width:200px;height:150px;"></div>
                         
                         <div class="text">
                             <div class="d-flex">
                                 <div class="one-half">
-                                    <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
-                                </div>
-                                <div class="one-forth">
-                                    <span class="price"><a [routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                    <a style="color:#e52b34;"[routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
                                 </div>
                             </div>
-                                
-                                <form *ngIf="loginService.isLogged() && !loginService.isAdmin()" action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
-                                      <!-- <input type="hidden" name="id" value="{{id}}" />
-                                      <input type="hidden" name="userName" value="{{userName}}" />
-                                      <input type="hidden" name="_csrf" value="{{token}}"/> -->
-                                  <p>
-                                    <button (click)="addDishPurchase(dish.id)">Pedir</button>
-                                  </p>
-                                </form>	
+                            <div class="d-flex">
+                                <p>
+                                    <button *ngIf="loginService.isLogged() && !loginService.isAdmin()" class="btn btn-primary" (click)="addDishPurchase(dish.id)">Pedir</button>
+                                </p>
+                            </div>
+                            <div class="d-flex">
+                                <div class="one-forth">
+                                    <span class="price"><a style="color:#e52b34;"[routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                </div>
+                            </div>
 
                         </div>
                     </div>
@@ -93,26 +89,24 @@
                     </div>
                 
                     <div *ngFor="let dish of dishes3" class="menus d-flex">
-                        <div *ngIf="dish.image" class="menu-img img"><img [src]="dishImage(dish)"></div>
+                        <div *ngIf="dish.image" ><img [src]="dishImage(dish)"class="menu-img img"style="width:200px;height:150px;"></div>
                         
                         <div class="text">
                             <div class="d-flex">
                                 <div class="one-half">
-                                    <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
-                                </div>
-                                <div class="one-forth">
-                                    <span class="price"><a [routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                    <a style="color:#e52b34;"[routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
                                 </div>
                             </div>
-                                
-                                <form *ngIf="loginService.isLogged() && !loginService.isAdmin()" action="/adddish" method="post" enctype="multipart/form-data" class="appointment-form">
-                                      <!-- <input type="hidden" name="id" value="{{id}}" />
-                                      <input type="hidden" name="userName" value="{{userName}}" />
-                                      <input type="hidden" name="_csrf" value="{{token}}"/> -->
-                                  <p>
-                                    <button (click)="addDishPurchase(dish.id)">Pedir</button>
-                                  </p>
-                                </form>	
+                            <div class="d-flex">
+                                <p>
+                                    <button *ngIf="loginService.isLogged() && !loginService.isAdmin()" class="btn btn-primary" (click)="addDishPurchase(dish.id)">Pedir</button>
+                                </p>
+                            </div>
+                            <div class="d-flex">
+                                <div class="one-forth">
+                                    <span class="price"><a style="color:#e52b34;"[routerLink]="['/dishes', dish.id]">{{dish.dishPrice}}.00€</a></span>
+                                </div>
+                            </div>
 
                         </div>
                     </div>

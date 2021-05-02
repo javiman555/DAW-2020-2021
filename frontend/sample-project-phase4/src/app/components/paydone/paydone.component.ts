@@ -9,7 +9,7 @@ import {Router} from '@angular/router'
 
 export class PaydoneComponent{
     constructor(private router: Router){}
-    imgCompra = "assets/compra.png";
+    imgCompra = "assets/images/compra.jpg";
     goToIndex(){
         this.router.navigate(['/index']);
     }

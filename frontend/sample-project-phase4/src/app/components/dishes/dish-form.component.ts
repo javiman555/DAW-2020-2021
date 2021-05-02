@@ -6,7 +6,7 @@ import { DishesService } from 'src/app/services/dishes.service';
 
 @Component({
   template: `
-  <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+  <section class="hero-wrap hero-wrap-2" style="background-image:url('../assets/images/bg_5.jpg');" data-stellar-background-ratio="0.5">
 		<div class="overlay"></div>
 		<div class="container">
 			<div class="row no-gutters slider-text align-items-end justify-content-center">
@@ -17,34 +17,34 @@ import { DishesService } from 'src/app/services/dishes.service';
 		</div>
 	</section>
 
-  <section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+  <section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');text-align: center;">
     <div *ngIf="dish">
     <h2>Plato "{{dish.name}}"</h2>
     <div *ngIf="dish.id">
       <label>Id: </label>{{dish.id}}
     </div>
     <div class="form-group">
-			<label class="col-md control-label">Nombre del plato:</label>
-			<div class="col-md-8">
+			<label class="col-md control-label"style="color:white;">Nombre del plato:</label>
+			<div class="col"style="text-align: center;">
         <input [(ngModel)]="dish.name" placeholder="nombre"/>
       </div>
     </div>
     <div class="form-group">
-			<label class="col-md control-label">Categoría:</label>
+			<label class="col-md control-label"style="color:white;">Categoría:</label>
         <input [(ngModel)]="dish.category" placeholder="categoria"/>
       </div>
     </div>
     <div class="form-group">
-      <label class="col-md control-label">Precio:</label>
-      <div class="col-md-8">
+      <label class="col-md control-label"style="color:white;">Precio:</label>
+      <div  class="col"style="text-align: center;">
         <textarea [(ngModel)]="dish.dishPrice" placeholder="precio"></textarea>
       </div>
     </div>
-    <p>Imagen: </p>
+    <p style="color:white;">Imagen: </p>
       <img [src]="dishImage()" style="width:200px;height:150px;"><br>
 
       <ng-template [ngIf]="dish.id">
-          <br><input type='checkbox' name='removeImage' [(ngModel)]="removeDishImage"> <label>Remove image</label><br>
+          <br><input type='checkbox' name='removeImage' [(ngModel)]="removeDishImage"> <label style="color:white;">Remove image</label><br>
 
           <label>Subir imagen: </label><br>  
       </ng-template>
@@ -52,8 +52,9 @@ import { DishesService } from 'src/app/services/dishes.service';
       <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />
     <p>
       <button (click)="cancel()">Cancelar</button>
-      <button (click)="save()">Guardar</button>
+      <button class="btn btn-primary"(click)="save()">Guardar</button>
     </p>
+    <br>
   </section>
   `
 })

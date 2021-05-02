@@ -9,6 +9,7 @@ import java.security.Principal;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -324,7 +325,7 @@ public class UserRestController {
 		 )
 		})
 	
-	@PutMapping("/{id}/currentPurchase")//Move newPurchase of the user the the purchase list
+	@PutMapping("/{id}/currentPurchase")//Move newPurchase of the user to the purchase list
 	public ResponseEntity<Purchase> newPurchaseDone(@Parameter(description="id of current user") @PathVariable long id,@Parameter(description="to update a purchase: first name, surname, address, postal code, city, country and phone number") @RequestBody Purchase dataPurchase, HttpServletRequest request)  {
 
 		Principal principal = request.getUserPrincipal();
@@ -382,7 +383,6 @@ public class UserRestController {
 		String userNameReal = principal.getName();
 		Optional<User> userReal = userService.findByName(userNameReal);
 		Optional<User> user = userService.findById(iduser);
-		
 		if (user.isPresent()) {
 			if (userReal.get().getId() == user.get().getId()) {
 				
@@ -390,6 +390,13 @@ public class UserRestController {
 				if (dish.isPresent()) {
 					
 					Purchase newPurchase = user.get().getNewPurchase();
+					if (Objects.isNull(newPurchase)) {
+						user.get().setNewPurchase(new Purchase());
+						newPurchase = new Purchase();
+						List<Dish> dishes = new ArrayList<>();
+						newPurchase.setDishes(dishes);
+					}
+
 					
 					newPurchase.getDishes().add(dish.get());
 					newPurchase.setFirstName("");
@@ -397,7 +404,7 @@ public class UserRestController {
 					newPurchase.setCity("");
 					newPurchase.setCountry("");
 					newPurchase.setAddress("");
-					
+					user.get().setNewPurchase(newPurchase);
 					
 					
 					userService.save(user.get());
