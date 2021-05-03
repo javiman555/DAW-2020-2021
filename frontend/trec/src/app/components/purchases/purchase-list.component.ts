@@ -7,13 +7,20 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   template: `
     <h2>Purchases</h2>
-    <ul *ngIf="loginService.isLogged()" class="items">
+    <div *ngIf="loginService.isLogged()">
+    <div *ngIf="purchasesInScreen; else nopurchases">
+    <ul   class="items">
       <li *ngFor="let purchase of purchasesInScreen">
         <a style="color: white;" [routerLink]="['/purchases', purchase.id]">Factura {{purchase.id}}</a>
       </li>
     </ul>
-    <button *ngIf="loginService.isLogged() && purchasesLastCall != 0" style="background-color:#e52b34; color: white" (click)="moreContent()">Cargar más</button>
-    <!-- <button *ngIf="loginService.isLogged()" (click)="newPurchase()">New book</button> -->
+    
+    <button *ngIf="loginService.isLogged() && increment != 0" style="background-color:#e52b34; color: white" (click)="moreContent()">Cargar más</button>
+    </div>
+    <ng-template #nopurchases>
+      <b style="color: white">No ha realizado ningún pedido.</b>
+    </ng-template>
+    </div>
   `,
   selector: "purchase-list"
 })
@@ -21,6 +28,7 @@ export class PurchaseListComponent implements OnInit {
 
   page = -1;
   index = 0;
+  increment: number;
   purchasesInScreen: Purchase[];
   purchasesLastCall: number;
 
@@ -39,14 +47,18 @@ export class PurchaseListComponent implements OnInit {
   }
 
   moreContent(){
+    this.increment = 0;
     this.page = this.page + 1;
     if(this.loginService.isAdmin()){
       this.service.getPurchasesAdmin(this.page).subscribe(
-        purchases => { purchases.content.forEach(p => {
+        purchases => { purchases.forEach(p => {
+          if (p != null){
             this.purchasesInScreen[this.index] = p;
             this.index++;
+            this.increment++;
+          }
           });
-          this.purchasesLastCall = purchases.content.length;
+          
           console.log(this.purchasesInScreen);
         },
         error => console.log(error)
@@ -54,11 +66,14 @@ export class PurchaseListComponent implements OnInit {
     } else {
       console.log(this.page);
       this.service.getPurchasesUser(this.loginService.user.id, this.page).subscribe(
-        purchases => { purchases.content.forEach(p => {
+        purchases => { purchases.forEach(p => {
+          if (p != null){
             this.purchasesInScreen[this.index] = p;
             this.index++;
+            this.increment++;
+          }
           });
-          this.purchasesLastCall = purchases.content.length;
+          this.purchasesLastCall = purchases.length;
           console.log(this.purchasesInScreen);
         },
         error => console.log(error)
