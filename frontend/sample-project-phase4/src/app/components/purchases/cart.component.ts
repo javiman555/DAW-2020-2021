@@ -23,7 +23,7 @@ import { Dish } from 'src/app/models/dish.model';
 		</div>
 	</section>
   <div *ngIf="purchase">
-  <h2>{{purchase.id}}</h2>
+  <h2>Número de Pedido:{{purchase.id}}</h2>
   <h2>Platos:</h2>
   <div *ngFor="let dish of purchase.dishes" class="menus d-flex">
     <div *ngIf="dish.image"><img [src]="dishImage(dish)"style="width:400px;height:300px;"></div> 

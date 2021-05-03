@@ -2,6 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Dish } from 'src/app/models/dish.model';
 import { DishesService } from 'src/app/services/dishes.service';
+import { LoginService } from 'src/app/services/login.service';
 
 
 @Component({
@@ -17,7 +18,7 @@ import { DishesService } from 'src/app/services/dishes.service';
 		</div>
 	</section>
 
-  <section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');text-align: center;">
+  <section *ngIf="loginService.isAdmin()" class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');text-align: center;">
     <div *ngIf="dish">
     <h2>Plato "{{dish.name}}"</h2>
     <div *ngIf="dish.id">
@@ -72,6 +73,7 @@ export class DishFormComponent {
   constructor(
     private router: Router,
     activatedRoute: ActivatedRoute,
+    public loginService: LoginService,
     private service: DishesService) {
 
     const id = activatedRoute.snapshot.params['id'];

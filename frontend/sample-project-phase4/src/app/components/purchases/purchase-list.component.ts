@@ -9,7 +9,7 @@ import { LoginService } from 'src/app/services/login.service';
 
     <h2>Purchases</h2>
     <ul class="items">
-      <li *ngFor="let purchase of purchases">
+      <li *ngFor="let purchase of purchases"style="color: white">
       {{purchase.firstName}}
         <a [routerLink]="['/purchases', purchase.id]">{{purchase.id}}</a>
       </li>

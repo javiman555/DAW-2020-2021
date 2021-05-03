@@ -13,33 +13,33 @@ import { UsersService } from 'src/app/services/users.service';
       <div *ngIf="user" class="col-md-8 col-sm-6 col-xs-12 personal-info">
         <!-- <form action="/edituser" method="post" enctype="multipart/form-data" class="appointment-form"> -->
           <div class="form-group">
-            <label class="col-md control-label">Nombre:</label>
+            <label style="color: white" class="col-md control-label">Nombre:</label>
             <div class="col-md-8">
               <input [(ngModel)]="user.firstName" placeholder="Nombre"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md control-label">Apellidos:</label>
+            <label style="color: white" class="col-md control-label">Apellidos:</label>
             <div class="col-md-8">
             <input [(ngModel)]="user.surname" placeholder="Apellidos"/>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md control-label">Correo electrónico:</label>
+            <label style="color: white" class="col-md control-label">Correo electrónico:</label>
             <div class="col-md-8">
               <textarea [(ngModel)]="user.email" placeholder="Correo electrónico"></textarea>
             </div>
           </div>
           <div class="form-group">
-            <label class="col-md control-label">Teléfono</label>
+            <label style="color: white" class="col-md control-label">Teléfono</label>
             <div class="col-md-8">
             <input [(ngModel)]="user.phoneNumber" placeholder="Número de teléfono"/>
             </div>
           </div>
 
           <ng-template [ngIf]="user.id">
-            <br><input type='checkbox' name='removeImage' [(ngModel)]="removeUserImage"> <label>Borrar imagen</label><br>
-            <label>Subir imagen: </label><br>
+            <br><input type='checkbox' name='removeImage' [(ngModel)]="removeUserImage"> <label style="color: white">Borrar imagen</label><br>
+            <label style="color: white">Subir imagen: </label><br>
             <input #file type='file' name='imageFile' accept=".jpg, .jpeg" />
           </ng-template>
           <div class="form-group">

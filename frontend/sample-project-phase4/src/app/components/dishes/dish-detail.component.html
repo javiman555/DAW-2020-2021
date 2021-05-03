@@ -16,10 +16,10 @@
         <div class="col-md-6">
             <img [src]="dishImage()" style="width:400px;height:300px;">
             <div>
-            <h3>Precio: </h3><h5>{{dish.dishPrice}}.00€</h5>
-            <h3>Ingredientes:</h3>
+            <h3 style="color: white">Precio: </h3><h5 style="color: white">{{dish.dishPrice}}.00€</h5>
+            <h3 style="color: white">Ingredientes:</h3>
             <div *ngFor="let ingredient of dish.ingredients">
-                <h5>{{ingredient.name}}</h5>
+                <h5 style="color: white">{{ingredient.name}}</h5>
             </div> 
             </div>
         </div>

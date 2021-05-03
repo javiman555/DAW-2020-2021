@@ -8,7 +8,7 @@ import { PurchasesService } from 'src/app/services/purchases.service';
 @Component({
   template: `
 
-	<section class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+	<section *ngIf="loginService.isLogged()" class="ftco-section ftco-wrap-about ftco-no-pb ftco-no-pt" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
 		<br>
     <br>
 		<div class="container">
