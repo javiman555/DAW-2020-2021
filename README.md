@@ -376,3 +376,60 @@ Other form to build the website image is calling the Dockerfile with the command
 | [DishRestController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/rest/controller/DishRestController.java)                             | [PurchasePaginationController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/controller/PurchasePaginationController.java)                   | [PurchaseService.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/service/PurchaseService.java)              |
 | [UserRestController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/rest/controller/UserRestController.java)                              | [RestSecurityConfig.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/security/RestSecurityConfig.java)                  | [UserService.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/service/UserService.java)                      |
 | [README.md](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/README.md)                                                                                                         | [PurchaseRestController.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/rest/controller/PurchaseRestController.java)                   | [PageableService.java](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/backend/src/main/java/com/trec/service/PageableService.java)              |
+
+***
+***
+
+## Phase 3
+
+### Preparation of the environment:
+
+
+
+### SPA Clases and templates Diagram:
+
+This is our SPA Classes and Templates Diagram updated with the Components:
+
+![DiagramPhase4](https://github.com/CodeURJC-DAW-2020-21/webapp10/raw/main/diagrama/DiagramPhase4.png)
+
+### Member Participation:
+
+#### Azahara Andújar
+- Images.
+- Edit User.
+- Classes diagram.
+- Bug fixes.
+- Readme.
+#### David Mestanza
+- Pagination.
+- Profile.
+- Bug fixes.
+- Components for the static pages.
+- Readme.
+#### Javier Méndez
+- Conection to the API REST.
+- Services.
+- Buy process.
+- Bug fixes.
+- Documentation of the API.
+
+#### Commits:
+
+| Azahara                                                                                                                                                    | David     | Javier                                                                                                                                          |                                                                                                                
+|------------------------------------------------------------------------------------------------------------------------------------------------------------|---------------- |-------------------------------------------------------------------------------------------------------------------------------------------------|
+| [Angular app started and small fixes in the API](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/b8434c57903e3b7159667bfebe6529c8426a6b2c)         | [Profile updated](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/248aa8b2b6414c0d88b8328f43f8ec4be1cc838d)                                   | [Services conected to the API](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/25708965f91e9aa08d7ca3ca6aa793bf7f71caaf)                              |
+| [Images implemented in angular](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/57a371fe363d9c7a73ac947ed7b82acbfaad5a26)                          | [Some components, a script file and Google Maps API](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/931a505cd5fb9b3e9e0e65c085da6b9429256f3f) | [Purchases](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/dd8fec3fd7ac59fd4392d49c43cb069b84edecc2)                                                           |
+| [Edit User implemented](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/44e6f77661a22931f8287744340bfaacbfa90f59)                                  | [Components added and updated, animation fixed](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/749acf7436875dd593dfac895f935a9946d67bc4)      | [Purchases conected to the API](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/578ffbdaf0757128873531c601b31bf14ea25858)                              |
+| [Recomended Dishes added](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/8aaf22429adbc50453752c5cabf7ca0f19838331)                                | [Error and login added and some links fixed](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/704f12b73c7f7eee6f1d65aae2e9518c426e5ede)        | [Payment Process done](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/4eb8d9439ea5825876db86a2ba5707940ed125f9)                               |
+| [Diagram phase 4 done](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/2fcacfd5820758fd3a4084c8bde4cff731a7ba54)                                   | [First template adaptation](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/11869ecb7ad1778afdc6339aa5f60278a00aa2e7)                        | [Register Fixed](https://github.com/CodeURJC-DAW-2020-21/webapp10/commit/0b789b732745ff4929804c874ef749a8244629a4)                               |
+
+
+#### Files:
+
+| Azahara                                                                                                                                                                                                          | David          | Javier                                                                                                                                                      |
+|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| [user-detail.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/user-detail/user-detail.component.ts)                                           |[profile.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/profile.component.html)                   | [cart.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/purchases/cart.component.ts)                      | 
+| [user-recomendedDishes.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/user-recomendedDishes/user-recomendedDishes.component.ts)  |[profile.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/profile.component.ts)                   | [paydone.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/paydone/paydone.component.ts)|
+| [dishes.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/services/dishes.service.ts)                                                                               | [dish-detail.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/dishes/dish-detail.component.html)                   | [paydone.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/paydone/paydone.component.html)              |
+| [users.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/services/users.service.ts)                                                                                 | [contact.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/contact/contact.component.html)                  | [dish-list.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/dishes/dish-list.component.html)                      |
+| [README.md](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/README.md)                                                                                                                               | [contact.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/contact/contact.component.ts)                   | [dish-form.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/dishes/dish-form.component.ts)              |
