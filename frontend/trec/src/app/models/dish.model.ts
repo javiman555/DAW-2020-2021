@@ -1,9 +1,11 @@
-export interface Dish{
-    id?: number;
-    name: string;
-    dishPrice: number;
-    category: string;
-    nbuy: number;
-    image: boolean;
-    ingredients: string[];
+import { Ingredient } from "./ingredient.model";
+
+export interface Dish {
+	id?: number;
+	name: string;
+	category: string;
+	nbuy: number;
+	dishPrice: number;
+	ingredients: Ingredient[];
+	image: boolean;
 }

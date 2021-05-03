@@ -1,27 +1,49 @@
-# Trec
+# SAMPLE-PROJECT-PHASE-4
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.9.
+Este proyecto implementa la interfaz de usuario en Angular del `sample-project-phase3` de este repositorio. 
 
-## Development server
+Se puede usar como referencia para implementar la Fase 4 del proyecto de la asignatura "Desarrollo de Aplicaciones Web" de la ETSII URJC. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Ejecución del backend 
 
-## Code scaffolding
+Para que la aplicación Angular funcione correctamente es necesario ejecutar previamente el backend que es una API REST implementada con Spring Boot.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+El backend necesita de una base de datos lanzada previamente (MySQL), la cual podemos lanzar con Docker
 
-## Build
+```
+docker run --rm -e MYSQL_ROOT_PASSWORD=password -e MYSQL_DATABASE=books -p 3306:3306 -d mysql:8.0.22
+```
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+El código del backend está situado en la carpeta `sample-project-phase3`. 
 
-## Running unit tests
+Podemos ejecutar la aplicación desde un IDE (Eclipse, Visual Studio Code, IntelliJ...) o desde la línea de comandos usando Maven:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+```
+cd sample-project-phase3
+mvn spring-boot:run
+```
 
-## Running end-to-end tests
+## Ejecución del frontend (en modo desarrollo)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Nos situamos en la carpeta `sample-project-phase4`
 
-## Further help
+```
+cd sample-project-phase4
+```
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Instalamos las dependencias:
+
+```
+npm install
+```
+
+Lanzamos la aplicación en modo desarrollo
+
+```
+npm start
+```
+
+Lo que ejecutará `ng serve` con el proxy configurado (para evitar problemas de CORS en desarrollo y para poder usar rutas relativas a la API REST, lo que facilita el despliegue en producción).
+
+Cuando aparezca en consola `Compiled successfully.` se podrá abrir la aplicación en `http://localhost:4200/`
+
