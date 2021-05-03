@@ -28,18 +28,18 @@ export class PurchaseListComponent implements OnInit {
 
   ngOnInit() {
 
-    if(this.loginService.isAdmin){
+    if(this.loginService.isAdmin()){
       this.service.getPurchasesAdmin(0).subscribe(
-        page => {console.log(page);
-          this.purchases = page.content;
+        purchases => {
+          this.purchases = purchases;
           console.log(this.purchases);
         },
         error => console.log(error)
       );
       }else{
         this.service.getPurchasesUser(this.loginService.user.id,0).subscribe(
-          page => {console.log(page);
-            this.purchases = page.content;
+          purchases => {
+            this.purchases =purchases;
             console.log(this.purchases);
           },
         error => console.log(error)

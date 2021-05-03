@@ -54,8 +54,11 @@ export class ProfileComponent{
         document.getElementById("edit").className = "tab-pane fade";
         document.getElementById("linkEdit").className = "nav-link";
 
-        document.getElementById("dishes").className = "tab-pane fade";
-        document.getElementById("linkDishes").className = "nav-link";
+        if(!this.loginService.isAdmin()){
+            document.getElementById("dishes").className = "tab-pane fade";
+            document.getElementById("linkDishes").className = "nav-link";
+        }
+
 
         document.getElementById("purchases").className = "tab-pane fade in active show";
         document.getElementById("linkPurchases").className = "nav-link active";

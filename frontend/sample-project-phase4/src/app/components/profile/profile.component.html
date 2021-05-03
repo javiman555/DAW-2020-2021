@@ -34,12 +34,13 @@
         <br>
     </div>
 
-    <div role="tabpanel" class="tab-pane fade" id="purchases" aria-labelledby="tabInfo">
+    <div *ngIf="loginService.isLogged()" role="tabpanel" class="tab-pane fade" id="purchases" aria-labelledby="tabInfo">
         <div class="container" style="padding-top: 60px;">
             <h1 class="page-header">Facturas</h1>
             <br>
+            <purchase-list></purchase-list>
 <!-- 					ADMIN -->
-                    <div *ngIf="loginService.isAdmin; else noAdminPurchases" id="userPurchases">
+                    <div *ngIf="loginService.isAdmin(); else noAdminPurchases" id="userPurchases">
                         <!-- {{#adminpurchases}}
                             <p><a href="/purchase/{{id}}">Factura #{{id}}</a></p>
                         {{/adminpurchases}} -->
