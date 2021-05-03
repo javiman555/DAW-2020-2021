@@ -1,6 +1,7 @@
 package com.trec.service;
 
 import java.security.Principal;
+import java.util.List;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -84,7 +85,13 @@ public class PageableService {
 			if (userReal.get().getId() == user.get().getId()) {
 				
 				Page<Purchase> page = purchaseService.getByUser(user.get(), pageRequested);
-				Purchase[] arrayPage = (Purchase[]) page.getContent().toArray();
+				List<Purchase> listPage = page.getContent();
+				Purchase arrayPage[] = new Purchase[5];
+				int i = 0;
+				for (Purchase p : listPage) {
+					arrayPage[i] = p;
+					i++;
+				}
 				return ResponseEntity.ok(arrayPage);
 			} else {
 				return ResponseEntity.notFound().build();
@@ -108,7 +115,13 @@ public class PageableService {
 			if (userReal.get().getRoles().contains("ADMIN")) {
 				
 				Page<Purchase> page = purchaseService.findAll(pageRequested);
-				Purchase[] arrayPage = (Purchase[]) page.getContent().toArray();
+				List<Purchase> listPage = page.getContent();
+				Purchase arrayPage[] = new Purchase[5];
+				int i = 0;
+				for (Purchase p : listPage) {
+					arrayPage[i] = p;
+					i++;
+				}
 				return ResponseEntity.ok(arrayPage);
 			} else {
 				return ResponseEntity.notFound().build();

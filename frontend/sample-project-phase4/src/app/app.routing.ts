@@ -9,14 +9,11 @@ import { ErrorComponent } from './components/error/error.component';
 import { IndexComponent } from './components/index/index.component';
 import { LoginComponent } from './components/login/login.component';
 import { PaydoneComponent } from './components/paydone/paydone.component';
+import { ProfileComponent } from './components/profile/profile.component';
 import { PurchaseDetailComponent } from './components/purchases/purchase-detail.component';
 import { PurchaseFormComponent } from './components/purchases/purchase-form.component';
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
 import { TeamComponent } from './components/team/team.component';
-import { UserDetailComponent } from './components/profile/user-detail.component';
-import { RecomendedDishListComponent } from './components/profile/user-recomendedDishes.component';
-
-
 
 const appRoutes = [
     { path: '', component: IndexComponent },
@@ -29,17 +26,14 @@ const appRoutes = [
     { path: 'error', component: ErrorComponent },
     { path: 'index', component: IndexComponent },
     { path: 'paydone', component: PaydoneComponent },
+    { path: 'profile/:id', component: ProfileComponent },
     { path: 'purchases', component: PurchaseListComponent },
     { path: 'purchases/new', component: PurchaseFormComponent },
     { path: 'purchases/:id', component: PurchaseDetailComponent },
-    { path: 'users', component: DishListComponent },
-    { path: 'cart', component: CartComponent },
     { path: 'register', component: LoginComponent },
-    { path: 'error', component: ErrorComponent },
-    { path: 'index', component: IndexComponent },
     { path: 'team', component: TeamComponent },
-    { path: 'users/:id', component: UserDetailComponent },
-    { path: 'users/:id/dishes', component: RecomendedDishListComponent }
+
+    { path: '**', component: ErrorComponent }
 ]
 
 export const routing = RouterModule.forRoot(appRoutes);

@@ -7,18 +7,20 @@ import { LoginService } from 'src/app/services/login.service';
 @Component({
   template: `
 
-    <h2>Purchaes</h2>
+    <h2>Purchases</h2>
     <ul class="items">
       <li *ngFor="let purchase of purchases">
       {{purchase.firstName}}
         <a [routerLink]="['/purchases', purchase.id]">{{purchase.id}}</a>
       </li>
     </ul>
-    <button *ngIf="loginService.isLogged()" (click)="newPurchase()">New book</button>
-  `
+    <!-- <button *ngIf="loginService.isLogged()" (click)="newPurchase()">New book</button> -->
+  `,
+  selector: "purchase-list"
 })
 export class PurchaseListComponent implements OnInit {
 
+  page: any;
   purchases: Purchase[];
 
 
@@ -28,12 +30,18 @@ export class PurchaseListComponent implements OnInit {
 
     if(this.loginService.isAdmin){
       this.service.getPurchasesAdmin(0).subscribe(
-        purchases => this.purchases = purchases,
+        page => {console.log(page);
+          this.purchases = page.content;
+          console.log(this.purchases);
+        },
         error => console.log(error)
       );
       }else{
         this.service.getPurchasesUser(this.loginService.user.id,0).subscribe(
-        purchases => this.purchases = purchases,
+          page => {console.log(page);
+            this.purchases = page.content;
+            console.log(this.purchases);
+          },
         error => console.log(error)
         );
       }

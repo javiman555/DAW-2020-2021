@@ -8,15 +8,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { User } from 'src/app/models/user.model';
 
 @Component({
-    template: `
-      <h2>Recomended dishes:</h2>
-      <ul class="items">
-        <li *ngFor="let dish of dishes">
-          <a [routerLink]="['/dishes', dish.id]">{{dish.name}}</a>
-          <button *ngIf="loginService.isLogged()" (click)="addDishPurchase(dish.id)">Pedir</button>
-        </li>
-      </ul>
-    `
+    templateUrl: "./user-recomendedDishes.component.html",
+    selector: "user-recomended"
   })
 
   export class RecomendedDishListComponent{
@@ -38,9 +31,10 @@ import { User } from 'src/app/models/user.model';
       this.user = this.loginService.currentUser();
 
       const id = activatedRoute.snapshot.params['id'];
+      // console.log(id);
       this.usersService.getRecomendedDishes(id).subscribe(
         dishes => this.dishes = dishes,
-        error => console.log(error)
+        error =>  console.log(error)
       );
     }
 
@@ -49,5 +43,13 @@ import { User } from 'src/app/models/user.model';
           purchase => this.purchase = purchase,
           error => console.log(error)
         );
-      }
+    }
+
+    dishImage(dish: Dish){
+      return dish?.image? '/api/dishes/'+ dish?.id+'/image' : '/assets/images/no_image.png';
+    }
+
+    goToDish(dish_id: number){
+      this.router.navigate(['/dishes', dish_id]);
+    }
   }

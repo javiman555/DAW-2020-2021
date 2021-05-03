@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { User } from './models/user.model';
+import { UsersService } from './services/users.service';
 import { LoginService } from './services/login.service';
 
 @Component({
@@ -13,6 +14,12 @@ export class AppComponent {
 
   constructor(
     private router: Router,
+    activatedRoute: ActivatedRoute,
+    private usersService: UsersService,
     public loginService: LoginService
-  ){}
+  ){  }
+
+  goToProfile(){
+    this.router.navigate(['/profile/', this.loginService.currentUserId()])
+  }
 }

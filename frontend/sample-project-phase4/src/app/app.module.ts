@@ -14,13 +14,14 @@ import { PurchaseDetailComponent } from './components/purchases/purchase-detail.
 import { PurchaseFormComponent } from './components/purchases/purchase-form.component';
 import { PurchaseListComponent } from './components/purchases/purchase-list.component';
 import { CartComponent } from './components/purchases/cart.component';
-import { UserDetailComponent } from './components/profile/user-detail.component';
-import { RecomendedDishListComponent } from './components/profile/user-recomendedDishes.component';
+import { UserDetailComponent } from './components/profile/user-detail/user-detail.component';
+import { RecomendedDishListComponent } from './components/profile/user-recomendedDishes/user-recomendedDishes.component';
 import { ErrorComponent } from './components/error/error.component';
 import { IndexComponent } from './components/index/index.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { TeamComponent } from './components/team/team.component';
 import { PaydoneComponent } from './components/paydone/paydone.component';
+import { ProfileComponent } from './components/profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PaydoneComponent } from './components/paydone/paydone.component';
     IndexComponent,
     ContactComponent,
     TeamComponent,
-    PaydoneComponent
+    PaydoneComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

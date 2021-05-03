@@ -1,0 +1,79 @@
+<div class="overlay"></div>
+<div class="container">
+    <div class="row no-gutters slider-text align-items-end justify-content-center">
+        <div class="col-md-9 text-center mb-5">
+            <h1 class="mb-2 bread">Bienvenide, {{user?.firstName}}</h1>
+        </div>
+    </div>
+</div>
+
+<section class="ftco-section ftco-no-pt ftco-no-pb" style="background-image: url('https://cdn.hipwallpaper.com/i/54/42/AL9wmh.jpg');">
+
+<div class="navbar-default" id="ftco-nav">
+    <ul id="infoPerfil" class="nav ml-auto nav-pills nav-fill">
+        <li role="presentation" style="color: red" class="nav-item"><a id="linkEdit" class="nav-link active" (click)="goToEdit()">Editar perfil</a></li>
+        <li *ngIf="!loginService.isAdmin()" role="presentation" style="color: red" class="nav-item"><a id="linkDishes" class="nav-link" (click)="goToDishes()">Platos recomendados</a></li>
+        <li role="presentation" style="color: red" class="nav-item"><a id="linkPurchases" class="nav-link" (click)="goToPurchases()">Facturas</a></li>
+    </ul>
+</div>
+
+<div class="tab-content panel panel-info">
+    <div role="tabpanel" class="tab-pane fade in active show" id="edit" aria-labelledby="tabInfo">
+        <div class="container" style="padding-top: 60px;">
+            <h1 class="page-header">Editar perfil</h1>
+            <user-detail></user-detail>
+        </div>
+        <br>
+    </div>
+    
+    <div *ngIf="!loginService.isAdmin()" role="tabpanel" class="tab-pane fade" id="dishes" aria-labelledby="tabInfo">
+        <div class="container" style="padding-top: 60px;">
+            <h1 class="page-header">Platos recomendados</h1>
+            <user-recomended></user-recomended>
+        </div>
+        <br>
+    </div>
+
+    <div role="tabpanel" class="tab-pane fade" id="purchases" aria-labelledby="tabInfo">
+        <div class="container" style="padding-top: 60px;">
+            <h1 class="page-header">Facturas</h1>
+            <br>
+<!-- 					ADMIN -->
+                    <div *ngIf="loginService.isAdmin; else noAdminPurchases" id="userPurchases">
+                        <!-- {{#adminpurchases}}
+                            <p><a href="/purchase/{{id}}">Factura #{{id}}</a></p>
+                        {{/adminpurchases}} -->
+                    </div>
+                    <!-- {{^isadminempty}} -->
+                        <!-- <button type="button" class="btn btn-primary" id="moreContentButton" (click)="moreAdminPagContent()"> -->
+                        <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
+                        <!-- <span id="moreContentText">Cargar más...</span></button> -->
+                    <!-- {{/isadminempty}}
+                
+                    {{^adminpurchases}} -->
+                        <b>No ha realizado ningún pedido.</b>
+                    <!-- {{/adminpurchases}} -->
+                
+<!-- 					NORMAL USER -->						
+                <ng-template #noAdminPurchases>
+                    <div id="userPurchases">
+                        <!-- {{#purchases}}
+                            <p><a href="/purchase/{{id}}">Factura #{{id}}</a></p>
+                        {{/purchases}} -->
+                    </div>
+                    <!-- {{^isempty}} -->
+                        <!-- <button type="button" class="btn btn-primary" id="moreContentButton" (click)="morePagContent()"> -->
+                        <span class="spinner-border spinner-border-sm" id="moreContentSpinner" role="status" aria-hidden="true" style="display: none"></span>
+                        <!-- <span id="moreContentText">Cargar más...</span></button> -->
+                    <!-- {{/isempty}}
+                    
+                    {{^purchases}} -->
+                        <b>No ha realizado ningún pedido.</b>
+                    <!-- {{/purchases}} -->
+                </ng-template>
+            
+        </div>
+        <br>
+    </div>
+</div>
+</section>
