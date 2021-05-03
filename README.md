@@ -1,5 +1,10 @@
 # TU RESTAURANTE EN CASA
 
+## DEMO VIDEO
+
+Click in the image to go to the video.
+[![https://www.youtube.com/watch?v=7_FNkpZRUuE](https://img.youtube.com/vi/7_FNkpZRUuE/0.jpg)](https://www.youtube.com/watch?v=7_FNkpZRUuE)
+
 ## MEMBERS OF THE TEAM
 
 - Azahara Andújar Muñoz-Quirós, a.andujar.2017@alumnos.urjc.es, Github: azzzahara.
@@ -380,10 +385,22 @@ Other form to build the website image is calling the Dockerfile with the command
 ***
 ***
 
-## Phase 3
+## Phase 4
 
 ### Preparation of the environment:
 
+#### Extract the app from github:
+- Go to https://github.com/CodeURJC-DAW-2020-21/webapp10.
+- Click the green button "Code".
+- Click in download zip and extract it wherever you want.
+
+#### Install Docker Desktop:
+- Go to https://www.docker.com/products/docker-desktop.
+- Download the latest version for your operating system.
+
+#### Construction and execute:
+- Open Docker Desktop.
+- Execute `create_image.bat`.
 
 
 ### SPA Clases and templates Diagram:
@@ -429,7 +446,7 @@ This is our SPA Classes and Templates Diagram updated with the Components:
 | Azahara                                                                                                                                                                                                          | David          | Javier                                                                                                                                                      |
 |-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | [user-detail.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/user-detail/user-detail.component.ts)                                           |[profile.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/profile.component.html)                   | [cart.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/purchases/cart.component.ts)                      | 
-| [user-recomendedDishes.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/user-recomendedDishes/user-recomendedDishes.component.ts)  |[profile.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/profile.component.ts)                   | [paydone.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/paydone/paydone.component.ts)|
+| [user-recomendedDishes.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/profile/user-recomendedDishes/user-recomendedDishes.component.ts)  |[Dockerfile](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/Docker/Dockerfile)                   | [paydone.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/paydone/paydone.component.ts)|
 | [dishes.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/services/dishes.service.ts)                                                                               | [dish-detail.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/dishes/dish-detail.component.html)                   | [paydone.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/paydone/paydone.component.html)              |
 | [users.service.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/services/users.service.ts)                                                                                 | [contact.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/contact/contact.component.html)                  | [dish-list.component.html](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/dishes/dish-list.component.html)                      |
 | [README.md](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/README.md)                                                                                                                               | [contact.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/contact/contact.component.ts)                   | [dish-form.component.ts](https://github.com/CodeURJC-DAW-2020-21/webapp10/blob/main/frontend/trec/src/app/components/dishes/dish-form.component.ts)              |
